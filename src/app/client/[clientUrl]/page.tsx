@@ -1,20 +1,12 @@
 'use client';
 
-import { useRouter } from 'next/router';
 import styles from './page.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function ClientUrl() {
-  // Use useRouter to access query params
-  const router = useRouter();
-  const { ClientUrl } = router.query; // Extract the dynamic route parameter
+const RegisterForm: React.FC = () => {
 
-  // Render loading message if the query param is not available yet (because of client-side rendering)
-  if (!ClientUrl) {
-    return <div>Loading...</div>;
-  }
-
+ 
   return (
     <div className={styles.page1}>
       <div className={styles.leftSide}>
@@ -39,9 +31,11 @@ export default function ClientUrl() {
           <li>Website: BeuatifulHomesPH.com</li>
           <li>Address: Cebu City Cebu</li>
           {/* Display the dynamic ClientUrl parameter */}
-          <li>{ClientUrl}</li>
+
         </ul>
       </div>
     </div>
   );
 }
+
+export default RegisterForm;
