@@ -64,7 +64,7 @@ const ManageLists = () => {
     setSelectedList(list);
     setIsModalOpen(true);
   };
-
+  console.log('asas')
 
   const handleDelete = async (id: string) => {
     try {
