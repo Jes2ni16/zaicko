@@ -1,0 +1,187 @@
+"use client";
+
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button, Autocomplete } from '@mui/material';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+interface Client {
+  _id: string;
+  name: string;
+}
+
+interface ListData {
+  _id: string;
+  list_type: string;
+  unit_type: string;
+  city: string;
+  barangay: string;
+  fb_link: string;
+  room_number: string;
+  list_owner: string;
+  client: { _id: string; name: string };
+}
+
+interface EditListModalProps {
+  open: boolean;
+  list: ListData | null;
+  onClose: () => void;
+  onSuccess: () => void;
+}
+
+const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) => {
+  const [listType, setListType] = useState<string>('');
+  const [unitType, setUnitType] = useState<string>('');
+  const [city, setCity] = useState<string>('');
+  const [barangay, setBarangay] = useState<string>('');
+  const [fbLink, setFbLink] = useState<string>('');
+  const [roomNumber, setRoomNumber] = useState<string>('');
+  const [listOwner, setListOwner] = useState<string>('');
+  const [clientId, setClientId] = useState<Client | undefined>(undefined); // Updated to Client | undefined
+  const [clients, setClients] = useState<Client[]>([]);
+
+  // Fetch clients on modal open
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/api/clients');
+        setClients(response.data);
+        
+        // If list is available, set the clientId
+        if (list) {
+          const matchedClient = response.data.find((client: Client) => client._id === list.client._id);
+          setClientId(matchedClient); // Set matchedClient or undefined
+        }
+      } catch (error) {
+        console.error('Error fetching clients:', error);
+      }
+    };
+
+    if (open) {
+      fetchClients();
+    }
+  }, [open, list]); // Re-fetch clients and update clientId when modal is opened or list changes
+
+  // Populate the form fields if the list is available
+  useEffect(() => {
+    if (list) {
+      setListType(list.list_type);
+      setUnitType(list.unit_type);
+      setCity(list.city);
+      setBarangay(list.barangay);
+      setFbLink(list.fb_link);
+      setRoomNumber(list.room_number);
+      setListOwner(list.list_owner);
+    }
+  }, [list]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!clientId) {
+      alert('Please select a client before submitting.');
+      return;
+    }
+
+    const updatedList = {
+      list_type: listType,
+      unit_type: unitType,
+      city,
+      barangay,
+      fb_link: fbLink,
+      room_number: roomNumber,
+      list_owner: listOwner,
+      clientId: clientId._id, // Send the client ID
+    };
+
+    try {
+      if (list && list._id) {
+        await axios.put(`http://localhost:3001/api/lists/${list._id}`, updatedList);
+        onSuccess();
+      }
+    } catch (error) {
+      console.error('Error updating list:', error);
+    }
+  };
+
+  return (
+    <Dialog open={open} onClose={onClose}>
+      <DialogTitle>Edit List</DialogTitle>
+      <form onSubmit={handleSubmit}>
+        <DialogContent>
+          <Autocomplete
+            value={clientId} // clientId is either a Client or undefined
+            onChange={(e, newValue) => setClientId(newValue)} // newValue will be a Client or undefined
+            options={clients} // clients is an array of Client objects
+            getOptionLabel={(option) => option?.name || 'Unknown Client'} // Provide fallback label
+            renderInput={(params) => <TextField {...params} label="Client" fullWidth required />}
+            isOptionEqualToValue={(option, value) => option._id === value?._id} // Compare by _id
+            disableClearable
+          />
+          <TextField
+            label="List Type"
+            fullWidth
+            value={listType}
+            onChange={(e) => setListType(e.target.value)}
+            required
+            margin="normal"
+          />
+          <TextField
+            label="Unit Type"
+            fullWidth
+            value={unitType}
+            onChange={(e) => setUnitType(e.target.value)}
+            required
+            margin="normal"
+          />
+          <TextField
+            label="City"
+            fullWidth
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+            margin="normal"
+          />
+          <TextField
+            label="Barangay"
+            fullWidth
+            value={barangay}
+            onChange={(e) => setBarangay(e.target.value)}
+            required
+            margin="normal"
+          />
+          <TextField
+            label="Facebook Link"
+            fullWidth
+            value={fbLink}
+            onChange={(e) => setFbLink(e.target.value)}
+            margin="normal"
+          />
+          <TextField
+            label="Room Number"
+            fullWidth
+            value={roomNumber}
+            onChange={(e) => setRoomNumber(e.target.value)}
+            margin="normal"
+          />
+          <TextField
+            label="List Owner"
+            fullWidth
+            value={listOwner}
+            onChange={(e) => setListOwner(e.target.value)}
+            margin="normal"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose} color="primary">
+            Cancel
+          </Button>
+          <Button type="submit" color="primary">
+            Update
+          </Button>
+        </DialogActions>
+      </form>
+    </Dialog>
+  );
+};
+
+export default EditListModal;

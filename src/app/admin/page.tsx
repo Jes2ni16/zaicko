@@ -1,0 +1,209 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import {
+  Container,
+  Typography,
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Dialog,
+  TablePagination,
+  CircularProgress,
+  Snackbar,
+} from '@mui/material';
+import CreateClientComponent from '../components/creatClient'; // Import the new form component
+import { Delete as DeleteIcon } from '@mui/icons-material';
+
+// Define types for the client data
+interface Client {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  url: string;
+  createdAt:string;
+}
+
+const ClientManagement = () => {
+  const [clients, setClients] = useState<Client[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
+  const [selectedClient, setSelectedClient] = useState<Client | null>(null); // Track selected client for editing
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
+  const [error, setError] = useState<string | null>(null); // Error state
+  const [page, setPage] = useState<number>(0); // Page state for pagination
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5); // Rows per page for pagination
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false); // Snackbar for success/failure messages
+
+  // Fetch Clients from the server
+  const fetchClients = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get('http://localhost:3001/api/clients'); // Adjust API route as needed
+      
+      // Sort clients by createdAt in descending order
+      const sortedClients = response.data.sort((a: Client, b: Client) => 
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      
+      setClients(sortedClients);
+      setError(null); // Reset error state if successful
+    } catch (error) {
+      console.error('Error fetching clients:', error);
+      setError('Failed to load clients.');
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchClients();
+  }, []);
+
+  // Handle success after adding or updating a client
+  const handleSuccess = () => {
+    fetchClients(); // Refresh the clients list after adding or editing a client
+    setOpen(false);  // Close the dialog
+    setSelectedClient(null); // Reset the selected client
+    setOpenSnackbar(true); // Show success snackbar
+  };
+
+  // Handle Delete Client
+  const handleDelete = async (clientId: string) => {
+    try {
+      await axios.delete(`http://localhost:3001/api/clients/${clientId}`);
+      setOpenSnackbar(true); // Show success snackbar
+      fetchClients(); // Refresh the client list
+    } catch (error) {
+      console.error('Error deleting client:', error);
+      setError('Failed to delete client.');
+    }
+  };
+
+  // Open the dialog for creating or editing a client  
+  const handleOpenDialog = (client?: Client) => {
+    setSelectedClient(client || null); // If client is passed, edit it, otherwise create new
+    setOpen(true);
+  };
+
+  // Handle Pagination change
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  // Handle Rows per page change
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0); // Reset to the first page when rows per page changes
+  };
+
+  return (
+    <Container>
+      <Typography variant="h4" gutterBottom>
+        Client Management
+      </Typography>
+      <Button variant="contained" color="primary" onClick={() => handleOpenDialog()}>
+        Add Client
+      </Button>
+      {/* Loading Indicator */}
+      {loading ? (
+        <CircularProgress />
+      ) : error ? (
+        <Snackbar
+          open={true}
+          autoHideDuration={6000}
+          message={error}
+          onClose={() => setError(null)}
+        />
+      ) : (
+        <>
+          <TableContainer component={Paper} sx={{ marginTop: 2 }}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Phone</TableCell>
+                  <TableCell>Address</TableCell>
+                  <TableCell>Url</TableCell>
+                  <TableCell>Actions</TableCell> {/* Added Actions column */}
+                  </>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {clients
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((client) => (
+                    <TableRow key={client._id}>
+                      <>
+                      <TableCell>{client.name}</TableCell>
+                      <TableCell>{client.email}</TableCell>
+                      <TableCell>{client.phone}</TableCell>
+                      <TableCell>{client.address}</TableCell>
+                      <TableCell>{client.url}</TableCell>
+                      <TableCell>
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          onClick={() => handleOpenDialog(client)} // Open dialog with client data for editing
+                        >Edit</Button>
+                        {/* Delete Button */}
+                        <Button
+                          variant="outlined"
+                          color="error"
+                          onClick={() => handleDelete(client._id)} // Call delete handler
+                          sx={{ marginLeft: 1 }} >
+                          <DeleteIcon />
+                        </Button>
+                      </TableCell> {/* Edit and Delete button columns */}
+                      </>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={clients.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </>
+      )}
+      {/* Add or Edit Client Dialog */}
+      <Dialog open={open} onClose={() => setOpen(false)}   PaperProps={{
+    sx: {
+      width: '900px', // Set modal width
+      maxWidth: '900px', // Ensure no overflow
+    },
+  }}>
+        <CreateClientComponent
+          client={selectedClient} // Pass selected client data for editing
+          onClose={() => setOpen(false)} // Close the dialog
+          onSuccess={handleSuccess}    // Handle success callback
+        />
+      </Dialog>
+
+      {/* Success Snackbar */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        message="Client successfully added, updated, or deleted"
+        onClose={() => setOpenSnackbar(false)}
+      />
+    </Container>
+  );
+};
+
+export default ClientManagement;
