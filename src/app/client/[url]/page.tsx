@@ -13,6 +13,7 @@ interface PostPageProps {
 
 export default function PostPage({ params }: PostPageProps) {
   const { url } = params; // Retrieve the dynamic URL parameter directly
+console.log('asas')
 
   return (
     <div className={styles.page1}>
