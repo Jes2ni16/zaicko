@@ -1,19 +1,19 @@
 'use client';
 
- // Remove useRouter since it's not needed
+import { useRouter } from 'next/router';
 import styles from './page.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface PostPageProps {
-  params: {
-    url: string; // Dynamic URL parameter
-  };
-}
+export default function ClientUrl() {
+  // Use useRouter to access query params
+  const router = useRouter();
+  const { ClientUrl } = router.query; // Extract the dynamic route parameter
 
-export default function PostPage({ params }: PostPageProps) {
-  const { url } = params; // Retrieve the dynamic URL parameter directly
-console.log('asas')
+  // Render loading message if the query param is not available yet (because of client-side rendering)
+  if (!ClientUrl) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.page1}>
@@ -38,12 +38,8 @@ console.log('asas')
           <li>Email: jesuagarletbesthomes@gmail.com</li>
           <li>Website: BeuatifulHomesPH.com</li>
           <li>Address: Cebu City Cebu</li>
-          {/* Display URL if available */}
-          {url && (
-            <li>
-              <strong>Entered URL: </strong>{url}
-            </li>
-          )}
+          {/* Display the dynamic ClientUrl parameter */}
+          <li>{ClientUrl}</li>
         </ul>
       </div>
     </div>
