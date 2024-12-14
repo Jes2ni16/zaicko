@@ -1,15 +1,26 @@
 "use client";
-
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './page.module.css';
 import Image from 'next/image';
 
 export default function PostPage() {
   const router = useRouter();
-  const { url } = router.query; // Access dynamic parameter (e.g., 'url')
+  const [isMounted, setIsMounted] = useState(false);
+  const { url } = router.query;
 
-  console.log(router.query); // Log the dynamic query params
+  // Only set isMounted to true after the component has mounted (client-side)
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Return a loading state or empty component until it's mounted
+  if (!isMounted) {
+    return null; // Or you could return a loading spinner, etc.
+  }
+
+  console.log(router.query); // Log dynamic params after component mounts
 
   return (
     <div className={styles.page1}>
