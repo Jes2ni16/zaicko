@@ -38,7 +38,7 @@ const AddListComponent = ({ onSuccess }: AddListProps) => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/clients");
+        const response = await axios.get("https://zaiko-server.vercel.app/api/clients");
         if (Array.isArray(response.data)) {
           setClients(response.data);
         } else {
@@ -71,7 +71,7 @@ const AddListComponent = ({ onSuccess }: AddListProps) => {
     };
 
     try {
-      await axios.post("http://localhost:3001/api/lists", listData);
+      await axios.post("https://zaiko-server.vercel.app/api/lists", listData);
       onSuccess();
       // Reset form
       setListType("");

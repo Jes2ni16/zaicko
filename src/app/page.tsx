@@ -49,7 +49,7 @@ const ManageLists = () => {
 
   const fetchLists = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/lists");
+      const response = await axios.get("https://zaiko-server.vercel.app/api/lists");
       const sortedLists = response.data.sort((a: ListData, b: ListData) => {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime(); // Newest first
       });
@@ -69,7 +69,7 @@ const ManageLists = () => {
   const handleDelete = async (id: string) => {
     try {
       // Perform the delete operation (API call or local state update)
-      await axios.delete(`http://localhost:3001/api/lists/${id}`);
+      await axios.delete(`https://zaiko-server.vercel.app/api/lists/${id}`);
       // Refresh the list or update state after deletion
       fetchLists(); // This ensures the list is refreshed after deletion
     } catch (error) {

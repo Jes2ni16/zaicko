@@ -46,7 +46,7 @@ const ClientManagement = () => {
   const fetchClients = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:3001/api/clients'); // Adjust API route as needed
+      const response = await axios.get('https://zaiko-server.vercel.app/api/clients'); // Adjust API route as needed
       
       // Sort clients by createdAt in descending order
       const sortedClients = response.data.sort((a: Client, b: Client) => 
@@ -77,7 +77,7 @@ const ClientManagement = () => {
   // Handle Delete Client
   const handleDelete = async (clientId: string) => {
     try {
-      await axios.delete(`http://localhost:3001/api/clients/${clientId}`);
+      await axios.delete(`https://zaiko-server.vercel.app/api/clients/${clientId}`);
       setOpenSnackbar(true); // Show success snackbar
       fetchClients(); // Refresh the client list
     } catch (error) {

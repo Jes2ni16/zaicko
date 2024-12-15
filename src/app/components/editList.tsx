@@ -43,7 +43,7 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/clients');
+        const response = await axios.get('https://zaiko-server.vercel.app/api/clients');
         setClients(response.data);
         
         // If list is available, set the clientId
@@ -95,7 +95,7 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
 
     try {
       if (list && list._id) {
-        await axios.put(`http://localhost:3001/api/lists/${list._id}`, updatedList);
+        await axios.put(`https://zaiko-server.vercel.app/api/lists/${list._id}`, updatedList);
         onSuccess();
       }
     } catch (error) {

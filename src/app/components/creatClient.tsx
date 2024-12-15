@@ -73,9 +73,9 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
 
     try {
       if (client && client._id) {
-        await axios.put(`http://localhost:3001/api/clients/${client._id}`, clientData);
+        await axios.put(`https://zaiko-server.vercel.app/api/clients/${client._id}`, clientData);
       } else {
-        await axios.post('http://localhost:3001/api/clients', clientData);
+        await axios.post('https://zaiko-server.vercel.app/api/clients', clientData);
       }
       onSuccess();
     } catch (error) {
