@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button, Autocomplete } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button, Autocomplete, FormControl, InputLabel, Select,MenuItem  } from '@mui/material';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -15,6 +15,7 @@ interface ListData {
   unit_type: string;
   city: string;
   barangay: string;
+  price: string;
   fb_link: string;
   room_number: string;
   list_owner: string;
@@ -33,6 +34,7 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
   const [unitType, setUnitType] = useState<string>('');
   const [city, setCity] = useState<string>('');
   const [barangay, setBarangay] = useState<string>('');
+  const [price, setPrice] = useState("");
   const [fbLink, setFbLink] = useState<string>('');
   const [roomNumber, setRoomNumber] = useState<string>('');
   const [listOwner, setListOwner] = useState<string>('');
@@ -68,6 +70,7 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
       setUnitType(list.unit_type);
       setCity(list.city);
       setBarangay(list.barangay);
+      setPrice(list.price);
       setFbLink(list.fb_link);
       setRoomNumber(list.room_number);
       setListOwner(list.list_owner);
@@ -87,6 +90,7 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
       unit_type: unitType,
       city,
       barangay,
+      price,
       fb_link: fbLink,
       room_number: roomNumber,
       list_owner: listOwner,
@@ -117,22 +121,31 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
             isOptionEqualToValue={(option, value) => option._id === value?._id} // Compare by _id
             disableClearable
           />
-          <TextField
-            label="List Type"
-            fullWidth
-            value={listType}
-            onChange={(e) => setListType(e.target.value)}
-            required
-            margin="normal"
-          />
-          <TextField
-            label="Unit Type"
-            fullWidth
-            value={unitType}
-            onChange={(e) => setUnitType(e.target.value)}
-            required
-            margin="normal"
-          />
+          <FormControl fullWidth margin="normal" required>
+      <InputLabel id="list-type-label">List Type</InputLabel>
+      <Select
+        labelId="list-type-label"
+        value={listType}
+        onChange={(e) => setListType(e.target.value)}
+      >
+        <MenuItem value="Rental">Rental</MenuItem>
+        <MenuItem value="Brokerage">Brokerage</MenuItem>
+        <MenuItem value="Development">Development</MenuItem>
+      </Select>
+    </FormControl>
+    <FormControl fullWidth margin="normal" required>
+      <InputLabel id="unit-type-label">Unit Type</InputLabel>
+      <Select
+        labelId="unit-type-label"
+        value={unitType}
+        onChange={(e) => setUnitType(e.target.value)}
+      >
+        <MenuItem value="Condo">Condo</MenuItem>
+        <MenuItem value="House">House</MenuItem>
+        <MenuItem value="Commercial">Commercial</MenuItem>
+        <MenuItem value="Lot">Lot</MenuItem>
+      </Select>
+    </FormControl>
           <TextField
             label="City"
             fullWidth
@@ -149,6 +162,14 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
             required
             margin="normal"
           />
+        <TextField
+          label="Price"
+          fullWidth
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          required
+          margin="normal"
+        />
           <TextField
             label="Facebook Link"
             fullWidth

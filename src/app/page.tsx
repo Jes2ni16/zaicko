@@ -25,11 +25,12 @@ interface ListData {
   unit_type: string;
   city: string;
   barangay: string;
+  price:string;
   fb_link: string;
   room_number: string;
   list_owner: string;
   owner: string;
-  created_at:string;
+  createdAt:string;
   client:  { _id: string; name: string };  // Client can be either string (ID) or an object
 }
 
@@ -51,7 +52,7 @@ const ManageLists = () => {
     try {
       const response = await axios.get("https://zaiko-server.vercel.app/api/lists");
       const sortedLists = response.data.sort((a: ListData, b: ListData) => {
-        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime(); // Newest first
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(); // Newest first
       });
       setLists(sortedLists);
       setFilteredLists(sortedLists);
@@ -133,32 +134,35 @@ const ManageLists = () => {
       />
       <TableContainer>
         <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>List Type</TableCell>
-              <TableCell>Unit Type</TableCell>
-              <TableCell>City</TableCell>
-              <TableCell>Barangay</TableCell>
-              <TableCell>Facebook Link</TableCell>
-              <TableCell>Room Number</TableCell>
-              <TableCell>List Owner</TableCell>
-              <TableCell>Owner</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
+        <TableHead>
+  <TableRow>
+    <TableCell style={{ fontWeight: 'bold' }}>Owner</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>List Type</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>Unit Type</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>City</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>Barangay</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>Price</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>Facebook Link</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>Room Number</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>List Owner</TableCell>
+    <TableCell style={{ fontWeight: 'bold' }}>Actions</TableCell>
+  </TableRow>
+</TableHead>
           <TableBody>
             {filteredLists.map((list) => {
              
               return (
                 <TableRow key={list._id}>
+               <TableCell>{list.client.name}</TableCell>
                   <TableCell>{list.list_type}</TableCell>
                   <TableCell>{list.unit_type}</TableCell>
                   <TableCell>{list.city}</TableCell>
                   <TableCell>{list.barangay}</TableCell>
+                  <TableCell>{list.price}</TableCell>
                   <TableCell>{list.fb_link}</TableCell>
                   <TableCell>{list.room_number}</TableCell>
                   <TableCell>{list.list_owner}</TableCell>
-                  <TableCell>{list.client.name}</TableCell>
+   
                   <TableCell>
                     <IconButton edge="end" onClick={() => handleEdit(list)}>
                       <Edit />
