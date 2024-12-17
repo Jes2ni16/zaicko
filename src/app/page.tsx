@@ -7,7 +7,7 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
+  TableHead,Tooltip ,
   TableRow,
   IconButton,TextField
 } from "@mui/material";
@@ -159,7 +159,13 @@ const ManageLists = () => {
                   <TableCell>{list.city}</TableCell>
                   <TableCell>{list.barangay}</TableCell>
                   <TableCell>{list.price}</TableCell>
-                  <TableCell>{list.fb_link}</TableCell>
+                  <TableCell>
+  <Tooltip title={list.fb_link} arrow>
+    <span style={{ display: "block", width: "200px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+      {list.fb_link}
+    </span>
+  </Tooltip>
+</TableCell>
                   <TableCell>{list.room_number}</TableCell>
                   <TableCell>{list.list_owner}</TableCell>
    
