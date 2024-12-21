@@ -25,6 +25,7 @@ const ClientListing = () => {
       },
     ];
   
+    
     return (
       <div>
         <h1>Client Listings</h1>
