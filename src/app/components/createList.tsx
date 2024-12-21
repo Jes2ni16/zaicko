@@ -74,7 +74,11 @@ const AddListComponent = ({ onSuccess }: AddListProps) => {
     };
 
     try {
-      await axios.post("https://zaiko-server.vercel.app/api/lists", listData);
+      await axios.post(
+        "https://zaiko-server.vercel.app/api/lists",
+        listData,
+        { withCredentials: true }
+      );
       onSuccess();
       // Reset form
       setListType("");

@@ -20,8 +20,9 @@ import {
 } from '@mui/material';
 import CreateClientComponent from '../components/creatClient'; // Import the new form component
 import { Delete as DeleteIcon } from '@mui/icons-material';
+import { useRouter } from 'next/navigation'; 
 
-// Define types for the client data
+
 interface Client {
   _id: string;
   name: string;
@@ -29,7 +30,13 @@ interface Client {
   phone: string;
   address: string;
   url: string;
-  createdAt:string;
+  background: string;
+  background_mobile: string;
+  fb: string;
+  tiktok: string;
+  instagram: string;
+  youtube: string;
+  createdAt: string; 
 }
 
 const ClientManagement = () => {
@@ -41,6 +48,31 @@ const ClientManagement = () => {
   const [page, setPage] = useState<number>(0); // Page state for pagination
   const [rowsPerPage, setRowsPerPage] = useState<number>(5); // Rows per page for pagination
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false); // Snackbar for success/failure messages
+  const router = useRouter();
+
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const response = await axios.get(
+          'https://zaiko-server.vercel.app/api/users/', // URL to check if the user is logged in
+          { withCredentials: true }
+        );
+
+        if (response.status === 200) {
+        }
+        else {
+          router.push('/');
+        }
+      } catch (error) {
+        console.log('User is not logged in.', error);
+        // If not logged in, stay on the login page (no redirect)
+      }
+    };
+
+    checkLoginStatus();
+  }, [router]);
+
 
   // Fetch Clients from the server
   const fetchClients = async () => {
@@ -77,7 +109,10 @@ const ClientManagement = () => {
   // Handle Delete Client
   const handleDelete = async (clientId: string) => {
     try {
-      await axios.delete(`https://zaiko-server.vercel.app/api/clients/${clientId}`);
+      await axios.delete(
+        `https://zaiko-server.vercel.app/api/clients/${clientId}`,
+        { withCredentials: true }  // Include credentials for cookies
+      );
       setOpenSnackbar(true); // Show success snackbar
       fetchClients(); // Refresh the client list
     } catch (error) {

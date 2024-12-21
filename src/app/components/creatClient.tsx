@@ -67,15 +67,23 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       instagram,
       youtube,
       background,
-      background_mobile: backgroundMobile,
+      background_mobile: backgroundMobile || '', 
       url,
     };
 
     try {
       if (client && client._id) {
-        await axios.put(`https://zaiko-server.vercel.app/api/clients/${client._id}`, clientData);
+        await axios.put(
+          `https://zaiko-server.vercel.app/api/clients/${client._id}`, 
+          clientData,
+          { withCredentials: true }  // Include credentials for cookies
+        );
       } else {
-        await axios.post('https://zaiko-server.vercel.app/api/clients', clientData);
+        await axios.post(
+          'https://zaiko-server.vercel.app/api/clients', 
+          clientData,
+          { withCredentials: true }  // Include credentials for cookies
+        );
       }
       onSuccess();
     } catch (error) {

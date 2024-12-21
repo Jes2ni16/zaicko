@@ -99,9 +99,14 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
 
     try {
       if (list && list._id) {
-        await axios.put(`https://zaiko-server.vercel.app/api/lists/${list._id}`, updatedList);
+        await axios.put(
+          `https://zaiko-server.vercel.app/api/lists/${list._id}`,
+          updatedList,
+          { withCredentials: true }
+        );
         onSuccess();
       }
+      
     } catch (error) {
       console.error('Error updating list:', error);
     }
