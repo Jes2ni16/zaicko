@@ -153,12 +153,25 @@ const ManageLists = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0); // Reset to the first page
   };
+  const logout = async () => {
+    try {
+      // Call the backend to clear the cookie
+      await axios.post('https://zaiko-server.vercel.app/api/users/logout', {}, { withCredentials: true });
+      
+      // Redirect the user to the login page
+      window.location.href = '/'; // Adjust the path as per your app
+    } catch (error) {
+      console.error('Logout failed:', error);
+      alert('Something went wrong while logging out. Please try again.');
+    }
+  };
 
   return (
     <div className={styles.page}>
       <Typography variant="h4" gutterBottom>
         Manage Lists
       </Typography>
+      <button onClick={logout}>Logout</button>
       <div className={styles.linkToTable}>
         <Link href="/admin">Add a Client</Link>
       </div>
