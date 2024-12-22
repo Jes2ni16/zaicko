@@ -164,13 +164,13 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <TextField
-                label="Background Desktop"
+                label="Listing Desktop"
                 fullWidth
                 value={background || ''}
                 onChange={(e) => setBackground(e.target.value || undefined)}
               />
               <TextField
-                label="Background  Mobile"
+                label="Listing  Mobile"
                 fullWidth
                 value={backgroundMobile || ''}
                 onChange={(e) => setBackgroundMobile(e.target.value || undefined)}
@@ -178,13 +178,13 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <TextField
-                label="Image Desktop"
+                label="Home Desktop"
                 fullWidth
                 value={image || ''}
                 onChange={(e) => setImage(e.target.value || undefined)}
               />
               <TextField
-                label="Image Mobile"
+                label="Home Mobile"
                 fullWidth
                 value={imageMobile || ''}
                 onChange={(e) => setImageMobile(e.target.value || undefined)}

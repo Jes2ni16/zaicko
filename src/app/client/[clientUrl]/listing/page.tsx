@@ -1,8 +1,8 @@
 'use client';
 
-
 import { useEffect, useState } from 'react';
-
+import styles from './page.module.css';
+import Image from 'next/image';
 import axios from 'axios';
 
 interface ClientData {
@@ -35,95 +35,84 @@ interface ListData {
 const ClientListing = () => {
   const [currentURL, setCurrentURL] = useState<string>('');
   const [clientData, setClientData] = useState<ClientData | null>(null);
-  const [lists, setLists] = useState<ListData[]>([]); // State for storing lists
+  const [lists, setLists] = useState<ListData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Get the current URL
-    const url = window.location.href;
-    
     // Extract the part of the URL after /client/ and before /listing
+    const url = window.location.href;
     const match = url.match(/\/client\/(.*?)\/listing/);
     const urlAfterClient = match ? match[1] : null;
 
-    // Set the extracted URL to the state
-    setCurrentURL(urlAfterClient || 'URL not found');
-
     if (urlAfterClient) {
-      axios
-        .get(`https://zaiko-server.vercel.app/api/clients/url/${urlAfterClient}`)
-        .then((response) => {
-          setClientData(response.data); // Set client data
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(`Failed to fetch client data: ${err}`);
-          setLoading(false);
-        });
+      setCurrentURL(urlAfterClient);
+    } else {
+      setError('Invalid URL format.');
+      setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    if (currentURL) {
-      const fetchLists = async () => {
-        try {
-          const response = await axios.get(
-            `https://zaiko-server.vercel.app/api/lists`,
-            {
-              params: { client: currentURL }, // Assuming you're using the client URL or ID as the query
-            }
-          );
-          setLists(response.data); // Set the fetched lists
-          setLoading(false);
-        } catch (err) {
-          setError(`Failed to fetch lists: ${err}`);
-          setLoading(false);
-        }
-      };
+    const fetchData = async () => {
+      try {
+        if (!currentURL) return;
 
-      fetchLists();
-    }
+        // Fetch client data and lists concurrently
+        const [clientResponse, listResponse] = await Promise.all([
+          axios.get(`https://zaiko-server.vercel.app/api/clients/url/${currentURL}`),
+          axios.get(`https://zaiko-server.vercel.app/api/lists`, {
+            params: { client: currentURL },
+          }),
+        ]);
+
+        setClientData(clientResponse.data);
+        setLists(listResponse.data);
+      } catch (err) {
+        setError('Failed to load data. Please try again.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [currentURL]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h1>Client Listings</h1>
-      {clientData ? (
-        <div>
-          <h2>{clientData.name}</h2>
-          <p>Email: {clientData.email}</p>
-          <p>Phone: {clientData.phone}</p>
-          <p>Address: {clientData.address}</p>
-          {/* Add other client information as needed */}
-        </div>
-      ) : (
-        <p>No client data found</p>
-      )}
-      <h3>Listings</h3>
-      {lists.length > 0 ? (
-        <ul>
-          {lists.map((list) => (
-            <li key={list._id}>
-              <h4>{list.list_type}</h4>
-              <p>City: {list.city}</p>
-              <p>Price: {list.price}</p>
-              <p>Room Number: {list.room_number}</p>
-              {/* Add more list details as needed */}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No listings available for this client.</p>
-      )}
+    <div className={styles.page1}>
+      <div className={styles.imgContainer}>
+        {clientData?.background ? (
+          <Image
+            src={clientData.background}
+            width={2560}
+            height={1440}
+            alt={`${clientData.name}'s background`}
+          />
+        ) : (
+          <p>Background image not available.</p>
+        )}
+      </div>
+      <div className={styles.lists}>
+        <h2>Listings</h2>
+        {lists.length > 0 ? (
+          <ul>
+            {lists.map((list) => (
+              <li key={list._id}>
+                <h3>{list.list_type}</h3>
+                <p>City: {list.city}</p>
+                <p>Price: {list.price}</p>
+                <p>Owner: {list.list_owner}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No listings found for this client.</p>
+        )}
+      </div>
     </div>
   );
 };
