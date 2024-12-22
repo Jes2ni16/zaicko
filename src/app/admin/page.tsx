@@ -61,12 +61,9 @@ const ClientManagement = () => {
 
         if (response.status === 200) {
         }
-        else {
-          router.push('/');
-        }
       } catch (error) {
         console.log('User is not logged in.', error);
-        // If not logged in, stay on the login page (no redirect)
+        router.push('/');
       }
     };
 
