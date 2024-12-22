@@ -58,11 +58,12 @@ const ManageLists = () => {
 
         if (response.status === 200) {
         }
-
+        else {
+    
+        }
       } catch (error) {
         console.log('User is not logged in.', error);
-        window.location.href = '/';
-      
+        router.push('/');
       }
     };
 
