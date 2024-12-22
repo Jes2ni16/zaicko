@@ -16,6 +16,8 @@ interface Client {
   youtube?: string;
   background?: string;
   background_mobile?: string;
+  image:string;
+  image_mobile: string;
   url?: string;
 }
 
@@ -36,6 +38,8 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
   const [youtube, setYoutube] = useState<string | undefined>(client?.youtube || undefined);
   const [background, setBackground] = useState<string | undefined>(client?.background || undefined);
   const [backgroundMobile, setBackgroundMobile] = useState<string | undefined>(client?.background_mobile || undefined);
+  const [image, setImage] = useState<string | undefined>(client?.image || undefined);
+  const [imageMobile, setImageMobile] = useState<string | undefined>(client?.image_mobile || undefined);
   const [url, setUrl] = useState<string | undefined>(client?.url || undefined);
 
   useEffect(() => {
@@ -50,6 +54,8 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       setYoutube(client.youtube || undefined);
       setBackground(client.background || undefined);
       setBackgroundMobile(client.background_mobile || undefined);
+      setImage(client.image || undefined);
+      setImageMobile(client.image_mobile || undefined);
       setUrl(client.url || undefined);
     }
   }, [client]);
@@ -68,6 +74,8 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       youtube,
       background,
       background_mobile: backgroundMobile || '', 
+      image,
+      image_mobile:imageMobile,
       url,
     };
 
@@ -156,16 +164,30 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <TextField
-                label="Background Picture Path"
+                label="Background"
                 fullWidth
                 value={background || ''}
                 onChange={(e) => setBackground(e.target.value || undefined)}
               />
               <TextField
-                label="Background Pic Mobile"
+                label="Background  Mobile"
                 fullWidth
                 value={backgroundMobile || ''}
                 onChange={(e) => setBackgroundMobile(e.target.value || undefined)}
+              />
+            </Box>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <TextField
+                label="Image"
+                fullWidth
+                value={image || ''}
+                onChange={(e) => setImage(e.target.value || undefined)}
+              />
+              <TextField
+                label="Image Mobile"
+                fullWidth
+                value={imageMobile || ''}
+                onChange={(e) => setImageMobile(e.target.value || undefined)}
               />
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
