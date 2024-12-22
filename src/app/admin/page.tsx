@@ -35,6 +35,8 @@ interface Client {
   fb: string;
   tiktok: string;
   instagram: string;
+  image: string;
+  image_mobile: string;
   youtube: string;
   createdAt: string; 
 }
