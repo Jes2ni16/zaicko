@@ -49,9 +49,9 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
         setClients(response.data);
         
         // If list is available, set the clientId
-        if (list) {
-          const matchedClient = response.data.find((client: Client) => client._id === list.client._id);
-          setClientId(matchedClient); // Set matchedClient or undefined
+        if (list && list.client) {
+          const matchedClient = clients.find((client) => client._id === list.client._id);
+          setClientId(matchedClient || undefined); // Set the matched client or undefined
         }
       } catch (error) {
         console.error('Error fetching clients:', error);
@@ -117,15 +117,16 @@ const EditListModal = ({ open, list, onClose, onSuccess }: EditListModalProps) =
       <DialogTitle>Edit List</DialogTitle>
       <form onSubmit={handleSubmit}>
         <DialogContent>
-          <Autocomplete
-            value={clientId} // clientId is either a Client or undefined
-            onChange={(e, newValue) => setClientId(newValue)} // newValue will be a Client or undefined
-            options={clients} // clients is an array of Client objects
-            getOptionLabel={(option) => option?.name || 'Unknown Client'} // Provide fallback label
-            renderInput={(params) => <TextField {...params} label="Client" fullWidth required />}
-            isOptionEqualToValue={(option, value) => option._id === value?._id} // Compare by _id
-            disableClearable
-          />
+        <Autocomplete
+  value={clientId || null} // Fallback to null if clientId is undefined
+  onChange={(e, newValue) => setClientId(newValue || undefined)} // Handle case where newValue is null
+  options={clients}
+  getOptionLabel={(option) => option?.name || 'Unknown Client'}
+  isOptionEqualToValue={(option, value) => option._id === value?._id}
+  renderInput={(params) => (
+    <TextField {...params} label="Client" fullWidth required />
+  )}
+/>
           <FormControl fullWidth margin="normal" required>
       <InputLabel id="list-type-label">List Type</InputLabel>
       <Select

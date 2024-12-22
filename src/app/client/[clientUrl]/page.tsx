@@ -23,7 +23,7 @@ interface ClientData {
 
 
 export default function ClientHome() {
-  const [currentURL, setCurrentURL] = useState("");
+
   const [clientData, setClientData] = useState<ClientData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -33,8 +33,7 @@ export default function ClientHome() {
     const url = window.location.href;
     const urlAfterClient = url.split('/client/')[1]; 
     
-    // Set the extracted URL to the state
-    setCurrentURL(urlAfterClient || "URL not found");
+
 
  if (urlAfterClient) {
       axios
@@ -70,19 +69,6 @@ export default function ClientHome() {
       <div className={styles.imgContainer}>
         <Image src={clientData.background} width={2560} height={1440} alt="Image description" />
         <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
-        <p>Current URL after  {currentURL}</p>
-        <p>Current URL after: {currentURL}</p>
-        <h2>Client Information</h2>
-        <p><strong>Name:</strong> {clientData.name}</p>
-        <p><strong>Email:</strong> {clientData.email}</p>
-        <p><strong>Phone:</strong> {clientData.phone}</p>
-        <p><strong>Address:</strong> {clientData.address}</p>
-        <p><strong>Background:</strong> </p>
-        <p><strong>Facebook:</strong> {clientData.fb}</p>
-        <p><strong>TikTok:</strong> {clientData.tiktok}</p>
-        <p><strong>Instagram:</strong> {clientData.instagram}</p>
-        <p><strong>YouTube:</strong> {clientData.youtube}</p>
-        <p><strong>Background (Mobile):</strong> {clientData.background_mobile}</p>
       </div>
     </div>
   );
