@@ -1,0 +1,73 @@
+.page1 .imgContainer {
+    max-width: 95%;
+    aspect-ratio: 16 / 9;
+    margin: auto;
+    position: relative;
+    max-height: 95%;
+}
+
+.page1 {
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.lists {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lists h2 {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.tableContainer {
+  max-height: 400px; /* Adjust as needed */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f4f4f4;
+  z-index: 1;
+  padding: 10px;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.noListings {
+  color: #999;
+  font-style: italic;
+  margin-top: 20px;
+}

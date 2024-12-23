@@ -18,6 +18,8 @@ interface ClientData {
   instagram: string;
   youtube: string;
   background_mobile: string;
+  image:string;
+  image_mobile:string;
   url: string;
 }
 
@@ -67,7 +69,7 @@ export default function ClientHome() {
   return (
     <div className={styles.page1}>
       <div className={styles.imgContainer}>
-        <Image src={clientData.background} width={2560} height={1440} alt="Image description" />
+        <Image src={clientData.image} width={2560} height={1440} alt="Image description" />
         <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
       </div>
     </div>

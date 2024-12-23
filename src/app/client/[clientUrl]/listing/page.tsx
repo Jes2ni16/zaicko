@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
-import Image from 'next/image';
 import axios from 'axios';
+import { Button, Stack } from '@mui/material'; // Import MUI Button and Stack
 
 interface ClientData {
   name: string;
@@ -38,6 +38,7 @@ const ClientListing = () => {
   const [lists, setLists] = useState<ListData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedListType, setSelectedListType] = useState<string>(''); // State to store selected list type filter
 
   useEffect(() => {
     // Extract the part of the URL after /client/ and before /listing
@@ -62,7 +63,7 @@ const ClientListing = () => {
         const [clientResponse, listResponse] = await Promise.all([
           axios.get(`https://zaiko-server.vercel.app/api/clients/url/${currentURL}`),
           axios.get(`https://zaiko-server.vercel.app/api/lists`, {
-            params: { client: currentURL },
+            params: { clientUrl: currentURL },
           }),
         ]);
 
@@ -79,38 +80,70 @@ const ClientListing = () => {
     fetchData();
   }, [currentURL]);
 
+  // Filtered lists based on selected list type
+  const filteredLists = selectedListType
+    ? lists.filter((list) => list.list_type === selectedListType)
+    : lists;
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
-    <div className={styles.page1}>
-      <div className={styles.imgContainer}>
-        {clientData?.background ? (
-          <Image
-            src={clientData.background}
-            width={2560}
-            height={1440}
-            alt={`${clientData.name}'s background`}
-          />
-        ) : (
-          <p>Background image not available.</p>
-        )}
-      </div>
+    <div
+      className={styles.page1}
+      style={{
+        backgroundImage: clientData?.background
+          ? `url(${clientData.background})`
+          : 'none',
+      }}
+    >
       <div className={styles.lists}>
-        <h2>Listings</h2>
-        {lists.length > 0 ? (
-          <ul>
-            {lists.map((list) => (
-              <li key={list._id}>
-                <h3>{list.list_type}</h3>
-                <p>City: {list.city}</p>
-                <p>Price: {list.price}</p>
-                <p>Owner: {list.list_owner}</p>
-              </li>
-            ))}
-          </ul>
+        <Stack direction="column" spacing={2} sx={{ marginRight: 2 }}>
+          <Button
+            variant={selectedListType === 'Brokerage' ? 'contained' : 'outlined'}
+            onClick={() => setSelectedListType('Brokerage')}
+          >
+            Brokerage
+          </Button>
+          <Button
+            variant={selectedListType === 'Developmental' ? 'contained' : 'outlined'}
+            onClick={() => setSelectedListType('Developmental')}
+          >
+            Developmental
+          </Button>
+          <Button
+            variant={selectedListType === 'Rental' ? 'contained' : 'outlined'}
+            onClick={() => setSelectedListType('Rental')}
+          >
+            Rental
+          </Button>
+        </Stack>
+
+        {filteredLists && filteredLists.length > 0 ? (
+          <div className={styles.tableContainer} style={{ marginLeft: '220px' }}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Unit Type</th>
+                  <th>City</th>
+                  <th>Price</th>
+                  <th>Owner</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredLists.map((list) => (
+                  <tr key={list._id}>
+                    <td>{list.unit_type || 'N/A'}</td>
+                    <td>{list.city || 'N/A'}</td>
+                    <td>{list.price ? `$${list.price}` : 'N/A'}</td>
+                    <td>{list.list_owner || 'N/A'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
-          <p>No listings found for this client.</p>
+          <p className={styles.noListings}>No listings found for this client.</p>
         )}
       </div>
     </div>
