@@ -26,9 +26,9 @@ max-height: 100%;
 
   .page1 .linkList{
     position: absolute;
-    bottom: 20%;
+    bottom: 15%;
     color: #fff;
-    left: 8%;
+    left: 7%;
     max-width: 500px;
     width: 100%;
     background-color: #181818a2;
@@ -39,3 +39,53 @@ max-height: 100%;
     text-decoration: underline;
     border: 1px solid #afaeae;
   }
+
+
+  .page2 {
+    display: none ;
+  }
+  
+
+  @media screen and (max-width:1100px) {
+    .page2 {
+      display: flex;
+    }
+    .page1{
+      display: none;
+    }
+  }
+
+  .page2 {
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+    height: 100vh;
+justify-content: center;
+align-items: center;
+  }
+
+  .page2 .imgContainer{
+position: relative;
+  }
+
+      .page2 img{
+        height: auto;
+        max-width: 900px;
+        margin: auto;
+      }
+
+      .page2 .linkList{
+        position: absolute;
+        bottom: 57%;
+        color: #fff;
+        right: 3%;
+        max-width: 300px;
+        background-color: #181818a2;
+        text-align: center;
+        padding: 10px 15px;
+        font-size: 22px;
+        border-radius: 10px;
+        text-decoration: underline;
+        border: 1px solid #afaeae;
+      }
+    

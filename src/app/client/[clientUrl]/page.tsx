@@ -76,11 +76,19 @@ export default function ClientHome() {
 
 
   return (
+    <>
     <div className={styles.page1}>
       <div className={styles.imgContainer}>
         <Image src={clientData.image} width={2560} height={1440} alt="Image description" />
         <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
       </div>
     </div>
+    <div className={styles.page2}>
+      <div className={styles.imgContainer}>
+        <Image src={clientData.image_mobile} width={2560} height={1440} alt="Image description" />
+        <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
+      </div>
+    </div>
+    </>
   );
 }

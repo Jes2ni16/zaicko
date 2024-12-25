@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import axios from 'axios';
 import LinkIcon from '@mui/icons-material/Link';
-import { Button, Link, Stack, Slider, Typography } from '@mui/material';
+import Link from 'next/link'; 
+import { Button,  Stack, Slider, Typography } from '@mui/material';
+
 
 interface ClientData {
   name: string;
@@ -30,6 +32,7 @@ interface ListData {
   room_number: string;
   list_owner: string;
   client: { _id: string; name: string };
+  createdAt: string; 
 }
 
 const ClientListing = () => {
@@ -71,7 +74,11 @@ const ClientListing = () => {
         setClientData(clientResponse.data);
         const fetchedLists = listResponse.data;
 
-        setLists(fetchedLists);
+        const sortedLists = fetchedLists.sort((a: ListData, b: ListData) => 
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+
+        setLists(sortedLists);
 
         // Calculate dynamic min and max prices
         const prices = fetchedLists.map((list: ListData) => parseFloat(list.price) || 0);
@@ -107,6 +114,7 @@ const ClientListing = () => {
   if (error) return <p>{error}</p>;
 
   return (
+    
     <div
       className={styles.page1}
       style={{
@@ -115,6 +123,14 @@ const ClientListing = () => {
           : 'none',
       }}
     >
+      <div className={styles.header}><h1>My Listings</h1> 
+    
+    <Link href={`/client/${currentURL}/`}  className={styles.back}>Back to Home</Link>
+ 
+        
+        
+        </div>
+
       <div className={styles.lists}>
         <Stack direction="column" spacing={2} sx={{ marginRight: 2 ,width:'20%'}}>
           <Typography gutterBottom>Price Range</Typography>
@@ -172,7 +188,7 @@ const ClientListing = () => {
                     <td>{list.price ? `₱ ${list.price}` : ''}</td>
                     <td>
                       <Link href={list.fb_link} target="_blank" rel="noopener noreferrer">
-                        <LinkIcon sx={{ verticalAlign: 'middle' }} />
+                        <LinkIcon sx={{ verticalAlign: 'middle', color:'#1565c0' }} />
                       </Link>
                     </td>
                   </tr>
