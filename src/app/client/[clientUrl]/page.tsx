@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';  
 import Image from 'next/image';
 import axios from 'axios';
-
+import { CircularProgress, Box } from '@mui/material';
 
 interface ClientData {
   name: string;
@@ -54,7 +54,16 @@ export default function ClientHome() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return  <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh', // Centers vertically and horizontally
+    }}
+  >
+    <CircularProgress />
+  </Box>
   }
 
   if (error) {
