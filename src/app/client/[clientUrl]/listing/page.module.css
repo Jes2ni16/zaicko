@@ -16,14 +16,20 @@
     align-items: center;
     background-size: cover;
     background-position: center;
+
 }
 
 .lists {
-  background: rgba(255, 255, 255, 0.9);
+  background:#252323ed;
   padding: 20px;
   border-radius: 8px;
   display: flex;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 1200px;
+  width: 90%;
+  height: 70%;
+    max-height: 800px;
+    color: #fff;
 }
 
 .lists h2 {
@@ -32,10 +38,10 @@
 }
 
 .tableContainer {
-  max-height: 400px; /* Adjust as needed */
   overflow-y: auto;
   border: 1px solid #ddd;
   border-radius: 8px;
+  width: 80%;
 }
 
 .table {
@@ -43,31 +49,47 @@
   border-collapse: collapse;
 }
 
-.table thead th {
+.table thead {
   position: sticky;
   top: 0;
-  background-color: #f4f4f4;
-  z-index: 1;
-  padding: 10px;
+  border-bottom: 2px solid #ddd;
+  text-align: start;
+  background-color: #0f0f0f;
+  padding: 20px 0;
 }
 
-.table th,
+.table thead th {
+text-align: start;
+  padding: 10px ;
+}
+
+
+
 .table td {
   text-align: left;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #a8a5a5b6;
+  text-align: start;
 }
 
-.table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
+/* .table tbody tr:nth-child(even) {
+  background-color: #141414;
+} */
+/* 
 .table tbody tr:hover {
   background-color: #f1f1f1;
-}
+} */
+
+
 
 .noListings {
   color: #999;
   font-style: italic;
   margin-top: 20px;
+  display: flex;
+  justify-content: center ;
+  align-items: center;
+  margin: auto;
+  font-size: 30px;
+  color: #fff;
 }
