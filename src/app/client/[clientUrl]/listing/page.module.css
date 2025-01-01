@@ -103,3 +103,70 @@ text-align: start;
   font-size: 30px;
   color: #fff;
 }
+
+.page2 {
+  display: none;
+}
+
+@media  (max-width: 1100px) {
+  .page1 {
+    display: none;
+  } 
+  .header .back{
+
+    font-size: 14px;
+    bottom: -25px;
+    text-decoration: underline;
+  }
+
+  .page2 {
+    display: flex;
+  }
+  .lists {
+    display: block;
+    width: 98%;
+    max-height: 900px;
+    height: 80%;
+    padding: 10px;
+  }
+  .tableContainer {
+    max-width: 100%;
+    font-size: 14px;
+    margin-left: 0!important;
+    height: 100%;
+    width: 100%;
+  }
+  .table td {
+    padding: 5px;
+  }
+}
+@media (max-width:567px) {
+  .tableContainer {
+    font-size: 11px;
+  }
+}
+
+.sliderContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.sliderContainer span{
+  margin-left: 20px;
+  font-weight:500;
+  font-size: 20px;
+}
+
+
+.page2 {
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+
+}
