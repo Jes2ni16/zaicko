@@ -17,6 +17,8 @@ import {
   TablePagination,
   CircularProgress,
   Snackbar,
+  DialogTitle,
+  DialogActions,
 } from '@mui/material';
 import CreateClientComponent from '../components/creatClient'; // Import the new form component
 import { Delete as DeleteIcon } from '@mui/icons-material';
@@ -44,6 +46,8 @@ interface Client {
 const ClientManagement = () => {
   const [clients, setClients] = useState<Client[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+  const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
+  const [clientToDelete, setClientToDelete] = useState<string | null>(null); 
   const [selectedClient, setSelectedClient] = useState<Client | null>(null); // Track selected client for editing
   const [loading, setLoading] = useState<boolean>(false); // Loading state
   const [error, setError] = useState<string | null>(null); // Error state
@@ -105,18 +109,27 @@ const ClientManagement = () => {
     setOpenSnackbar(true); // Show success snackbar
   };
 
+  const confirmDeleteClient = (clientId: string) => {
+    setClientToDelete(clientId);
+    setConfirmDelete(true); // Open confirmation dialog
+  };
+
   // Handle Delete Client
-  const handleDelete = async (clientId: string) => {
+  const handleDelete = async () => {
     try {
-      await axios.delete(
-        `https://zaiko-server.vercel.app/api/clients/${clientId}`,
-        { withCredentials: true }  // Include credentials for cookies
-      );
-      setOpenSnackbar(true); // Show success snackbar
-      fetchClients(); // Refresh the client list
+      if (clientToDelete) {
+        await axios.delete(`https://zaiko-server.vercel.app/api/clients/${clientToDelete}`, {
+          withCredentials: true,
+        });
+        setOpenSnackbar(true);
+        fetchClients();
+      }
     } catch (error) {
       console.error('Error deleting client:', error);
       setError('Failed to delete client.');
+    } finally {
+      setConfirmDelete(false); // Close confirmation dialog
+      setClientToDelete(null);
     }
   };
 
@@ -192,7 +205,7 @@ const ClientManagement = () => {
                         <Button
                           variant="outlined"
                           color="error"
-                          onClick={() => handleDelete(client._id)} // Call delete handler
+                          onClick={() => confirmDeleteClient(client._id)} // Call delete handler
                           sx={{ marginLeft: 1 }} >
                           <DeleteIcon />
                         </Button>
@@ -213,6 +226,20 @@ const ClientManagement = () => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
+    <Dialog
+        open={confirmDelete}
+        onClose={() => setConfirmDelete(false)}
+      >
+        <DialogTitle>Are you sure you want to delete this client?</DialogTitle>
+        <DialogActions>
+          <Button onClick={() => setConfirmDelete(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDelete} color="error">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
         </>
       )}
       {/* Add or Edit Client Dialog */}

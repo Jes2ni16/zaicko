@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import axios from 'axios';
 import LinkIcon from '@mui/icons-material/Link';
+import HomeIcon from '@mui/icons-material/Home';
 import Link from 'next/link'; 
-import { Button,  Stack, Slider, Typography, CircularProgress, Box } from '@mui/material';
+import { Button,  Stack, Slider, Typography, CircularProgress, Box, IconButton } from '@mui/material';
 
 
 interface ClientData {
@@ -156,7 +157,16 @@ const ClientListing = () => {
     >
       <div className={styles.header}><h1>My Listings</h1> 
     
-    <Link href={`/client/${currentURL}/`}  className={styles.back}>Back to Home</Link>
+    <Link href={`/client/${currentURL}/`}  className={styles.back}>    <IconButton  aria-label="home">
+      <HomeIcon    sx={{
+          color: 'white', 
+          border: '2px solid black', 
+          borderRadius: '50%', 
+          backgroundColor: 'black', 
+          padding: '4px', 
+          fontSize: '48px',
+        }}/>
+    </IconButton></Link>
  
         
         </div>
@@ -244,7 +254,16 @@ const ClientListing = () => {
     >
       <div className={styles.header}><h1>My Listings</h1> 
     
-    <Link href={`/client/${currentURL}/`}  className={styles.back}>Back to Home</Link>
+    <Link href={`/client/${currentURL}/`}  className={styles.back}>    <IconButton  aria-label="home">
+      <HomeIcon    sx={{
+          color: 'white', // Fill color
+          border: '2px solid black', // Black outline
+          borderRadius: '50%', // Rounded border
+          backgroundColor: 'black', // Optional: background contrast
+          padding: '4px',
+          fontSize: '38px', // Space inside the border
+        }}/>
+    </IconButton></Link>
  
         
         
