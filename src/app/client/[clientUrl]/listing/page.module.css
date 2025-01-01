@@ -128,13 +128,15 @@ text-align: start;
     max-height: 900px;
     height: 80%;
     padding: 10px;
+    overflow: hidden;
   }
   .tableContainer {
     max-width: 100%;
     font-size: 14px;
-    margin-left: 0!important;
-    height: 100%;
+    margin-left: 0 !important;
+    height: 58vh;
     width: 100%;
+    overflow-y: scroll;
   }
   .table td {
     padding: 5px;
