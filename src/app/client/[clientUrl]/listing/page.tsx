@@ -155,6 +155,7 @@ const ClientListing = () => {
           : 'none',
       }}
     >
+      
       <div className={styles.header}><h1>My Listings</h1> 
     
     <Link href={`/client/${currentURL}/`}  className={styles.back}>    <IconButton  aria-label="home">
