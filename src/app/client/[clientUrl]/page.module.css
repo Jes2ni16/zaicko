@@ -7,6 +7,10 @@ display: flex;
 justify-content: center;
 align-items: center;
   }
+  .body {
+    background-color: #333333;
+  }
+  
 
   .page1 .imgContainer{
 max-width: 100%;

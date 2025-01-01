@@ -146,7 +146,7 @@ const ClientListing = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <>
+    <div className={styles.body}>
     <div
       className={styles.page1}
       style={{
@@ -373,7 +373,7 @@ const ClientListing = () => {
     </div>
     
     
-    </>
+    </div>
   );
 };
 
