@@ -90,7 +90,7 @@ const ClientListing = () => {
 
         const response = await axios.get(
           `https://zaiko-server.vercel.app/api/lists`,
-          { params: { clientUrl: currentURL } }
+          { params: { client: currentURL } }
         );
 
         const fetchedLists = response.data;
