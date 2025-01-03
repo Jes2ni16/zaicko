@@ -15,6 +15,9 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "ZaikoTech DigiCard",
+  icons: {
+    icon: '/favicon.ico', 
+  },
   description: "zaiko tech digital business cards",
 };
 
