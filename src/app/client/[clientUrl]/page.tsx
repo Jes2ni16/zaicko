@@ -92,9 +92,11 @@ export default function ClientHome() {
       <div className={styles.imgContainer}>
         <Image src={clientData.image_mobile} width={2560} height={1440} alt="Image description" />
         <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
-        <Link href='https://findmyagent.net'>
-      <Image src='/fma.png' width={40} height={30} alt="find my agent Logo" />
+        <div className={styles.fma}>
+      <Link href='https://findmyagent.net'>
+      <Image src='/fma.png' width={25} height={20} alt="find my agent Logo" />
       </Link>
+      </div>
       </div>
     </div>
     </div>
