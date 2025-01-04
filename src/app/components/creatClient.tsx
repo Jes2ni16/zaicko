@@ -190,14 +190,6 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
                 onChange={(e) => setImageMobile(e.target.value || undefined)}
               />
             </Box>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <TextField
-                label="URL"
-                fullWidth
-                value={url || ''}
-                onChange={(e) => setUrl(e.target.value || undefined)}
-              />
-            </Box>
           </Box>
         </DialogContent>
         <DialogActions>

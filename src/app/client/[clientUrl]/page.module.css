@@ -44,7 +44,14 @@ max-height: 100%;
     border: 1px solid #afaeae;
   }
 
-
+.fma{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
   .page2 {
     display: none ;
   }

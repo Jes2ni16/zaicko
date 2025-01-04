@@ -79,14 +79,22 @@ export default function ClientHome() {
     <div className={styles.body}>
     <div className={styles.page1}>
       <div className={styles.imgContainer}>
-        <Image src={clientData.image} width={2560} height={1440} alt="Image description" />
+        <Image src={clientData.image} width={2560} height={1440} alt={clientData.name} />
         <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
+      <div className={styles.fma}>
+      <Link href='https://findmyagent.net'>
+      <Image src='/fma.png' width={40} height={30} alt="find my agent Logo" />
+      </Link>
+      </div>
       </div>
     </div>
     <div className={styles.page2}>
       <div className={styles.imgContainer}>
         <Image src={clientData.image_mobile} width={2560} height={1440} alt="Image description" />
         <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
+        <Link href='https://findmyagent.net'>
+      <Image src='/fma.png' width={40} height={30} alt="find my agent Logo" />
+      </Link>
       </div>
     </div>
     </div>

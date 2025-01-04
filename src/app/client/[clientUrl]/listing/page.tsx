@@ -84,29 +84,37 @@ const ClientListing = () => {
       }
     };
 
-    const fetchLists = async () => {
+    const fetchLists = async (): Promise<void> => {
       try {
         if (!currentURL) return;
-
-        const response = await axios.get(
+    
+        const response = await axios.get<ListData[]>(
           `https://zaiko-server.vercel.app/api/lists`,
           { params: { client: currentURL } }
         );
-
+    
         const fetchedLists = response.data;
-        const sortedLists = fetchedLists.sort(
-          (a: ListData, b: ListData) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    
+        // Assign default prices where missing or invalid
+        const processedLists: ListData[] = fetchedLists.map((list) => ({
+          ...list,
+          price: list.price && !isNaN(parseFloat(list.price)) ? list.price : '0',
+        }));
+    
+        // Sort by createdAt
+        const sortedLists = processedLists.sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         );
-
+    
         setLists(sortedLists);
-
-        const prices = fetchedLists.map((list: ListData) =>
+    
+        // Calculate price range
+        const prices: number[] = processedLists.map((list) =>
           parseFloat(list.price) || 0
         );
         const min = Math.min(...prices);
         const max = Math.max(...prices);
-
+    
         setMinPrice(min);
         setMaxPrice(max);
         setPriceRange([min, max]);
@@ -126,12 +134,14 @@ const ClientListing = () => {
     setPriceRange(newValue as number[]);
   };
 
-  const filteredLists = lists
-    .filter((list) => (selectedListType ? list.list_type === selectedListType : true))
-    .filter((list) => {
-      const price = parseFloat(list.price);
-      return price >= priceRange[0] && price <= priceRange[1];
-    });
+  const filteredLists: ListData[] = lists
+  .filter((list) =>
+    selectedListType ? list.list_type === selectedListType : true
+  )
+  .filter((list) => {
+    const price: number = parseFloat(list.price) || 0; // Default to 0 if invalid
+    return price >= priceRange[0] && price <= priceRange[1];
+  });
 
   if (listsLoading || clientLoading || !backgroundLoaded) return( <Box
   sx={{
@@ -179,7 +189,7 @@ const ClientListing = () => {
             value={priceRange}
             onChange={handlePriceChange}
             valueLabelDisplay="auto"
-            min={minPrice}
+            min={minPrice || 0}
             max={maxPrice}
             step={100}
           />
@@ -279,7 +289,7 @@ const ClientListing = () => {
         value={priceRange}
         onChange={handlePriceChange}
         valueLabelDisplay="auto"
-        min={minPrice}
+        min={minPrice || 0}
         max={maxPrice}
         step={100}
 
