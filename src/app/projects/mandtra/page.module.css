@@ -1,0 +1,81 @@
+
+
+.headPart{
+    width: 100%;
+}
+.headPart .img{
+    height: 24rem;
+}
+.headPart img{
+    width: 100%;
+    vertical-align: middle;
+    height: 100%;
+    object-fit: cover;
+}
+
+.headPart .submin {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 310px;
+}
+
+.headPart h1 {
+    color: #0E6543;
+    font-size: 70px;
+    font-weight: 600;
+}
+.headPart h2 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.hr{
+    border: 4px solid #0E6543;
+}
+
+.secondFold{
+    max-width: 1080px;
+    margin: 70px auto;
+
+}
+
+.secondFold h2{
+    font-size: 40px;
+    color: #0E6543;
+    font-weight: 600;
+    border-bottom: 3px solid #0E6543;
+}
+
+.secondFold p{
+    font-size: 20px;
+    line-height: 2rem;
+    padding: 20px 0;
+
+}
+.secondFold img{
+    object-fit: cover;
+}
+
+.thirdFold {
+    max-width: 1080px;
+    margin: 70px auto;
+}
+.thirdFold .img{
+width: 100%;
+}
+.thirdFold img{
+    height: auto;
+    width: 100%;
+    }
+    .thirdFold p{
+        font-size: 40px;
+        line-height: 40px;
+        color: #0E6543;
+        font-weight: 600;
+        }

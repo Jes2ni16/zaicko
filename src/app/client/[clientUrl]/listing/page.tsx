@@ -359,21 +359,40 @@ const ClientListing = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredLists.map((list) => (
-                  <tr key={list._id}>
-                    <td>{list.unit_type || 'N/A'}</td>
-                    <td>{list.city || 'N/A'}</td>
-                    <td>{list.barangay || 'N/A'}</td>
-                    <td>{list.room_number || 'N/A'}</td>
-                    <td>{list.price ? `₱ ${list.price}` : ''}</td>
-                    <td>
-                      <Link href={list.fb_link} target="_blank" rel="noopener noreferrer">
-                        <LinkIcon sx={{ verticalAlign: 'middle', color:'#1565c0' }} />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+  {listsLoading ? (
+    // Render a loading row
+    <tr>
+      <td colSpan={6} style={{ textAlign: 'center' }}>
+        <CircularProgress size={24} />
+        <Typography variant="body2" style={{ marginTop: '8px' }}>
+          Loading listings...
+        </Typography>
+      </td>
+    </tr>
+  ) : filteredLists.length > 0 ? (
+    filteredLists.map((list) => (
+      <tr key={list._id}>
+        <td>{list.unit_type || ''}</td>
+        <td>{list.city || ''}</td>
+        <td>{list.barangay || ''}</td>
+        <td>{list.room_number || ''}</td>
+        <td>{list.price ? `₱ ${list.price}` : ''}</td>
+        <td>
+          <Link href={list.fb_link} target="_blank" rel="noopener noreferrer">
+            <LinkIcon sx={{ verticalAlign: 'middle', color: '#1565c0' }} />
+          </Link>
+        </td>
+      </tr>
+    ))
+  ) : (
+    // Render a "no data" row if no listings are found
+    <tr>
+      <td colSpan={6} style={{ textAlign: 'center' }}>
+        No listings available.
+      </td>
+    </tr>
+  )}
+</tbody>
             </table>
           </div>
         ) : (
