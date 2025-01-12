@@ -66,32 +66,32 @@
 .intro .MuiDialog-root img{
     width: 100%;
 }
-.thirdFold {
+.location {
     max-width: 1080px;
     margin: 70px auto;
 }
 
-.thirdFold .img {
+.location .img {
     width: 100%;
 }
 
-.thirdFold img {
+.location img {
     height: auto;
     width: 100%;
 }
 
-.thirdFold p {
+.location p {
     font-size: 40px;
     line-height: 40px;
     color: #0E6543;
     font-weight: 600;
 }
 
-.fourthFold {
+.floor {
     max-width: 1080px;
     margin: 70px auto;
 }
-.fourthFold h3{
+.floor h3{
     font-size: 40px;
     line-height: 40px;
     border-bottom: 4px solid #0E6543;
@@ -100,30 +100,30 @@
     margin: 30px 0;
 }
 
-.fourthFold .imgContainer{
+.floor .imgContainer{
     margin: 40px 0;
 }
-.fourthFold h4{
+.floor h4{
     font-size: 30px;
     color: #012e1d;
 }
-.fifthFold {
+.projectDetails {
     max-width: 1080px;
     margin: 70px auto;
 }
-.fifthFold .details p{
+.projectDetails .details p{
     margin-top: 10px;
     font-weight: bold;
     color: #012e1d;
     font-size: 20px;
 }
-.fifthFold .details ul{
+.projectDetails .details ul{
     margin: 10px;
     margin-bottom: 15px;
     margin-left: 45px;
 
 }
-.fifthFold h2 {
+.projectDetails h2 {
     font-size: 40px;
     line-height: 40px;
     border-bottom: 4px solid #0E6543;
@@ -180,6 +180,7 @@
     }
     .headPart .submin{
        min-height: 200px;
+       padding: 10px 0;
     }
     .headPart h2{
         font-size: 16px;
@@ -190,6 +191,7 @@
      }
 .intro{
     padding: 10px;
+    margin: 30px auto;
 }
 .intro h2 {
     font-size: 28px;
@@ -198,6 +200,23 @@
 .intro p{
     font-size: 16px;
     line-height: 24px;
+}
+.location,.floor, .projectDetails, .amenities, .constUpdate {
+    padding: 10px;
+}
+.floor{
+    margin-bottom: 0px;
+}
+.location p{
+    font-size: 28px;
+    line-height: 32px;
+}
+.projectDetails {
+    margin-top: 20px;
+}
+.floor h3, .floor h4, .projectDetails h2, .constUpdate h2 {
+    font-size: 28px;
+    line-height: 32px;
 }
 
 }

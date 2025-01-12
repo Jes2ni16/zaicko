@@ -396,7 +396,7 @@ const ClientListing = () => {
             </table>
           </div>
         ) : (
-          <p className={styles.noListings}>Soon to be posted</p>
+          <p className={styles.noListings}></p>
         )}
       </div>
     </div>

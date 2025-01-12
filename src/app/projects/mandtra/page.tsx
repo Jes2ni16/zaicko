@@ -85,14 +85,14 @@ MANDTRA RESIDENCES is an urban tropical living built for the well balanced Cebua
 
 </div>
 
-<div className={styles.thirdFold}>
+<div className={styles.location}>
 <p>Location</p>
 <div className={styles.img}>
 <Image src='https://i.imgur.com/5A5RVck.png' width='700' height={700} alt='MANDTRA RESIDENCES'/>
 </div>
 </div>
 
-<div className={styles.fourthFold}>
+<div className={styles.floor}>
 <h3>Floor Plans</h3>
 <div className={styles.imgContainer}>
   <h4 style={{marginBottom:'10px'}}>1 Bedroom</h4>
@@ -127,9 +127,9 @@ MANDTRA RESIDENCES is an urban tropical living built for the well balanced Cebua
 
 </div>
 
-<div className={styles.fifthFold}>
+<div className={styles.projectDetails}>
 <h2>PROJECT DETAILS</h2>
-<p style={{margin:'20px 0', fontSize:'20px'}}>
+<p style={{margin:'20px 0', fontSize:'18px'}}>
 Residential Condominium with Retail Areas.
 </p>
 <div className={styles.details}>
