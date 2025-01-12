@@ -89,12 +89,12 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               onClick={handleClose}
               style={{
                 position: 'absolute',
-                top: '16px', // Adjust the distance from the top
-                right: '16px', // Adjust the distance from the right
-                zIndex: 1, // Ensure it's on top of other elements
-                backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: semi-transparent background
-                borderRadius: '50%', // Make the button round
-                padding: '8px', // Adjust padding for better clickable area
+                top: '16px', 
+                right: '16px', 
+                zIndex: 1,
+                backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+                borderRadius: '50%', 
+                padding: '8px',
               }}
             >
               <CloseIcon style={{ color: 'white' }}/>
@@ -102,17 +102,21 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
 
             {/* Next Button */}
             <IconButton
-              onClick={handlePrevious}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: 10,
-                transform: 'translateY(-50%)',
-                color: 'white',
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
+  onClick={handlePrevious}
+  style={{
+    position: 'absolute',
+    top: '50%',
+    left: 10,
+    transform: 'translateY(-50%)',
+    color: 'white',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+    borderRadius: '50%', 
+    padding: '10px', 
+    fontSize: '24px', 
+  }}
+>
+  <ArrowBackIcon style={{ fontSize: '32px' }} /> {/* Increase the icon size */}
+</IconButton>
 
             {/* Full-Screen Image */}
             <Image
@@ -131,17 +135,21 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
 
             {/* Previous Button */}
             <IconButton
-              onClick={handleNext}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                right: 10,
-                transform: 'translateY(-50%)',
-                color: 'white',
-              }}
-            >
-              <ArrowForwardIcon />
-            </IconButton>
+  onClick={handleNext}
+  style={{
+    position: 'absolute',
+    top: '50%',
+    right: 10,
+    transform: 'translateY(-50%)',
+    color: 'white',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+    borderRadius: '50%', 
+    padding: '10px', 
+    fontSize: '24px', 
+  }}
+>
+  <ArrowForwardIcon style={{ fontSize: '32px' }} /> 
+</IconButton>
           </DialogContent>
         </Dialog>
       )}
