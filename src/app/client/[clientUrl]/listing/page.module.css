@@ -146,6 +146,13 @@ text-align: start;
   .table td {
     padding: 5px;
   }
+  .table th {
+    padding: 5px;
+  }
+  .tableContainer .table {
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
 }
 @media (max-width:567px) {
   .tableContainer {

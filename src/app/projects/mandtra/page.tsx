@@ -74,12 +74,12 @@ export default function Mandtra() {
 <div className={styles.hr}></div>
 
 
-<div className={styles.secondFold}>
+<div className={styles.intro}>
 <h2>MANDTRA RESIDENCES</h2>
 <p>
 MANDTRA RESIDENCES is an urban tropical living built for the well balanced Cebuano life. Rooted living because of Cebuano traditions, Cebuano craftmanship and artistry. Modern and well balanced living as it brings warmth of a home in the midst of a busy city. Located at P. Basubas St. Tipolo, Mandaue Cebu City. A joint venture under Cebu Homegrown Developers, Inc. Owned and Managed by Cebu Landmasters, Inc. In partnership with Ixidor Holdings Inc.
 </p>
-<div className="">
+<div className={styles.img}>
 <ProjectsImage images={mandtra} />
 </div>
 

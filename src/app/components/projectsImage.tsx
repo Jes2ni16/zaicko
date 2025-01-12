@@ -50,7 +50,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   return (
     <>
       {/* Image Container */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}className='imgContainer'>
         {images.map((image, index) => (
           <div
             key={index}
