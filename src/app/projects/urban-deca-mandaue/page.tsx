@@ -72,7 +72,7 @@ export default function Mandtra() {
     <h2 className='my-5'>Enjoy urban living within the business district of Mandaue City. Homeowners have close and easy access to malls, universities, churches, a hospital, international airport, as well as business and commercial districts in the metro.</h2>
     <div className='d-flex align-items-center'>
         <p className='mb-2'>Project Location: </p>
-        <h2 className='ms-4 text-bold'>NNear AS Fortuna St. | P. Basubas St. Tipolo Mandaue City</h2>
+        <h2 className='ms-4 text-bold'>Near AS Fortuna St. | P. Basubas St. Tipolo Mandaue City</h2>
     </div>
 </div>
         </div>
