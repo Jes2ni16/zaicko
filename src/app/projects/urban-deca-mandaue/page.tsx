@@ -64,7 +64,7 @@ export default function Mandtra() {
     <div className={styles.body}>
         <div className={styles.headPart}>
 <div className={styles.img}>
-    <Image src='https://i.imgur.com/6jjNq8v.jpg' width='500' height={700} alt='MANDTRA RESIDENCES'/>
+    <Image src='https://i.imgur.com/ge2cJUG.jpg' width='500' height={700} alt='URBAN DECA MANDAUE'/>
 </div>
 <div className={styles.submin}>
 <h2 className={styles.subTitle}>Urban Living in the Business District of Mandaue</h2>
