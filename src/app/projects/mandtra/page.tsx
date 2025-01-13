@@ -62,7 +62,8 @@ export default function Mandtra() {
     <Image src='https://i.imgur.com/6jjNq8v.jpg' width='500' height={700} alt='MANDTRA RESIDENCES'/>
 </div>
 <div className={styles.submin}>
-    <h1 className='text-center'>MANDTRA RESIDENCE</h1>
+
+    <h1 className='text-center'>MANDTRA RESIDENCES</h1>
     <h2 className='my-5'>Mandtra Residences sets the standard of Cebuano Living at the heart of its industrial heritage.</h2>
     <div className='d-flex align-items-center'>
         <p className='mb-2'>Project Location: </p>
