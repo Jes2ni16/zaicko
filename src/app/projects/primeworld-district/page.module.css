@@ -1,0 +1,338 @@
+.headPart {
+    width: 100%;
+}
+
+.headPart .img {
+    height: 24rem;
+}
+
+.headPart img {
+    width: 100%;
+    vertical-align: middle;
+    height: 100%;
+    object-fit: cover;
+}
+
+.headPart .submin {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 310px;
+}
+
+.headPart h1 {
+    color: #0E6543;
+    font-size: 70px;
+    font-weight: 600;
+}
+.submin .subTitle{
+    font-size: 26px;
+    color: #0E6543;
+}
+
+.headPart h2 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.hr {
+    border: 4px solid #0E6543;
+}
+
+.intro {
+    max-width: 1080px;
+    margin: 70px auto;
+
+}
+
+.intro h2 {
+    font-size: 40px;
+    color: #0E6543;
+    font-weight: 600;
+    border-bottom: 3px solid #0E6543;
+}
+
+.intro p {
+    font-size: 20px;
+    line-height: 2rem;
+    padding: 20px 0;
+
+}
+
+.intro img {
+    object-fit: cover;
+}
+.intro .MuiDialog-root img{
+    width: 100%;
+}
+.location {
+    max-width: 1080px;
+    margin: 70px auto;
+}
+
+.location .img {
+    width: 100%;
+}
+
+.location img {
+    height: auto;
+    width: 100%;
+}
+.location .details{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+.location .details p{
+ font-weight: bold;
+ font-size: 20px;
+ line-height: 28px;
+ margin-right: 20px;
+}
+.location .details h4{
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+   }
+.location h2 {
+    font-size: 40px;
+    line-height: 40px;
+    color: #0E6543;
+    font-weight: 600;
+}
+
+.floor {
+    max-width: 1080px;
+    margin: 70px auto;
+}
+.floor .details {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+}
+.floor .card {
+    width: 50%; 
+    min-height: 400px;
+    padding: 1rem;
+}
+.floor .cardInner {
+    border: 2px solid #0E6543;
+    border-radius: 0.5rem;
+    height: 100%;
+    width: 100%;
+}
+.floor .cardHeader {
+        height: 4rem; 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+.floor.headerLeft {
+    width: 75%; 
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+  }
+ .floor .headerRight {
+    width: 25%; /* Equivalent to w-1/4 */
+    background-color: var(--accent-main1);
+    color: var(--white-2);
+    text-align: center;
+    border-bottom-left-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .floor .title {
+    font-size: 1.25rem; /* Equivalent to text-xl */
+    color: var(--accent-main2);
+    font-weight: bold;
+  }
+  .floor .area {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #0E6543;
+    color: #fff;
+    border-radius: 10px;
+  }
+  .floor .cardList {
+    padding: 15px;
+    line-height: 30px;
+  }
+  .floor .cardBody {
+    padding: 15px;
+  }
+.floor h3{
+    font-size: 40px;
+    line-height: 30px;
+    color: #0E6543;
+    padding: 10px;
+    padding-left: 10px;
+    margin: 30px 0;
+}
+.floor .cardBody h5 {
+    background-color: #0E6543;
+    font-size: 26px;
+    color: #fff;
+    text-align: center;
+}
+
+.floor .imgContainer{
+    margin: 40px 0;
+}
+.floor h4{
+    font-size: 30px;
+    color: #012e1d;
+}
+.projectDetails {
+    max-width: 1080px;
+    margin: 70px auto;
+}
+.projectDetails .details p{
+    margin-top: 10px;
+    font-weight: bold;
+    color: #012e1d;
+    font-size: 20px;
+}
+.projectDetails .details ul{
+    margin: 10px;
+    margin-bottom: 15px;
+    margin-left: 45px;
+
+}
+.projectDetails h2 {
+    font-size: 40px;
+    line-height: 40px;
+    border-bottom: 4px solid #0E6543;
+    color: #0E6543;
+    margin: 30px 0;
+    padding-bottom: 10px;
+}
+.amenities h2{
+    font-size: 40px;
+    line-height: 40px;
+    border-bottom: 4px solid #0E6543;
+    color: #0E6543;
+    margin: 30px 0;
+    padding-bottom: 10px;
+}
+.amenities {
+    max-width: 1080px;
+    margin: 70px auto;
+}
+
+.amenities ul {
+ margin-top: 20px;
+ font-size: 20px;
+ line-height: 35px;
+    margin-left: 20px;
+}
+
+.amenities .imgs {
+    margin-top: 60px;
+   }
+
+   .dress, .deliverable, .site {
+    max-width: 1080px;
+    margin: 70px auto;
+}
+
+   .dress h2, .deliverable h2, .site h2{
+    font-size: 40px;
+    line-height: 40px;
+    border-bottom: 4px solid #0E6543;
+    color: #0E6543;
+    padding-bottom: 10px;
+    margin: 30px 0;
+}
+
+.dress h3 {
+    padding-left: 15px;
+    font-size: 28px;
+    margin-top: 30px;
+    color: #012e1d;
+}
+
+
+@media (max-width:991px) {
+    .intro .img{
+        display: flex;
+        justify-content: center;
+    }
+    .location .details {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    .floor {
+        margin-top: 20px;
+    }
+    .floor .area{
+        padding: 7px;
+        border-radius: 6px;
+        line-height: 20px;
+    }
+    .location {
+        margin-bottom: 10px;
+    }
+    .floor .card {
+        width: 100%; 
+ 
+    }
+    .location .details p,  .location .details h4 {
+font-size: 14px;
+    }
+    .submin .subTitle{
+        font-size: 14px;
+    }
+    .headPart h1 {
+        font-size: 28px;
+    }
+    .headPart .submin{
+       min-height: 200px;
+       padding: 10px 0;
+    }
+    .headPart h2{
+        font-size: 16px;
+        line-height: 24px;
+     }
+     .headPart p{
+        margin-top: 10px;
+     }
+.intro{
+    padding: 10px;
+    margin: 30px auto;
+}
+.intro h2 {
+    font-size: 28px;
+    line-height: 32px;
+}
+.intro p{
+    font-size: 16px;
+    line-height: 24px;
+}
+.location,.floor, .projectDetails, .amenities, .dress, .deliverable, .site {
+    padding: 10px;
+}
+.floor{
+    margin-bottom: 0px;
+}
+.location p{
+    font-size: 28px;
+    line-height: 32px;
+}
+.projectDetails {
+    margin-top: 20px;
+}
+.floor h3, .floor h4, .projectDetails h2, .dress h2, .deliverable h2, .site h2 {
+    font-size: 28px;
+    line-height: 32px;
+}
+
+}
