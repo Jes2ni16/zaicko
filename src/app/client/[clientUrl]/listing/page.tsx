@@ -6,7 +6,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import HomeIcon from '@mui/icons-material/Home';
 import Link from 'next/link'; 
 import { Button,  Stack, Slider, Typography, CircularProgress, Box, IconButton } from '@mui/material';
-
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 interface ClientData {
   name: string;
@@ -214,6 +214,13 @@ const ClientListing = () => {
           >
             Rental
           </Button>
+
+          <div style={{height:'2px', color:'#fff', backgroundColor:'#fff', marginTop:'20%'}}></div>
+          <Typography style={{fontSize:'20px', padding:'10px'}}>Discover my featured projects now!</Typography>
+          <Link href={`/clients/${currentURL}/featured`} target="_blank" rel="noopener noreferrer" style={{display:'flex', textDecoration:'underline', backgroundColor:'#1976d2', borderRadius:'10px', padding:'10px',justifyContent:'center',marginTop:'10px'}}   >
+          Featured Projects 
+          <ArrowForwardIcon />
+                      </Link>
         </Stack>
 
         {filteredLists && filteredLists.length > 0 ? (
@@ -263,7 +270,7 @@ const ClientListing = () => {
           : 'none',
       }}
     >
-      <div className={styles.header}><h1>My Listings</h1> 
+      <div className={styles.header}><h1 style={{textAlign:'start'}}>My Listings</h1> 
     
     <Link href={`/client/${currentURL}/`}  className={styles.back}>    <IconButton  aria-label="home">
       <HomeIcon    sx={{
@@ -276,7 +283,10 @@ const ClientListing = () => {
         }}/>
     </IconButton></Link>
  
-        
+    <Link href={`/clients/${currentURL}/featured`} target="_blank" rel="noopener noreferrer" style={{display:'flex', textDecoration:'underline', backgroundColor:'#1976d2', borderRadius:'10px', padding:'10px',justifyContent:'center',marginTop:'10px',marginLeft:'auto'}}   >
+          Featured Projects 
+          <ArrowForwardIcon />
+                      </Link>
         
         </div>
 

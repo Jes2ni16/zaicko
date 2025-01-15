@@ -26,7 +26,7 @@
 }
 
 .header {
-margin-bottom: 30px;
+margin-bottom: 10px;
 color: #fff;
 position: relative;
 max-width: 1200px;
@@ -117,7 +117,7 @@ text-align: start;
   } 
   .header .back{
     font-size: 14px;
-    bottom: -25px;
+    bottom: 40px;
     text-decoration: underline;
   }
 
