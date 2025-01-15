@@ -283,7 +283,7 @@ const ClientListing = () => {
         }}/>
     </IconButton></Link>
  
-    <Link href={`/clients/${currentURL}/featured`} target="_blank" rel="noopener noreferrer" style={{display:'flex', textDecoration:'underline', backgroundColor:'#1976d2', borderRadius:'10px', padding:'10px',justifyContent:'center',marginTop:'10px',marginLeft:'auto'}}   >
+    <Link href={`/clients/${currentURL}/featured`} target="_blank" rel="noopener noreferrer" style={{display:'flex', width:'60%', textDecoration:'underline', backgroundColor:'#1976d2', borderRadius:'10px', padding:'10px',justifyContent:'center',marginTop:'10px',marginLeft:'auto'}}   >
           Featured Projects 
           <ArrowForwardIcon />
                       </Link>
