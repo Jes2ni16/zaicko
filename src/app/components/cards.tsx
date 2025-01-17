@@ -13,19 +13,19 @@ const cardData: CardData[] = [
     title: 'MANDTRA RESIDENCES',
     description: 'Mandtra Residences sets the standard of Cebuano Living at the heart of its industrial heritage.',
     image: 'https://i.imgur.com/6jjNq8v.jpg', // Replace with your image URL
-    link: '/projects/mandtra'
+    link: 'featured/mandtra'
   },
   {
     title: 'URBAN DECA HOMES',
     description: 'Enjoy urban living within the business district of Mandaue City. Homeowners have close and easy access to malls, universities, churches, a hospital, international airport, as well as business and commercial districts in the metro.',
     image: 'https://i.imgur.com/ge2cJUG.jpg', // Replace with your image URL
-    link: '/projects/urban-deca-mandaue'
+    link: 'featured/urban-deca-mandaue'
   },
   {
     title: 'PRIMEWORLD DISTRICT',
     description: 'At Primeworld District, residents don’t have to leave home to enjoy summer activities. Facilities to match any premium resort are found on the amenity area, promising outdoor fun all year round.',
     image: 'https://i.imgur.com/E6f9qeu.jpg', 
-    link: '/projects/primeworld-district'
+    link: 'featured/primeworld-district'
   }
 ];
 

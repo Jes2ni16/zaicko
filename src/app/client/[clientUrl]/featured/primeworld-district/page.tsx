@@ -2,7 +2,9 @@
 
 import styles from './page.module.css';
 import Image from 'next/image';
-import ProjectsImage from '..//../components/projectsImage';
+import ProjectsImage from '../../../../components/projectsImage';
+import { IconButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function Mandtra() {
 
@@ -73,7 +75,29 @@ export default function Mandtra() {
 
   return (
     <div className={styles.body}>
+
         <div className={styles.headPart}>
+        <IconButton
+  component="a"
+  href={`./`}
+  color="primary"
+  aria-label="go back"
+  sx={{
+    position: 'absolute',
+    backgroundColor: '#000', 
+    color: '#fff', // Icon colo
+    width: 30, 
+    height: 30, 
+    top:'10px',
+    left:'10px',
+    borderRadius: '50%', // Make it a circle
+    '&:hover': {
+      backgroundColor: 'primary.dark', // Darker shade on hover
+    },
+  }}
+>
+  <ArrowBackIcon />
+</IconButton>
 <div className={styles.img}>
     <Image src='https://i.imgur.com/E6f9qeu.jpg' width='500' height={700} alt='URBAN DECA MANDAUE'/>
 </div>
