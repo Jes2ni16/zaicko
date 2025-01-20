@@ -6,56 +6,56 @@ import ProjectsImage from '../../../../components/projectsImage';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-export default function Mandtra() {
+export default function UrbanDeca() {
 
   const first = [
-     { src: 'https://i.imgur.com/ge2cJUG.jpg', alt: 'Image 1' },
-    { src: 'https://i.imgur.com/wPZUahz.jpg', alt: 'Image 2' },
+     { src: 'https://i.imgur.com/ge2cJUG.jpg', alt: 'Urban Image' },
+    { src: 'https://i.imgur.com/wPZUahz.jpg', alt: 'Urban Featured 2' },
     ]
 
     const floor = [
-      { src: 'https://i.imgur.com/s81aacv.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/iykC9Vs.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/T2G2raR.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/LmdIqV9.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/S4eGT8D.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/s81aacv.jpg', alt: 'Urban floor 1' },
+      { src: 'https://i.imgur.com/iykC9Vs.jpg', alt: 'Urban floor 3' },
+      { src: 'https://i.imgur.com/T2G2raR.jpg', alt: 'Urban floor 4' },
+      { src: 'https://i.imgur.com/LmdIqV9.jpg', alt: 'Urban floor 2' },
+      { src: 'https://i.imgur.com/S4eGT8D.jpg', alt: 'Urban floor 5' },
     ]
 
 
     const amenities = [
-      { src: 'https://i.imgur.com/lDPRu2L.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/bGolAMJ.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/zMmkUEo.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/k9iELcU.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/lDPRu2L.jpg', alt: 'Urban amenities 1' },
+      { src: 'https://i.imgur.com/bGolAMJ.jpg', alt: 'Urban amenities 2' },
+      { src: 'https://i.imgur.com/zMmkUEo.jpg', alt: 'Urban amenities 3' },
+      { src: 'https://i.imgur.com/k9iELcU.jpg', alt: 'Urban amenities 4' },
     ]
 
     const dress = [
-      { src: 'https://i.imgur.com/pEgVuqK.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/xSgZuGj.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/9ytKS8X.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/HN4hiab.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/LdnJtFZ.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/Yg9AlkV.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/pxuy894.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/YiQrfkv.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/pEgVuqK.jpg', alt: 'Urban dress 1' },
+      { src: 'https://i.imgur.com/xSgZuGj.jpg', alt: 'Urban dress 2' },
+      { src: 'https://i.imgur.com/9ytKS8X.jpg', alt: 'Urban dress 3' },
+      { src: 'https://i.imgur.com/HN4hiab.jpg', alt: 'Urban dress 5' },
+      { src: 'https://i.imgur.com/LdnJtFZ.jpg', alt: 'Urban dress 6' },
+      { src: 'https://i.imgur.com/Yg9AlkV.jpg', alt: 'Urban dress 7' },
+      { src: 'https://i.imgur.com/pxuy894.jpg', alt: 'Urban dress 4' },
+      { src: 'https://i.imgur.com/YiQrfkv.jpg', alt: 'Urban dress 8' },
     ]
 
     const deliverable = [
-      { src: 'https://i.imgur.com/nnE0mC1.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/id1wJyl.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/OGVPkz7.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/C9sTnZC.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/nArCONQ.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/JaXROJc.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/qcHUeNw.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/P5ZozU3.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/vMWGxEA.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/nnE0mC1.jpg', alt: 'deliverable 1' },
+      { src: 'https://i.imgur.com/id1wJyl.jpg', alt: 'deliverable 2' },
+      { src: 'https://i.imgur.com/OGVPkz7.jpg', alt: 'deliverable 3' },
+      { src: 'https://i.imgur.com/C9sTnZC.jpg', alt: 'deliverable 4' },
+      { src: 'https://i.imgur.com/nArCONQ.jpg', alt: 'deliverable 5' },
+      { src: 'https://i.imgur.com/JaXROJc.jpg', alt: 'deliverable 6' },
+      { src: 'https://i.imgur.com/qcHUeNw.jpg', alt: 'deliverable 7' },
+      { src: 'https://i.imgur.com/P5ZozU3.jpg', alt: 'deliverable 8' },
+      { src: 'https://i.imgur.com/vMWGxEA.jpg', alt: 'deliverable 9' },
     ]
 
     
     const site = [
-      { src: 'https://i.imgur.com/2qguy9k.png', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/ZRQykkB.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/2qguy9k.png', alt: 'Site Image 1' },
+      { src: 'https://i.imgur.com/ZRQykkB.jpg', alt: 'Site Image 2' },
     ]
 
 
@@ -91,12 +91,13 @@ export default function Mandtra() {
     <Image src='https://i.imgur.com/ge2cJUG.jpg' width='500' height={700} alt='URBAN DECA MANDAUE'/>
 </div>
 <div className={styles.submin}>
+  
 <h2 className={styles.subTitle}>Urban Living in the Business District of Mandaue</h2>
 <h1 className='text-center'>URBAN DECA HOMES</h1>
     <h2 className='my-5'>Enjoy urban living within the business district of Mandaue City. Homeowners have close and easy access to malls, universities, churches, a hospital, international airport, as well as business and commercial districts in the metro.</h2>
-    <div className='d-flex align-items-center'>
-        <p className='mb-2'>Project Location: </p>
-        <h2 className='ms-4 text-bold'>Near AS Fortuna St. | P. Basubas St. Tipolo Mandaue City</h2>
+    <div className='' style={{margin:'20px auto'}}>
+        <p style={{fontSize:'18px', fontWeight:'bold'}}>Project Location:</p>
+        <p style={{fontSize:'18px', }}>Near AS Fortuna St. | P. Basubas St. Tipolo Mandaue City</p>
     </div>
 </div>
         </div>
@@ -118,7 +119,7 @@ Live in a home with modern amenities and unbeatable location at a price you can 
 <div className={styles.location}>
 <p>Location</p>
 <div className={styles.img}>
-<Image src='https://i.imgur.com/yJgMc6z.jpg' width='700' height={700} alt='MANDTRA RESIDENCES'/>
+<Image src='https://i.imgur.com/yJgMc6z.jpg' width='700' height={700} alt='UrbanDeca RESIDENCES'/>
 </div>
 </div>
 

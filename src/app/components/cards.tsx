@@ -12,13 +12,13 @@ const cardData: CardData[] = [
   {
     title: 'MANDTRA RESIDENCES',
     description: 'Mandtra Residences sets the standard of Cebuano Living at the heart of its industrial heritage.',
-    image: 'https://i.imgur.com/6jjNq8v.jpg', // Replace with your image URL
+    image: 'https://i.imgur.com/6jjNq8v.jpg', 
     link: 'featured/mandtra'
   },
   {
     title: 'URBAN DECA HOMES',
     description: 'Enjoy urban living within the business district of Mandaue City. Homeowners have close and easy access to malls, universities, churches, a hospital, international airport, as well as business and commercial districts in the metro.',
-    image: 'https://i.imgur.com/ge2cJUG.jpg', // Replace with your image URL
+    image: 'https://i.imgur.com/ge2cJUG.jpg', 
     link: 'featured/urban-deca-mandaue'
   },
   {
@@ -26,6 +26,12 @@ const cardData: CardData[] = [
     description: 'At Primeworld District, residents don’t have to leave home to enjoy summer activities. Facilities to match any premium resort are found on the amenity area, promising outdoor fun all year round.',
     image: 'https://i.imgur.com/E6f9qeu.jpg', 
     link: 'featured/primeworld-district'
+  },
+  {
+    title: 'Le Menda-Busay',
+    description: 'Le Menda Residences is a luxurious residential development located in Busay, Cebu, Philippines. Situated in the picturesque mountains of Cebu, it offers residents breathtaking views of the city skyline and the surrounding natural beauty.',
+    image: 'https://i.imgur.com/W4IKSJQ.jpg', 
+    link: 'featured/le-menda-busay'
   }
 ];
 

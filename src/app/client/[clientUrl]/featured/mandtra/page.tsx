@@ -9,51 +9,51 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export default function Mandtra() {
 
   const mandtra = [
-     { src: 'https://i.imgur.com/6jjNq8v.jpg', alt: 'Image 1' },
-    { src: 'https://i.imgur.com/xqXLrSI.jpg', alt: 'Image 2' },
-    { src: 'https://i.imgur.com/1sDAOHS.png', alt: 'Image 3' },
+     { src: 'https://i.imgur.com/6jjNq8v.jpg', alt: 'Mandtra Image 1' },
+    { src: 'https://i.imgur.com/xqXLrSI.jpg', alt: 'Mandtra Image 2' },
+    { src: 'https://i.imgur.com/1sDAOHS.png', alt: 'Mandtra Image 3' },
     ]
 
     const oneBedroom = [
-      { src: 'https://i.imgur.com/IwAzT7X.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/G360d6w.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/IwAzT7X.jpg', alt: 'One bedroom 1' },
+      { src: 'https://i.imgur.com/G360d6w.jpg', alt: 'One bedroom 2' },
     ]
 
     const studioUnit = [
-      { src: 'https://i.imgur.com/TAuuzI0.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/hy4UVQg.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/9ektkrW.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/7IYUAXT.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/TAuuzI0.jpg', alt: 'Studio unit 1' },
+      { src: 'https://i.imgur.com/hy4UVQg.jpg', alt: 'Studio unit 2' },
+      { src: 'https://i.imgur.com/9ektkrW.jpg', alt: 'Studio unit 3' },
+      { src: 'https://i.imgur.com/7IYUAXT.jpg', alt: 'Studio unit 4' },
     ]
 
     const tower1 = [
-      { src: 'https://i.imgur.com/MYprD1c.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/cs9AyRX.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/AruhKta.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/HlbychQ.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/yMNUJO6.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/MYprD1c.jpg', alt: 'Tower1 Image 1' },
+      { src: 'https://i.imgur.com/cs9AyRX.jpg', alt: 'Tower1 Image 2' },
+      { src: 'https://i.imgur.com/AruhKta.jpg', alt: 'Tower1 Image 3' },
+      { src: 'https://i.imgur.com/HlbychQ.jpg', alt: 'Tower1 Image 4' },
+      { src: 'https://i.imgur.com/yMNUJO6.jpg', alt: 'Tower1 Image 5' },
     ]
     const tower2 = [
-      { src: 'https://i.imgur.com/qCh9Gz7.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/aFTkeDr.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/2R9xrO5.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/LC0g6eE.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/qCh9Gz7.jpg', alt: 'Tower2 Image 1' },
+      { src: 'https://i.imgur.com/aFTkeDr.jpg', alt: 'Tower2 Image 2' },
+      { src: 'https://i.imgur.com/2R9xrO5.jpg', alt: 'Tower2 Image 3' },
+      { src: 'https://i.imgur.com/LC0g6eE.jpg', alt: 'Tower2 Image 4' },
     ]
     const tower3 = [
-      { src: 'https://i.imgur.com/Gm20Rpz.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/aVLlZ8S.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/fqas53G.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/2h2yZX0.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/NJ9CwUj.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/QokPemi.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/Gm20Rpz.jpg', alt: 'Tower 3 Image 1' },
+      { src: 'https://i.imgur.com/aVLlZ8S.jpg', alt: 'Tower 3 Image 2' },
+      { src: 'https://i.imgur.com/fqas53G.jpg', alt: 'Tower 3 Image 3' },
+      { src: 'https://i.imgur.com/2h2yZX0.jpg', alt: 'Tower 3 Image 4' },
+      { src: 'https://i.imgur.com/NJ9CwUj.jpg', alt: 'Tower 3 Image 5' },
+      { src: 'https://i.imgur.com/QokPemi.jpg', alt: 'Tower 3 Image 6' },
     ]
     const amenities = [
-      { src: 'https://i.imgur.com/OpTcABy.png', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/zBkEiQk.png', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/XEaDYen.png', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/WvmrSjU.png', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/VhLb1GW.png', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/9iNLwp5.png', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/OpTcABy.png', alt: 'Mandtra amenities 1' },
+      { src: 'https://i.imgur.com/zBkEiQk.png', alt: 'Mandtra amenities 2' },
+      { src: 'https://i.imgur.com/XEaDYen.png', alt: 'Mandtra amenities 3' },
+      { src: 'https://i.imgur.com/WvmrSjU.png', alt: 'Mandtra amenities 4' },
+      { src: 'https://i.imgur.com/VhLb1GW.png', alt: 'Mandtra amenities 5' },
+      { src: 'https://i.imgur.com/9iNLwp5.png', alt: 'Mandtra amenities 6' },
     ]
 
 
@@ -89,9 +89,9 @@ export default function Mandtra() {
 
     <h1 className='text-center'>MANDTRA RESIDENCES</h1>
     <h2 className='my-5'>Mandtra Residences sets the standard of Cebuano Living at the heart of its industrial heritage.</h2>
-    <div className='d-flex align-items-center'>
-        <p className='mb-2'>Project Location: </p>
-        <h2 className='ms-4 text-bold'>Near AS Fortuna St. | P. Basubas St. Tipolo Mandaue City</h2>
+    <div className='' style={{marginTop:'20px'}}>
+        <p style={{fontSize:'18px', fontWeight:'bold'}}>Project Location:</p>
+        <p style={{fontSize:'18px', }}>Near AS Fortuna St. | P. Basubas St. Tipolo Mandaue City</p>
     </div>
 </div>
         </div>

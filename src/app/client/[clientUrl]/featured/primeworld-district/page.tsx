@@ -9,64 +9,64 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export default function Mandtra() {
 
   const first = [
-     { src: 'https://i.imgur.com/zRvnUxn.jpg', alt: 'Image 1' },
-    { src: 'https://i.imgur.com/THZxV7X.jpg', alt: 'Image 2' },
-    { src: 'https://i.imgur.com/E6f9qeu.jpg', alt: 'Image 2' },
+     { src: 'https://i.imgur.com/zRvnUxn.jpg', alt: 'PRIMEWORLD DISTRICT 1' },
+    { src: 'https://i.imgur.com/THZxV7X.jpg', alt: 'PRIMEWORLD DISTRICT 2' },
+    { src: 'https://i.imgur.com/E6f9qeu.jpg', alt: 'PRIMEWORLD DISTRICT 3' },
     ]
 
     const floorBldg = [
-      { src: 'https://i.imgur.com/fdxZTfG.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/lhjPmpt.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/32hApQG.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/fdxZTfG.jpg', alt: 'Building 1' },
+      { src: 'https://i.imgur.com/lhjPmpt.jpg', alt: 'Building 2' },
+      { src: 'https://i.imgur.com/32hApQG.jpg', alt: 'Building 3' },
     ]
 
     const floor1Bd = [
-      { src: 'https://i.imgur.com/x0VnXsz.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/2qhoQ5i.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/JLzvYgl.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/SjJL0s4.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/x0VnXsz.jpg', alt: 'Floor two 1' },
+      { src: 'https://i.imgur.com/2qhoQ5i.jpg', alt: 'Floor two 2' },
+      { src: 'https://i.imgur.com/JLzvYgl.jpg', alt: 'Floor two 3' },
+      { src: 'https://i.imgur.com/SjJL0s4.jpg', alt: 'Floor two 4' },
     ]
 
 
 
     const floor2Bd = [
-      { src: 'https://i.imgur.com/sr4Uw8F.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/nf4NDpt.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/sr4Uw8F.jpg', alt: 'Floor one 1' },
+      { src: 'https://i.imgur.com/nf4NDpt.jpg', alt: 'Floor one 2' },
     ]
 
     const floorVilla = [
-      { src: 'https://i.imgur.com/K0rY7Cv.jpg', alt: 'Image 1' },
+      { src: 'https://i.imgur.com/K0rY7Cv.jpg', alt: 'Villa floor 1' },
     ]
 
     const amenities= [
-      { src: 'https://i.imgur.com/dFsWW1R.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/6xFQ6Eu.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/M2ScwZM.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/V5WVwhL.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/E6f9qeu.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/dFsWW1R.jpg', alt: 'Amenities 1' },
+      { src: 'https://i.imgur.com/6xFQ6Eu.jpg', alt: 'Amenities 2' },
+      { src: 'https://i.imgur.com/M2ScwZM.jpg', alt: 'Amenities 3' },
+      { src: 'https://i.imgur.com/V5WVwhL.jpg', alt: 'Amenities 4' },
+      { src: 'https://i.imgur.com/E6f9qeu.jpg', alt: 'Amenities 5' },
     ]
 
 
     const dress2 = [
-      { src: 'https://i.imgur.com/KBI2gcX.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/F0bibbY.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/Z97Adtm.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/KBI2gcX.jpg', alt: 'dress 1' },
+      { src: 'https://i.imgur.com/F0bibbY.jpg', alt: 'dress 2' },
+      { src: 'https://i.imgur.com/Z97Adtm.jpg', alt: 'dress 3' },
     ]
 
     const dressStandard = [
-      { src: 'https://i.imgur.com/FW7A7PD.jpg', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/bAmQxLL.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/FW7A7PD.jpg', alt: 'Dress standard 1' },
+      { src: 'https://i.imgur.com/bAmQxLL.jpg', alt: 'Dress standard 2' },
     ]
 
 
 
     
     const site = [
-      { src: 'https://i.imgur.com/V1AXdbK.png', alt: 'Image 1' },
-      { src: 'https://i.imgur.com/D10Jm5b.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/hW9Q1r2.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/APDUqKo.jpg', alt: 'Image 2' },
-      { src: 'https://i.imgur.com/zmdLt0v.jpg', alt: 'Image 2' },
+      { src: 'https://i.imgur.com/V1AXdbK.png', alt: 'Site Image 1' },
+      { src: 'https://i.imgur.com/D10Jm5b.jpg', alt: 'Site Image 2' },
+      { src: 'https://i.imgur.com/hW9Q1r2.jpg', alt: 'Site Image 2' },
+      { src: 'https://i.imgur.com/APDUqKo.jpg', alt: 'Site Image 2' },
+      { src: 'https://i.imgur.com/zmdLt0v.jpg', alt: 'Site Image 2' },
     ]
 
 
@@ -99,15 +99,15 @@ export default function Mandtra() {
   <ArrowBackIcon />
 </IconButton>
 <div className={styles.img}>
-    <Image src='https://i.imgur.com/E6f9qeu.jpg' width='500' height={700} alt='URBAN DECA MANDAUE'/>
+    <Image src='https://i.imgur.com/E6f9qeu.jpg' width='500' height={700} alt='PRIMEWORLD DISTRICT'/>
 </div>
 <div className={styles.submin}>
 <h2 className={styles.subTitle}>Come home to lifelong vacation in this resort-style community in Brgy. Agus, Lapu-Lapu City, Mactan, Cebu</h2>
 <h1 className='text-center'>PRIMEWORLD DISTRICT</h1>
     <h2 className='my-5'>At Primeworld District, residents don’t have to leave home to enjoy summer activities. Facilities to match any premium resort are found on the amenity area, promising outdoor fun all year round.</h2>
-    <div className='d-flex align-items-center'>
-        <p className='mb-2'>Project Location: </p>
-        <h2 className='ms-4 text-bold'>Ibabao Gisi - Agus Rd., Lapu Lapu City , Cebu</h2>
+    <div className='' style={{margin:'20px auto'}}>
+        <p style={{fontSize:'18px', fontWeight:'bold'}}>Project Location:</p>
+        <p style={{fontSize:'18px', }}>Ibabao Gisi - Agus Rd., Lapu Lapu City , Cebu</p>
     </div>
 </div>
         </div>
