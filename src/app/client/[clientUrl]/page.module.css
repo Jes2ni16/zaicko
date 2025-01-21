@@ -32,9 +32,9 @@ max-height: 100%;
     position: absolute;
     bottom: 15%;
     color: #fff;
-    left: 7%;
+    left: 10%;
     max-width: 500px;
-    width: 100%;
+    width: 20%;
     background-color: #181818a2;
     text-align: center;
     padding: 20px 0;
@@ -56,6 +56,17 @@ max-height: 100%;
     display: none ;
   }
   
+  .socLinks {
+    position: absolute;
+    right: 25%;
+    bottom: 4%;
+    display: flex;
+    gap: 30px;
+    
+  }
+  .socLinks a{
+width: 100%;
+  }
 
   @media screen and (max-width:1100px) {
     .page2 {

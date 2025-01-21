@@ -81,6 +81,13 @@ export default function ClientHome() {
       <div className={styles.imgContainer}>
         <Image src={clientData.image} width={2560} height={1440} alt={clientData.name} />
         <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
+   { clientData.tiktok || clientData.fb || clientData.instagram || clientData.youtube ? (<div className={styles.socLinks}>
+      {clientData.tiktok? (<Link href={clientData.tiktok}><Image src={'/tiktok.webp'} width={50} height={50} alt='tiktok image'/></Link>):(<></>)}
+      {clientData.fb? (<Link href={clientData.fb} style={{padding:'3px'}} ><Image src={'/facebook.png'} width={50} height={50} alt='facebook image'/></Link>):(<></>)}
+      {clientData.youtube? (<Link href={clientData.youtube} ><Image src={'/youtube.png'} width={50} height={50} alt='youtube image'/></Link>):(<></>)}
+      {clientData.instagram? (<Link href={clientData.instagram} ><Image src={'/instagramIcon.png'} width={50} height={50} alt='instagram image'/></Link>):(<></>)}
+
+    </div>):<div></div> }
       <div className={styles.fma}>
       <Link href='https://findmyagent.net'>
       <Image src='/fma.png' width={40} height={30} alt="find my agent Logo" />
