@@ -62,11 +62,26 @@ max-height: 100%;
     bottom: 4%;
     display: flex;
     gap: 30px;
-    
+  }
+  .socLinks1 {
+    position: absolute;
+    left: 10%;
+    bottom: 1%;
+    display: flex;
+    gap: 10px;
+    width: 45%;
   }
   .socLinks a{
 width: 100%;
   }
+
+  .socLinks1 a{
+    width: 100%;
+      }
+      .socLinks1 img{
+width: 70%;
+height: 75%!important;
+      }
 
   @media screen and (max-width:1100px) {
     .page2 {
@@ -93,6 +108,12 @@ justify-content: center;
 
   .page2 .imgContainer{
 position: relative;
+max-width: 100%;
+aspect-ratio: 9 / 16;
+margin: auto;
+max-width: 100%;
+position: relative;
+max-height: 100vh;
   }
 
       .page2 img{
