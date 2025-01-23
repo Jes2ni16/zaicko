@@ -223,40 +223,52 @@ const ClientListing = () => {
                       </Link>
         </Stack>
 
-        {filteredLists && filteredLists.length > 0 ? (
-          <div className={styles.tableContainer} style={{ marginLeft: '10px' }}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Unit Type</th>
-                  <th>City</th>
-                  <th>Location</th>
-                  <th>Rooms</th>
-                  <th>Price</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredLists.map((list) => (
-                  <tr key={list._id}>
-                    <td>{list.unit_type || 'N/A'}</td>
-                    <td>{list.city || 'N/A'}</td>
-                    <td>{list.barangay || 'N/A'}</td>
-                    <td>{list.room_number || 'N/A'}</td>
-                    <td>{list.price ? `₱ ${list.price}` : ''}</td>
-                    <td>
-                      <Link href={list.fb_link} target="_blank" rel="noopener noreferrer">
-                        <LinkIcon sx={{ verticalAlign: 'middle', color:'#1565c0' }} />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p className={styles.noListings}></p>
-        )}
+        {listsLoading ? (
+  // Show loader while data is being fetched
+  <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+    <CircularProgress size={24} />
+    <Typography variant="body2" sx={{ marginLeft: '8px' }}>
+      Loading listings...
+    </Typography>
+  </Box>
+) : filteredLists.length > 0 ? (
+  // Render the table when data is loaded
+  <div className={styles.tableContainer} style={{ marginLeft: '10px' }}>
+    <table className={styles.table}>
+      <thead>
+        <tr>
+          <th>Unit</th>
+          <th>City</th>
+          <th>Location</th>
+          <th>Rooms</th>
+          <th>Price</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredLists.map((list) => (
+          <tr key={list._id}>
+            <td>{list.unit_type || ''}</td>
+            <td>{list.city || ''}</td>
+            <td>{list.barangay || ''}</td>
+            <td>{list.room_number || ''}</td>
+            <td>{list.price ? `₱ ${list.price}` : ''}</td>
+            <td>
+              <Link href={list.fb_link} target="_blank" rel="noopener noreferrer">
+                <LinkIcon sx={{ verticalAlign: 'middle', color: '#1565c0' }} />
+              </Link>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+) : (
+  // Render a message if no data is available
+  <Typography sx={{ textAlign: 'center', marginTop: '20px' }}>
+    No listings available.
+  </Typography>
+)}
       </div>
     </div>
 
