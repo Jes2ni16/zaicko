@@ -127,9 +127,9 @@ position: relative;
 max-width: 100%;
 aspect-ratio: 9 / 16;
 margin: auto;
-max-width: 100%;
 position: relative;
-max-height: calc(100vh - env(safe-area-inset-bottom));
+height: 99%;
+max-height: min(100vh, calc(100vh - env(safe-area-inset-bottom)));
   }
 
       .page2 img{
