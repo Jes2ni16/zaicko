@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import axios from 'axios';
 import LinkIcon from '@mui/icons-material/Link';
-import HomeIcon from '@mui/icons-material/Home';
-import Link from 'next/link'; 
-import { Button,  Stack, Slider, Typography, CircularProgress, Box, IconButton } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Link from 'next/link';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import { Button,  Slider, Typography, CircularProgress, Box, IconButton, Card} from '@mui/material';
+
 
 interface ClientData {
   name: string;
@@ -33,7 +34,7 @@ interface ListData {
   room_number: string;
   list_owner: string;
   client: { _id: string; name: string };
-  createdAt: string; 
+  createdAt: string;
 }
 
 const ClientListing = () => {
@@ -44,9 +45,10 @@ const ClientListing = () => {
   const [clientLoading, setClientLoading] = useState<boolean>(true);
   const [backgroundLoaded, setBackgroundLoaded] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [selectedListType, setSelectedListType] = useState<string>('Brokerage');
+  const [selectedListType, setSelectedListType] = useState<string>('Rental');
   const [priceRange, setPriceRange] = useState<number[]>([0, 0]); // Adjusted initial state
   const [minPrice, setMinPrice] = useState<number>(0);
+  const [selectedCity, setSelectedCity] = useState<string>('');
   const [maxPrice, setMaxPrice] = useState<number>(0);
 
   useEffect(() => {
@@ -87,34 +89,34 @@ const ClientListing = () => {
     const fetchLists = async (): Promise<void> => {
       try {
         if (!currentURL) return;
-    
+
         const response = await axios.get<ListData[]>(
           `https://zaiko-server.vercel.app/api/lists`,
           { params: { client: currentURL } }
         );
-    
+
         const fetchedLists = response.data;
-    
+
         // Assign default prices where missing or invalid
         const processedLists: ListData[] = fetchedLists.map((list) => ({
           ...list,
           price: list.price && !isNaN(parseFloat(list.price)) ? list.price : '0',
         }));
-    
+
         // Sort by createdAt
         const sortedLists = processedLists.sort(
           (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         );
-    
+
         setLists(sortedLists);
-    
+
         // Calculate price range
         const prices: number[] = processedLists.map((list) =>
           parseFloat(list.price) || 0
         );
         const min = Math.min(...prices);
         const max = Math.max(...prices);
-    
+
         setMinPrice(min);
         setMaxPrice(max);
         setPriceRange([min, max]);
@@ -129,301 +131,392 @@ const ClientListing = () => {
     fetchClientData();
     fetchLists();
   }, [currentURL]);
-  
+
   const handlePriceChange = (event: Event, newValue: number | number[]) => {
     setPriceRange(newValue as number[]);
   };
 
-  const filteredLists: ListData[] = lists
-  .filter((list) =>
-    selectedListType ? list.list_type === selectedListType : true
-  )
-  .filter((list) => {
-    const price: number = parseFloat(list.price) || 0; // Default to 0 if invalid
-    return price >= priceRange[0] && price <= priceRange[1];
-  });
+  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCity(event.target.value);
+  };
+  const uniqueCities = Array.from(new Set(lists.map((list) => list.city))).filter(
+    (city) => city
+  );
 
-  if (listsLoading || clientLoading || !backgroundLoaded) return( <Box
-  sx={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh', // Centers vertically and horizontally
-  }}
->
-  <CircularProgress />
-</Box>);
+  const filteredLists: ListData[] = lists
+    .filter((list) =>
+      selectedListType ? list.list_type === selectedListType : true
+    )
+    .filter((list) => {
+      const price: number = parseFloat(list.price) || 0; // Default to 0 if invalid
+      return price >= priceRange[0] && price <= priceRange[1];
+    })
+    .filter((list) => (selectedCity ? list.city === selectedCity : true));
+
+  if (listsLoading || clientLoading || !backgroundLoaded) return (<Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh', // Centers vertically and horizontally
+    }}
+  >
+    <CircularProgress />
+  </Box>);
   if (error) return <p>{error}</p>;
 
   return (
     <div className={styles.body}>
-    <div
-      className={styles.page1}
-      style={{
-        backgroundImage: clientData?.background
-          ? `url(${clientData.background})`
-          : 'none',
-      }}
-    >
-      
-      <div className={styles.header}><h1>My Listings</h1> 
-    
-    <Link href={`/client/${currentURL}/`}  className={styles.back}>    <IconButton  aria-label="home">
-      <HomeIcon    sx={{
-          color: 'white', 
-          border: '2px solid black', 
-          borderRadius: '50%', 
-          backgroundColor: 'black', 
-          padding: '4px', 
-          fontSize: '48px',
-        }}/>
-    </IconButton></Link>
- 
-        
+      <div
+        className={styles.page1}
+        style={{
+          backgroundImage: clientData?.background
+            ? `url(${clientData.background})`
+            : 'none',
+        }}
+      >
+
+
+        <div className={styles.container}>
+        <div className={styles.header}>
+        <Link href={`/client/${currentURL}/`} className={styles.back}>    <IconButton aria-label="home">
+            <ArrowBackIcon sx={{
+              color: 'white',
+              border: '1px solid black',
+              borderRadius: '50%',
+              backgroundColor: 'black',
+              padding: '3px',
+              fontSize: '40px',
+            }} />
+          </IconButton></Link>
+          <h1>My Listings</h1>
         </div>
 
-      <div className={styles.lists}>
-        <Stack direction="column" spacing={2} sx={{ marginRight: 2 ,width:'20%'}}>
-          <Typography gutterBottom>Price Range</Typography>
-          <Slider
-            value={priceRange}
-            onChange={handlePriceChange}
-            valueLabelDisplay="auto"
-            min={minPrice || 0}
-            max={maxPrice}
-            step={100}
-          />
-          <Typography>
-            &#8369; {priceRange[0]} - &#8369; {priceRange[1]}
-          </Typography>
-          <Button
-            variant={selectedListType === 'Brokerage' ? 'contained' : 'outlined'}
-            onClick={() => setSelectedListType('Brokerage')}
-          >
-            Brokerage
-          </Button>
-          <Button
-            variant={selectedListType === 'Development' ? 'contained' : 'outlined'}
-            onClick={() => setSelectedListType('Development')}
-          >
-            Development
-          </Button>
-          <Button
-            variant={selectedListType === 'Rental' ? 'contained' : 'outlined'}
-            onClick={() => setSelectedListType('Rental')}
-          >
-            Rental
-          </Button>
+        <div className={styles.lists}>
+          <div className={styles.leftSide}>
+          <div style={{ marginBottom: "10px" }}>
+      <label htmlFor="city-select" style={{ display: "block", fontSize: '18px' }}>
+        Select City:
+      </label>
+      <select
+        id="city-select"
+        value={selectedCity}
+        onChange={handleCityChange}
+        style={{
+          width: "100%",
+          padding: "8px",
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+          fontSize: "16px",
+          backgroundColor: "#f9f9f9",
+        }}
+      >
+        <option value="">All Cities</option>
+        {uniqueCities.map((city) => (
+          <option key={city} value={city}>
+            {city}
+          </option>
+        ))}
+      </select>
+    </div>
 
-          <div style={{height:'2px', color:'#fff', backgroundColor:'#fff', marginTop:'20%'}}></div>
-          <Typography style={{fontSize:'20px', padding:'10px'}}>Discover my featured projects now!</Typography>
-          <Link href={`/client/${currentURL}/featured`}   style={{display:'flex', textDecoration:'underline', backgroundColor:'#1976d2', borderRadius:'10px', padding:'10px',justifyContent:'center',marginTop:'10px'}}   >
-          Featured Projects 
-          <ArrowForwardIcon />
-                      </Link>
-        </Stack>
+          <hr />
+            <div style={{display:'flex',flexDirection:'column', justifyContent:'center', textAlign:'center'}}>
+            <Typography gutterBottom>Price Range</Typography>
+            <Slider
+              value={priceRange}
+              onChange={handlePriceChange}
+              valueLabelDisplay="auto"
+              min={minPrice || 0}
+              max={maxPrice}
+              step={100}
+              sx={{
+                color: '#0f7f50', height: 7, width: '80%', margin: '0 auto',  padding:'5px 0 !important',
+                '& .MuiSlider-thumb': {
+                  backgroundColor: '#fff',
+                  border: '3px solid #0f7f50',
+                  width: 22,
+                  height: 22,
+  
+                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)',
+                }, '& .MuiSlider-rail': { backgroundColor: '#d0d0d0', },
+                '& .MuiSlider-track': {
+                  backgroundColor: '#0f7f50',
+                },
+              }}
+            />
+            <Typography>
+              &#8369; {priceRange[0]} - &#8369; {priceRange[1]}
+            </Typography>
+            </div>
+            <hr />
+            <Box
+      sx={{display: 'flex',gap: '10px',flexDirection:'column',marginRight: 2,marginBottom: '10px',width: '100%',justifyContent: 'center',
+      }}
+    >
+      {['Rental','Brokerage', 'Development' ].map((type) => (
+        <button
+          key={type}
+          onClick={() => setSelectedListType(type)}
+          style={{
+            padding: '10px 15px',
+            fontSize: '18px',
+            cursor: 'pointer',
+            width:'100%',
+            borderRadius: '5px',
+            border: selectedListType === type ? '2px solid #383838' : '2px solid #D9D9D9',
+            backgroundColor: selectedListType === type ? '#383838' : '#D9D9D9',
+            color: selectedListType === type ? '#fff' : '#4c504d',
+            transition: 'all 0.3s ease',
+            boxShadow: '0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'
+          }}
+        >
+          {type}
+        </button>
+      ))}
+    </Box>
+           <hr />
+            <Typography style={{ fontSize: '20px', padding: '10px' }}>Discover my featured projects now!</Typography>
+            <Link href={`/client/${currentURL}/featured`} className={styles.featuredBtn}  >
+              Featured Projects
+              <ApartmentIcon />
+            </Link>
+          </div>
 
-        {listsLoading ? (
-  // Show loader while data is being fetched
-  <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-    <CircularProgress size={24} />
-    <Typography variant="body2" sx={{ marginLeft: '8px' }}>
+
+          {listsLoading ? ( // Show loader when data is loading
+  <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <CircularProgress size={48} />
+    <Typography variant="body1" style={{ marginTop: '8px' }}>
       Loading listings...
     </Typography>
-  </Box>
+  </div>
 ) : filteredLists.length > 0 ? (
-  // Render the table when data is loaded
-  <div className={styles.tableContainer} style={{ marginLeft: '10px' }}>
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Unit</th>
-          <th>City</th>
-          <th>Location</th>
-          <th>Rooms</th>
-          <th>Price</th>
-          <th>Link</th>
-        </tr>
-      </thead>
-      <tbody>
-        {filteredLists.map((list) => (
-          <tr key={list._id}>
-            <td>{list.unit_type || ''}</td>
-            <td>{list.city || ''}</td>
-            <td>{list.barangay || ''}</td>
-            <td>{list.room_number || ''}</td>
-            <td>{list.price ? `₱ ${list.price}` : ''}</td>
-            <td>
-              <Link href={list.fb_link} target="_blank" rel="noopener noreferrer">
-                <LinkIcon sx={{ verticalAlign: 'middle', color: '#1565c0' }} />
-              </Link>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+  <div className={styles.cardContainer}>
+    {filteredLists.map((list) => (
+      <Card
+        key={list._id}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '8px',
+          gap: '8px',
+          boxShadow: 2,
+          width: '100%',
+          margin: '0 auto',
+          minHeight: '90px',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+            {list.unit_type || 'Unknown Unit'}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            {list.barangay},{list.city || ''}
+          </Typography>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
+          <Typography variant="body1" color="text.secondary">
+            <strong>Rooms:</strong> {list.room_number || ''}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            <strong>Price:</strong> {list.price ? `₱ ${list.price}` : ''}
+          </Typography>
+          <Link href={list.fb_link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+            <Button variant="contained" color="primary" size="small" startIcon={<LinkIcon />}>
+              View
+            </Button>
+          </Link>
+        </div>
+      </Card>
+    ))}
   </div>
 ) : (
-  // Render a message if no data is available
-  <Typography sx={{ textAlign: 'center', marginTop: '20px' }}>
-    No listings available.
-  </Typography>
+  <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <Typography variant="body2">No listings available.</Typography>
+  </div>
 )}
+          </div>
+
+        </div>
       </div>
+
+
+
+      <div
+        className={styles.page2}
+        style={{
+          backgroundImage: clientData?.background_mobile
+            ? `url(${clientData.background_mobile})`
+            : 'none',
+        }}
+      >
+
+<Link href={`/client/${currentURL}/`} className={styles.back}>    <IconButton aria-label="home">
+            <ArrowBackIcon sx={{
+              color: 'white',
+              border: '1px solid black',borderRadius: '50%',backgroundColor: 'black',padding: '3px',fontSize: '30px',            }} />
+          </IconButton></Link>
+        <div className={styles.lists}>
+        <div className={styles.header}>
+          <h1 style={{ textAlign: 'start' }}>My Listings</h1>
+
+
+          <Link href={`/client/${currentURL}/featured`} className={styles.featuredBtn}  >
+            Featured Projects      <ApartmentIcon style={{ fontSize: 25, color: '#fff' }} />
+          </Link>
+
+        </div>
+<div className='as'   style={{
+    background: 'rgba(255, 255, 255, 0.2)',
+    backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',borderRadius: '8px', 
+    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',padding: '3px 10px' , maxWidth:'600px',margin:'auto', marginBottom:'10px',
+  }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '50%', margin: 'auto' }}>
+              <Typography gutterBottom className={styles.sliderContainer} style={{ fontSize: '16px', display: 'block' }}>
+                Price Range: <div style={{ fontSize: '14px' }}> &#8369; {priceRange[0]} - &#8369; {priceRange[1]} </div>
+              </Typography>
+              <Slider
+                value={priceRange}
+                onChange={handlePriceChange}
+                valueLabelDisplay="auto"
+                min={minPrice || 0}
+                max={maxPrice}
+                step={100}
+                sx={{
+                  color: '#0f7f50', height: 3, width: '80%', margin: '0 auto',  padding:'5px 0 !important',
+                  '& .MuiSlider-thumb': {
+                    backgroundColor: '#fff',
+                    border: '2px solid #0f7f50',
+                    width: 12,
+                    height: 12,
+    
+                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)',
+                  }, '& .MuiSlider-rail': { backgroundColor: '#d0d0d0', },
+                  '& .MuiSlider-track': {
+                    backgroundColor: '#0f7f50',
+                  },
+                }}
+              />
+            </div>
+
+            <div style={{ width: '50%' }}>
+            <div style={{ maxWidth: "300px", margin: "0 auto" }}>
+      <label htmlFor="city-select" style={{ display: "block", fontSize: '17px' }}>
+        Select City
+      </label>
+      <select
+        id="city-select"
+        value={selectedCity}
+        onChange={handleCityChange}
+        style={{
+          width: "100%",
+          padding: "8px",
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+          fontSize: "16px",
+          backgroundColor: "#f9f9f9",
+        }}
+      >
+        <option value="">All Cities</option>
+        {uniqueCities.map((city) => (
+          <option key={city} value={city}>
+            {city}
+          </option>
+        ))}
+      </select>
     </div>
-
-
-
-    <div
-      className={styles.page2}
-      style={{
-        backgroundImage: clientData?.background_mobile
-          ? `url(${clientData.background_mobile})`
-          : 'none',
+            </div>
+          </div>
+          <hr />
+    <Box
+      sx={{
+        display: 'flex',
+        gap: '10px',
+        marginRight: 2,
+        marginBottom: '10px',
+        width: '100%',
+        justifyContent: 'center',
       }}
     >
-      <div className={styles.header}><h1 style={{textAlign:'start'}}>My Listings</h1> 
-    
-    <Link href={`/client/${currentURL}/`}  className={styles.back}>    <IconButton  aria-label="home">
-      <HomeIcon    sx={{
-          color: 'white', // Fill color
-          border: '2px solid black', // Black outline
-          borderRadius: '50%', // Rounded border
-          backgroundColor: 'black', // Optional: background contrast
-          padding: '4px',
-          fontSize: '38px', // Space inside the border
-        }}/>
-    </IconButton></Link>
- 
-    <Link href={`/client/${currentURL}/featured`}  style={{display:'flex', width:'60%', textDecoration:'underline', backgroundColor:'#1976d2', borderRadius:'10px', padding:'10px',justifyContent:'center',marginTop:'10px',marginLeft:'auto'}}   >
-          Featured Projects 
-          <ArrowForwardIcon />
-                      </Link>
-        
-        </div>
-
-      <div className={styles.lists}>
-      <div >
-      <Typography gutterBottom className={styles.sliderContainer} >
-        Price Range: <span> &#8369; {priceRange[0]} - &#8369; {priceRange[1]}</span>
-      </Typography>
-      <Slider
-        value={priceRange}
-        onChange={handlePriceChange}
-        valueLabelDisplay="auto"
-        min={minPrice || 0}
-        max={maxPrice}
-        step={100}
-
-        sx={{
-          color: '#1976d2', // Custom color for the slider track
-          height: 8,
-      width: '80%', // Set the width of the slider
-    margin: '0 auto',
-    display: 'block',
-          '& .MuiSlider-thumb': {
-            backgroundColor: '#fff', // Thumb background color
-            border: '2px solid #1976d2', // Thumb border
-            width: 24, // Thumb width
-            height: 24, // Thumb height
-            boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)', // Thumb shadow
-          },
-          '& .MuiSlider-rail': {
-            backgroundColor: '#d0d0d0', // Rail color
-          },
-          '& .MuiSlider-track': {
-            backgroundColor: '#1976d2', // Track color
-          },
-        }}
-      />
-    </div>
-      <Box
-  sx={{
-    display: 'flex',
-    gap:4,
-    marginRight: 2,
-    marginBottom:'10px',
-    width: '100%',
-    justifyContent:'center'
-  }}
->
-  <Button
-    variant={selectedListType === 'Brokerage' ? 'contained' : 'outlined'}
-    onClick={() => setSelectedListType('Brokerage')}
-  >
-    Brokerage
-  </Button>
-  <Button
-    variant={selectedListType === 'Development' ? 'contained' : 'outlined'}
-    onClick={() => setSelectedListType('Development')}
-  >
-    Development
-  </Button>
-  <Button
-    variant={selectedListType === 'Rental' ? 'contained' : 'outlined'}
-    onClick={() => setSelectedListType('Rental')}
-  >
-    Rental
-  </Button>
-</Box>
-
-        {filteredLists && filteredLists.length > 0 ? (
-          <div className={styles.tableContainer} style={{ marginLeft: '10px' }}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Unit</th>
-                  <th>City</th>
-                  <th>Location</th>
-                  <th>Rooms</th>
-                  <th>Price</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-  {listsLoading ? (
-    // Render a loading row
-    <tr>
-      <td colSpan={6} style={{ textAlign: 'center' }}>
-        <CircularProgress size={24} />
-        <Typography variant="body2" style={{ marginTop: '8px' }}>
-          Loading listings...
-        </Typography>
-      </td>
-    </tr>
-  ) : filteredLists.length > 0 ? (
-    filteredLists.map((list) => (
-      <tr key={list._id}>
-        <td>{list.unit_type || ''}</td>
-        <td>{list.city || ''}</td>
-        <td>{list.barangay || ''}</td>
-        <td>{list.room_number || ''}</td>
-        <td>{list.price ? `₱ ${list.price}` : ''}</td>
-        <td>
-          <Link href={list.fb_link} target="_blank" rel="noopener noreferrer">
-            <LinkIcon sx={{ verticalAlign: 'middle', color: '#1565c0' }} />
-          </Link>
-        </td>
-      </tr>
-    ))
-  ) : (
-    // Render a "no data" row if no listings are found
-    <tr>
-      <td colSpan={6} style={{ textAlign: 'center' }}>
-        No listings available.
-      </td>
-    </tr>
-  )}
-</tbody>
-            </table>
+      {['Rental','Brokerage', 'Development' ].map((type) => (
+        <button
+          key={type}
+          onClick={() => setSelectedListType(type)}
+          style={{
+            padding: '10px 15px',
+            fontSize: '12px',
+            cursor: 'pointer',
+            maxWidth:'500px',
+            width:'33%',
+            borderRadius: '5px',
+            border: selectedListType === type ? '2px solid #383838' : '2px solid #D9D9D9',
+            backgroundColor: selectedListType === type ? '#383838' : '#D9D9D9',
+            color: selectedListType === type ? '#fff' : '#4c504d',
+            transition: 'all 0.3s ease',
+            boxShadow: '0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'
+          }}
+        >
+          {type}
+        </button>
+      ))}
+    </Box>
           </div>
-        ) : (
-          <p className={styles.noListings}></p>
-        )}
+          {listsLoading ? ( 
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <CircularProgress size={48} />
+              <Typography variant="body1" style={{ marginTop: '8px' }}>
+                Loading listings...
+              </Typography>
+            </div>
+          ) : filteredLists.length > 0 ? (
+            <div className={styles.cardContainer} >
+              {filteredLists.map((list) => (
+                <Card
+                  key={list._id}
+                  sx={{
+                    display: 'flex',flexDirection: 'column',padding: '8px',gap: '8px',boxShadow: 2,width: '100%',margin: '0 auto',
+                    minHeight: '90px'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                      {list.unit_type || 'Unknown Unit'}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {list.barangay},{list.city || ''}
+                    </Typography>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Rooms:</strong> {list.room_number || ''}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Price:</strong> {list.price ? `₱ ${list.price}` : ''}
+                    </Typography>
+                    <Link href={list.fb_link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                      <Button variant="contained" color="primary" size="small" startIcon={<LinkIcon />}>
+                        View
+                      </Button>
+                    </Link>
+                  </div>
+
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <Typography variant="body2">No listings available.</Typography>
+            </div>
+          )}
+
+
+
+        </div>
       </div>
-    </div>
-    
-    
+
+
     </div>
   );
 };

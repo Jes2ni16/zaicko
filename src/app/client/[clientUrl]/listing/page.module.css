@@ -27,34 +27,54 @@
 
 .header {
 margin-bottom: 10px;
-color: #fff;
+color: #0f0f0f;
 position: relative;
 max-width: 1200px;
 width: 90%;
 text-align: center;
 }
+.page1 h1 {
+  font-size: 38px;
+}
 
 .header .back{
   position: absolute;
-  right: 0;
+  left: 0;
   font-size: 20px;
   bottom: -10px;
   text-decoration: underline;
 }
 
 .lists {
-  background:#252323ed;
   padding: 20px;
   border-radius: 8px;
   display: flex;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 1200px;
-  width: 90%;
-  height: 70%;
-    max-height: 800px;
-    color: #fff;
+  max-height: 92%;
+    color: #4c504d;
 }
-
+.page1 .container {
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(30px); 
+  border-radius: 10px; 
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: Subtle border */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Soft shadow */
+  width: 100%;
+  height: 90%;
+  max-height: 900px;
+}
+.leftSide {
+  display: flex;
+      flex-direction: column;
+      color: #161616;
+      width: 30%;
+      max-width: 400px;
+      background: #ffffff4f;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 18px;
+}
 .lists h2 {
   margin-bottom: 20px;
   color: #555;
@@ -66,7 +86,12 @@ text-align: center;
   border-radius: 8px;
   width: 80%;
 }
-
+.page1 hr, .page2 hr {
+  color: #B0B0B0;
+  background-color: #B0B0B0;
+  border: 1px solid #B0B0B0;
+  margin-bottom: 10px;
+}
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -107,6 +132,52 @@ text-align: start;
   color: #fff;
 }
 
+.page1 .cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-width: 1200px;
+  width: 68%;
+}
+
+.page1 .cardContainer::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.page1 .cardContainer::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background */
+  border-radius: 12px; /* Rounded edges */
+}
+
+.page1 .cardContainer::-webkit-scrollbar-thumb {
+  background: #0f7f50; /* Scrollbar color */
+  border-radius: 12px; /* Rounded scrollbar */
+}
+
+.page1 .cardContainer::-webkit-scrollbar-thumb:hover {
+  background: #0a5b37; /* Darker shade on hover */
+}
+
+.page1 .featuredBtn {
+  display: flex;
+background-color: #0f7f50;
+border-radius: 10px;
+padding: 10px 5px;
+justify-content: center;
+gap: 5px;
+color: #fff;
+font-size: 16px;
+width: 100%;
+align-items: center;
+margin-top: 10px;
+margin-left: auto;
+box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+
 .page2 {
   display: none;
 }
@@ -121,17 +192,86 @@ text-align: start;
     text-decoration: underline;
   }
 
+  .page2 .back {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    display: flex;
+  }
+  .page2 .featuredBtn {
+    display: flex;
+width: 55%;
+background-color: #0f7f50;
+border-radius: 10px;
+padding: 10px 5px;
+justify-content: center;
+gap: 5px;
+font-size: 16px;
+align-items: center;
+margin-top: 10px;
+margin-left: auto;
+max-width: 300px;
+box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  }
+
   .page2 {
     display: flex;
+    align-items: center;
+  }
+  .page2 .header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .page2 h1{
+    font-size: 24px;
+    color: #000;
   }
   .lists {
     display: block;
     width: 98%;
     max-height: 900px;
-    height: 80%;
+    height: 95%;
     padding: 10px;
     overflow: hidden;
   }
+  .page2 .cardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 5px;
+    max-height: 60%;
+    overflow: scroll;
+    max-width: 600px;
+    margin: auto;
+
+  }
+
+  .cardContainer::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+    height: 40%;
+  }
+  
+  .cardContainer::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track background */
+    border-radius: 12px; /* Rounded edges */
+  }
+  
+  .cardContainer::-webkit-scrollbar-thumb {
+    background: #0f7f50; /* Scrollbar color */
+    border-radius: 12px; /* Rounded scrollbar */
+  }
+  
+  .cardContainer::-webkit-scrollbar-thumb:hover {
+    background: #0a5b37; /* Darker shade on hover */
+  }
+  
+  .cardContainer {
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: #0f7f50 #f1f1f1; /* Scrollbar thumb and track colors */
+  }
+
+
   .tableContainer {
     max-width: 100%;
     font-size: 14px;
@@ -175,9 +315,7 @@ text-align: start;
   box-sizing: border-box;
   height: 100vh;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+padding-top: 50px;
   background-size: cover;
   background-position: center;
-
 }
