@@ -206,7 +206,7 @@ const ClientListing = () => {
           width: "100%",
           padding: "8px",
           borderRadius: "8px",
-          border: "1px solid #ccc",
+          border: "1px solid #ccc",color:'#0f0f0f',
           fontSize: "16px",
           backgroundColor: "#f9f9f9",
         }}
@@ -414,7 +414,7 @@ const ClientListing = () => {
           width: "100%",
           padding: "8px",
           borderRadius: "8px",
-          border: "1px solid #ccc",
+          border: "1px solid #ccc",color:'#0f0f0f',
           fontSize: "16px",
           backgroundColor: "#f9f9f9",
         }}
