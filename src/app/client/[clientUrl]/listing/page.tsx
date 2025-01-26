@@ -333,7 +333,7 @@ const ClientListing = () => {
   </div>
 ) : (
   <div style={{ textAlign: 'center', marginTop: '20px' }}>
-    <Typography variant="body2">No listings available.</Typography>
+    <Typography variant="body2">  Loading listings...</Typography>
   </div>
 )}
           </div>
@@ -507,7 +507,7 @@ const ClientListing = () => {
             </div>
           ) : (
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <Typography variant="body2">No listings available.</Typography>
+              <Typography variant="body2">  Loading listings...</Typography>
             </div>
           )}
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { TextField, Button, DialogActions, DialogContent, DialogTitle, Box } from '@mui/material';
+import { TextField, Button, DialogActions, DialogContent, DialogTitle, Box, FormControlLabel, Dialog, Checkbox } from '@mui/material';
 
 interface Client {
   _id: string;
@@ -19,6 +19,7 @@ interface Client {
   image:string;
   image_mobile: string;
   url?: string;
+  projects?: string[];
 }
 
 interface CreateClientProps {
@@ -41,7 +42,9 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
   const [image, setImage] = useState<string | undefined>(client?.image || undefined);
   const [imageMobile, setImageMobile] = useState<string | undefined>(client?.image_mobile || undefined);
   const [url, setUrl] = useState<string | undefined>(client?.url || undefined);
-
+  const [projects, setProjects] = useState<string[]>(client?.projects || []); // State for checklist
+  const [isChecklistOpen, setChecklistOpen] = useState(false);
+  const checklistOptions = ["deca banilad", "mandtra", "lemenda busay", "prime lapu"];
   useEffect(() => {
     if (client) {
       setName(client.name);
@@ -57,8 +60,17 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       setImage(client.image || undefined);
       setImageMobile(client.image_mobile || undefined);
       setUrl(client.url || undefined);
+      setProjects(client.projects || []);
     }
   }, [client]);
+
+  const handleTagChange = (project: string) => {
+    if (projects.includes(project)) {
+      setProjects(projects.filter((t) => t !== project));
+    } else {
+      setProjects([...projects, project]);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,7 +88,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       background_mobile: backgroundMobile || '', 
       image,
       image_mobile:imageMobile,
-      url,
+      url,projects,
     };
 
     try {
@@ -190,6 +202,17 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
                 onChange={(e) => setImageMobile(e.target.value || undefined)}
               />
             </Box>
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <Button
+                variant="outlined"
+                onClick={() => setChecklistOpen(true)}
+                color="primary"
+              >
+                {projects.length > 0
+                  ? `Projects Selected (${projects.length})`
+                  : "Select Projects"}
+              </Button>
+            </Box>
           </Box>
         </DialogContent>
         <DialogActions>
@@ -200,6 +223,27 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
             {client ? 'Update' : 'Create'}
           </Button>
         </DialogActions>
+
+        <Dialog open={isChecklistOpen} onClose={() => setChecklistOpen(false)}>
+        <DialogTitle>Select Projects</DialogTitle>
+        <DialogContent>
+          {checklistOptions.map((option) => (
+            <FormControlLabel
+              key={option}
+              control={
+                <Checkbox
+                  checked={projects.includes(option)}
+                  onChange={() => handleTagChange(option)}
+                />
+              }
+              label={option}
+            />
+          ))}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setChecklistOpen(false)}>Close</Button>
+        </DialogActions>
+      </Dialog>
       </form>
     </>
   );
