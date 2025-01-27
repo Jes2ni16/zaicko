@@ -7,6 +7,20 @@ interface CardData {
   image: string;
   link: string;
 }
+interface Client {
+  projects: string[];
+}
+interface CardListProps {
+  client: Client; 
+}
+
+const projectAliasMap: { [key: string]: string } = {
+  'deca-banilad': 'URBAN DECA HOMES',
+  mandtra: 'MANDTRA RESIDENCES',
+  'primeworld-cebu': 'PRIMEWORLD DISTRICT',
+  'lemenda-busay': 'Le Menda-Busay',
+};
+
 
 const cardData: CardData[] = [
   {
@@ -35,17 +49,32 @@ const cardData: CardData[] = [
   }
 ];
 
-const CardList: React.FC = () => {
+const CardList:  React.FC<CardListProps> = ({ client }) => {
+  if (!client || !client.projects || client.projects.length === 0) {
+    return <Typography>No projects found.</Typography>;
+  }
+  const filteredCards = cardData.filter((card) =>
+    client.projects.some((alias) =>
+      projectAliasMap[alias]?.toUpperCase() === card.title.toUpperCase()
+    )
+  );
   return (
     <Grid container spacing={3} justifyContent="center">
-      {cardData.map((data, index) => (
-        <Grid item xs={12} sm={6} md={4} key={index} sx={{display:'flex', justifyContent:'center'}}>
+      {filteredCards.map((data, index) => (
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          key={index}
+          sx={{ display: 'flex', justifyContent: 'center' }}
+        >
           <Card
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              height: "100%",
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              height: '100%',
               maxWidth: 345,
               boxShadow: 3,
             }}
@@ -60,21 +89,33 @@ const CardList: React.FC = () => {
             <CardContent
               sx={{
                 flexGrow: 1, // Ensures this section stretches to fill space equally
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start", // Aligns title and description to the top
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start', // Aligns title and description to the top
               }}
             >
               <Typography variant="h5" component="h1">
                 {data.title}
               </Typography>
-              <Divider sx={{ my: 1 }} /> 
-              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              <Divider sx={{ my: 1 }} />
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ mt: 1 }}
+              >
                 {data.description}
               </Typography>
             </CardContent>
-            <CardActions sx={{justifyContent:'center',display:'flex'}}>
-              <Button size="small" href={data.link} sx={{backgroundColor:'#0E6543', color:'#fff', padding:'10px',}}>
+            <CardActions sx={{ justifyContent: 'center', display: 'flex' }}>
+              <Button
+                size="small"
+                href={data.link}
+                sx={{
+                  backgroundColor: '#0E6543',
+                  color: '#fff',
+                  padding: '10px',
+                }}
+              >
                 Project Details
               </Button>
             </CardActions>

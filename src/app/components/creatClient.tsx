@@ -44,7 +44,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
   const [url, setUrl] = useState<string | undefined>(client?.url || undefined);
   const [projects, setProjects] = useState<string[]>(client?.projects || []); // State for checklist
   const [isChecklistOpen, setChecklistOpen] = useState(false);
-  const checklistOptions = ["deca banilad", "mandtra", "lemenda busay", "prime lapu"];
+  const checklistOptions = ["deca-banilad", "mandtra", "lemenda-busay", "prime-lapu"];
   useEffect(() => {
     if (client) {
       setName(client.name);

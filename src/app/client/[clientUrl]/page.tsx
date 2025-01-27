@@ -38,6 +38,7 @@ export default function ClientHome() {
 
 
  if (urlAfterClient) {
+  
       axios
         .get(`https://zaiko-server.vercel.app/api/clients/url/${urlAfterClient}`)
         .then((response) => {
