@@ -17,7 +17,7 @@ interface CardListProps {
 const projectAliasMap: { [key: string]: string } = {
   'deca-banilad': 'URBAN DECA HOMES',
   mandtra: 'MANDTRA RESIDENCES',
-  'primeworld-cebu': 'PRIMEWORLD DISTRICT',
+  'prime-lapu': 'PRIMEWORLD DISTRICT',
   'lemenda-busay': 'Le Menda-Busay',
 };
 
@@ -44,7 +44,7 @@ const cardData: CardData[] = [
   {
     title: 'Le Menda-Busay',
     description: 'Le Menda Residences is a luxurious residential development located in Busay, Cebu, Philippines. Situated in the picturesque mountains of Cebu, it offers residents breathtaking views of the city skyline and the surrounding natural beauty.',
-    image: 'https://i.imgur.com/W4IKSJQ.jpg', 
+    image: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/8g0sKQZ_xjltap.webp', 
     link: 'featured/le-menda-busay'
   }
 ];

@@ -9,53 +9,53 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export default function UrbanDeca() {
 
   const first = [
-     { src: 'https://i.imgur.com/ge2cJUG.jpg', alt: 'Urban Image' },
-    { src: 'https://i.imgur.com/wPZUahz.jpg', alt: 'Urban Featured 2' },
+     { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172068/ge2cJUG_ioh2hu.webp', alt: 'Urban Image' },
+    { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172067/wPZUahz_m0psvn.webp', alt: 'Urban Featured 2' },
     ]
 
     const floor = [
-      { src: 'https://i.imgur.com/s81aacv.jpg', alt: 'Urban floor 1' },
-      { src: 'https://i.imgur.com/iykC9Vs.jpg', alt: 'Urban floor 3' },
-      { src: 'https://i.imgur.com/T2G2raR.jpg', alt: 'Urban floor 4' },
-      { src: 'https://i.imgur.com/LmdIqV9.jpg', alt: 'Urban floor 2' },
-      { src: 'https://i.imgur.com/S4eGT8D.jpg', alt: 'Urban floor 5' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172066/s81aacv_n4xvdv.webp', alt: 'Urban floor 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172065/iykC9Vs_hswz2z.webp', alt: 'Urban floor 3' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172064/LmdIqV9_gctlz6.webp', alt: 'Urban floor 4' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172065/T2G2raR_hpisix.webp', alt: 'Urban floor 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172064/S4eGT8D_ldijg1.webp', alt: 'Urban floor 5' },
     ]
 
 
     const amenities = [
-      { src: 'https://i.imgur.com/lDPRu2L.jpg', alt: 'Urban amenities 1' },
-      { src: 'https://i.imgur.com/bGolAMJ.jpg', alt: 'Urban amenities 2' },
-      { src: 'https://i.imgur.com/zMmkUEo.jpg', alt: 'Urban amenities 3' },
-      { src: 'https://i.imgur.com/k9iELcU.jpg', alt: 'Urban amenities 4' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172064/lDPRu2L_qf9ieh.webp', alt: 'Urban amenities 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172063/bGolAMJ_x4dhtc.webp', alt: 'Urban amenities 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172062/k9iELcU_rj53iu.webp', alt: 'Urban amenities 3' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172062/zMmkUEo_oyoxnj.webp', alt: 'Urban amenities 4' },
     ]
 
     const dress = [
-      { src: 'https://i.imgur.com/pEgVuqK.jpg', alt: 'Urban dress 1' },
-      { src: 'https://i.imgur.com/xSgZuGj.jpg', alt: 'Urban dress 2' },
-      { src: 'https://i.imgur.com/9ytKS8X.jpg', alt: 'Urban dress 3' },
-      { src: 'https://i.imgur.com/HN4hiab.jpg', alt: 'Urban dress 5' },
-      { src: 'https://i.imgur.com/LdnJtFZ.jpg', alt: 'Urban dress 6' },
-      { src: 'https://i.imgur.com/Yg9AlkV.jpg', alt: 'Urban dress 7' },
-      { src: 'https://i.imgur.com/pxuy894.jpg', alt: 'Urban dress 4' },
-      { src: 'https://i.imgur.com/YiQrfkv.jpg', alt: 'Urban dress 8' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172062/pEgVuqK_gxqbox.webp', alt: 'Urban dress 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172062/xSgZuGj_mtmepq.webp', alt: 'Urban dress 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172061/9ytKS8X_yvjjdm.webp', alt: 'Urban dress 3' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172061/HN4hiab_qkwk7j.webp', alt: 'Urban dress 5' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172060/LdnJtFZ_iotyqe.webp', alt: 'Urban dress 6' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172060/Yg9AlkV_mhr1yb.webp', alt: 'Urban dress 7' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172059/pxuy894_sqfyea.webp', alt: 'Urban dress 4' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172059/YiQrfkv_rc6a7t.webp', alt: 'Urban dress 8' },
     ]
 
     const deliverable = [
-      { src: 'https://i.imgur.com/nnE0mC1.jpg', alt: 'deliverable 1' },
-      { src: 'https://i.imgur.com/id1wJyl.jpg', alt: 'deliverable 2' },
-      { src: 'https://i.imgur.com/OGVPkz7.jpg', alt: 'deliverable 3' },
-      { src: 'https://i.imgur.com/C9sTnZC.jpg', alt: 'deliverable 4' },
-      { src: 'https://i.imgur.com/nArCONQ.jpg', alt: 'deliverable 5' },
-      { src: 'https://i.imgur.com/JaXROJc.jpg', alt: 'deliverable 6' },
-      { src: 'https://i.imgur.com/qcHUeNw.jpg', alt: 'deliverable 7' },
-      { src: 'https://i.imgur.com/P5ZozU3.jpg', alt: 'deliverable 8' },
-      { src: 'https://i.imgur.com/vMWGxEA.jpg', alt: 'deliverable 9' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172059/nnE0mC1_pvmnt0.webp', alt: 'deliverable 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172059/id1wJyl_azj1qc.webp', alt: 'deliverable 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172058/nArCONQ_omdpq7.webp', alt: 'deliverable 3' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172058/OGVPkz7_pbc8kh.webp', alt: 'deliverable 4' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172058/C9sTnZC_zrm8ze.webp', alt: 'deliverable 5' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171931/JaXROJc_qqumwp.webp', alt: 'deliverable 6' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171923/qcHUeNw_mqyvjo.webp', alt: 'deliverable 7' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171922/P5ZozU3_mub5of.webp', alt: 'deliverable 8' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171922/vMWGxEA_q5fi6n.webp', alt: 'deliverable 9' },
     ]
 
     
     const site = [
-      { src: 'https://i.imgur.com/2qguy9k.png', alt: 'Site Image 1' },
-      { src: 'https://i.imgur.com/ZRQykkB.jpg', alt: 'Site Image 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171922/2qguy9k_fv5ij2.webp', alt: 'Site Image 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171921/ZRQykkB_uxbrkp.webp', alt: 'Site Image 2' },
     ]
 
 
@@ -88,7 +88,7 @@ export default function UrbanDeca() {
   <ArrowBackIcon />
 </IconButton>
 <div className={styles.img}>
-    <Image src='https://i.imgur.com/ge2cJUG.jpg' width='500' height={700} alt='URBAN DECA MANDAUE'/>
+    <Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172068/ge2cJUG_ioh2hu.webp' width='500' height={700} alt='URBAN DECA MANDAUE'/>
 </div>
 <div className={styles.submin}>
   
@@ -119,7 +119,7 @@ Live in a home with modern amenities and unbeatable location at a price you can 
 <div className={styles.location}>
 <p>Location</p>
 <div className={styles.img}>
-<Image src='https://i.imgur.com/yJgMc6z.jpg' width='700' height={700} alt='UrbanDeca RESIDENCES'/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172066/yJgMc6z_aktx79.webp' width='700' height={700} alt='UrbanDeca RESIDENCES'/>
 </div>
 </div>
 

@@ -98,7 +98,7 @@ export default function ClientHome() {
     </div>
     <div className={styles.page2}>
       <div className={styles.imgContainer}>
-        <Image src={clientData.image_mobile} width={2560} height={1440} alt="Image description" />
+        <Image src={clientData.image_mobile} width={2778} height={1284} alt="Image description" />
         <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
         { clientData.tiktok || clientData.fb || clientData.instagram || clientData.youtube ? (<div className={styles.socLinks1}>
       {clientData.tiktok? (<Link href={clientData.tiktok}><Image src={'/tiktok.webp'} width={30} height={30} alt='tiktok image'/></Link>):(<></>)}

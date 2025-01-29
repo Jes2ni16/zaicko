@@ -9,36 +9,36 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export default function LeMenda() {
 
   const leMenda = [
-     { src: 'https://i.imgur.com/8g0sKQZ.png', alt: 'Le Menda Image 1' },
-    { src: 'https://i.imgur.com/W4IKSJQ.jpg', alt: 'Le Menda Image 2' },
-    { src: 'https://i.imgur.com/vP0ZwPw.jpg', alt: 'Le Menda Image 3' },
+     { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/8g0sKQZ_xjltap.webp', alt: 'Le Menda Image 1' },
+    { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171259/vP0ZwPw_djyifh.webp', alt: 'Le Menda Image 2' },
+    { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp', alt: 'Le Menda Image 3' },
     ]
 
     const floor = [
-      { src: 'https://i.imgur.com/YQjmQ5f.png', alt: 'Le Menda floor 1' },
-      { src: 'https://i.imgur.com/NXUjLiR.png', alt: 'Le Menda floor 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171259/YQjmQ5f_ej7lix.webp', alt: 'Le Menda floor 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171259/NXUjLiR_fzb29s.webp', alt: 'Le Menda floor 2' },
     ]
 
     const site = [
-      { src: 'https://i.imgur.com/85CFWCG.jpg', alt: 'lemenda site 1' },
-      { src: 'https://i.imgur.com/vP0ZwPw.jpg', alt: 'lemenda site 2' },
-      { src: 'https://i.imgur.com/o8KYAcB.jpg', alt: 'lemenda site 3' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171256/o8KYAcB_ycjza4.webp', alt: 'lemenda site 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171256/vP0ZwPw_1_zzhakr.webp', alt: 'lemenda site 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171256/85CFWCG_cxomls.webp', alt: 'lemenda site 3' },
     ]
 
     const amenities = [
-      { src: 'https://i.imgur.com/qNuLS51.png', alt: 'Le menda amenities 1' },
-      { src: 'https://i.imgur.com/RnaCnzi.png', alt: 'Le menda amenities 2' },
-      { src: 'https://i.imgur.com/BhSbdaf.png', alt: 'Le menda amenities 3' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171258/qNuLS51_izcjvj.webp', alt: 'Le menda amenities 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171258/RnaCnzi_thuy25.webp', alt: 'Le menda amenities 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171258/BhSbdaf_b03iwe.webp', alt: 'Le menda amenities 3' },
     ]
     const deliverable = [
-      { src: 'https://i.imgur.com/OEAnRfB.png', alt: 'deliverable lemenda 1' },
-      { src: 'https://i.imgur.com/0aUGfFu.png', alt: 'deliverable lemenda 2' },
-      { src: 'https://i.imgur.com/8oAiI2N.png', alt: 'deliverable lemenda 3' },
-      { src: 'https://i.imgur.com/78DB6f5.jpg', alt: 'deliverable lemenda 4' },
-      { src: 'https://i.imgur.com/BNmblJv.jpg', alt: 'deliverable lemenda 5' },
-      { src: 'https://i.imgur.com/zcp1M1x.jpg', alt: 'deliverable lemenda 6' },
-      { src: 'https://i.imgur.com/R7uqnO5.jpg', alt: 'deliverable lemenda 7' },
-      { src: 'https://i.imgur.com/J3siTxa.jpg', alt: 'deliverable lemenda 8' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171257/OEAnRfB_pofp6e.webp', alt: 'deliverable lemenda 1' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171257/0aUGfFu_kk0yup.webp', alt: 'deliverable lemenda 2' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171256/R7uqnO5_wssyzw.webp', alt: 'deliverable lemenda 3' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171257/8oAiI2N_py1hgs.webp', alt: 'deliverable lemenda 4' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171257/78DB6f5_qr2aon.webp', alt: 'deliverable lemenda 5' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171256/BNmblJv_vcnxxi.webp', alt: 'deliverable lemenda 6' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171256/zcp1M1x_ohgol5.webp', alt: 'deliverable lemenda 7' },
+      { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171256/J3siTxa_xbk4ad.webp', alt: 'deliverable lemenda 8' },
     ]
 
   return (
@@ -100,7 +100,7 @@ The development boasts of modern amenities and facilities, catering to the needs
 Situated in Plazaville Subdivision, Veterans Drive, Busay Cebu City, Leading tourist destinations, restaurants, premier malls and major establishments are a few meters away this shows how accessible and ideal the location.
 </p>
 <div className={styles.img}>
-<Image src='https://i.imgur.com/PmA9gVV.png' width='700' height={700} alt='Le Menda-Busay Location'/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171259/PmA9gVV_hay78z.webp' width='700' height={700} alt='Le Menda-Busay Location'/>
 </div>
 </div>
 
