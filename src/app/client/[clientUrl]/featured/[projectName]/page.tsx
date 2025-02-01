@@ -78,28 +78,15 @@ async function getProjectData(projectName: string) {
       projectName: string;
       clientUrl: string;
     };
+    searchParams: { [key: string]: string | string[] | undefined };
   };
-
-  async function getParams(params: PageProps['params']) {
-    return {
-      projectName: await params.projectName,
-    };
-  }
-  
 
   export default async function ProjectPage({ params }: PageProps) {
     try {
-      // Get and await the params first
-      const resolvedParams = await getParams(params);
-      const decodedProjectName = decodeURIComponent(resolvedParams.projectName);
+      // Get the project name directly from the URL
+      const projectName = decodeURIComponent(params.projectName.toString());
   
-      // Validate the project name
-      if (!decodedProjectName) {
-        throw new Error('Project name is required');
-      }
-  
-      // Fetch project data
-      const project: ProjectData = await getProjectData(decodedProjectName);
+      const project: ProjectData = await getProjectData(projectName);
       
       if (!project) {
         throw new Error('Project not found');
@@ -206,21 +193,3 @@ async function getProjectData(projectName: string) {
   }
 }
 
-
-
-  
-  // Static params generation remains the same
-  export async function generateStaticParams() {
-    try {
-      const res = await fetch('https://zaiko-server.vercel.app/api/projects', {
-        next: { revalidate: 3600 }
-      });
-      const projects = await res.json();
-      return projects.map((project: ProjectData) => ({
-        projectName: project.projectUrl
-      }));
-    } catch (error) {
-      console.error('Error generating static params:', error);
-      return [];
-    }
-  }
