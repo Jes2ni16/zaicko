@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './page.module.css';
+import styles from '../page.module.css';
 import Image from 'next/image';
 import ProjectsImage from '../../../../components/projectsImage';
 import { IconButton } from '@mui/material';
@@ -101,8 +101,8 @@ Primeworld Land’s projects are not only economical, they’re also well situat
 
 </div>
 
-<div className={styles.location}>
-<h3>Location</h3>
+<div className={styles.containers}>
+<h2>Location</h2>
 <ul>
   <li>1 minute going to University of Southern Philippines Foundation</li>
   <li>2 minutes going to Restaurants</li>
@@ -121,7 +121,7 @@ Primeworld Land’s projects are not only economical, they’re also well situat
 </div>
 </div>
 
-<div className={styles.buildingFeatures}>
+<div className={styles.containers}>
 <h2>BUILDING ORIENTATION:</h2>
 
 <div className={styles.details}>
@@ -156,7 +156,7 @@ Primeworld Land’s projects are not only economical, they’re also well situat
 </div>
 
 
-<div className={styles.floor}>
+<div className={styles.containers}>
 <h3>Floor Plans</h3>
 <div className={styles.imgContainer}>
   <h4 style={{marginBottom:'10px'}}>1-Bedroom without Balcony</h4>
@@ -211,10 +211,9 @@ Primeworld Land’s projects are not only economical, they’re also well situat
 <ProjectsImage images={floor22} />
 </div>
 </div>
+  
 
-
-
-<div className={styles.amenities}>
+<div className={styles.containers}>
 <h2>Amenities</h2>
 <ul>
   <li>GYM</li>
@@ -236,7 +235,7 @@ Primeworld Land’s projects are not only economical, they’re also well situat
 </div>
 </div>
 
-<div className={styles.site}>
+<div className={styles.containers}>
 <h2>Site Pictures</h2>
 <div className={styles.imgs}>
 <ProjectsImage images={site} />

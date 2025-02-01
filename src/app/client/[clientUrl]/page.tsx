@@ -96,6 +96,8 @@ export default function ClientHome() {
       </div>
       </div>
     </div>
+
+    
     <div className={styles.page2}>
       <div className={styles.imgContainer}>
         <Image src={clientData.image_mobile} width={2778} height={1284} alt="Image description" />

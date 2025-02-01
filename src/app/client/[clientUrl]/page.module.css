@@ -31,17 +31,21 @@ max-height: 100%;
   .page1 .linkList{
     position: absolute;
     bottom: 15%;
-    color: #fff;
+    color: #000;
     left: 10%;
     max-width: 500px;
     width: 20%;
-    background-color: #181818a2;
     text-align: center;
     padding: 20px 0;
     font-size: 32px;
     border-radius: 10px;
-    text-decoration: underline;
     border: 1px solid #afaeae;
+    background: rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+    padding: 5px;
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); 
   }
 
 .fma{
@@ -142,14 +146,20 @@ max-height: min(100vh, calc(100vh - env(safe-area-inset-bottom)));
         position: absolute;
         bottom: 57%;
         color: #fff;
-        right: 3%;
-        max-width: 300px;
+        right: 50%;
+        transform: translateX(50%);
+        max-width: 400px;
         background-color: #181818a2;
         text-align: center;
-        padding: 10px 15px;
+        width: 80%;
         font-size: 22px;
         border-radius: 10px;
-        text-decoration: underline;
         border: 1px solid #afaeae;
+        background: rgba(255, 255, 255, 0.1); 
+        border-radius: 10px;
+        padding: 5px;
+        backdrop-filter: blur(10px); 
+        -webkit-backdrop-filter: blur(10px); 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
       }
     

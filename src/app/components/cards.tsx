@@ -19,6 +19,7 @@ const projectAliasMap: { [key: string]: string } = {
   mandtra: 'MANDTRA RESIDENCES',
   'prime-lapu': 'PRIMEWORLD DISTRICT',
   'lemenda-busay': 'Le Menda-Busay',
+  'primeworld-pointe': 'PRIMEWORLD POINTE LAHUG',
 };
 
 
@@ -46,6 +47,12 @@ const cardData: CardData[] = [
     description: 'Le Menda Residences is a luxurious residential development located in Busay, Cebu, Philippines. Situated in the picturesque mountains of Cebu, it offers residents breathtaking views of the city skyline and the surrounding natural beauty.',
     image: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/8g0sKQZ_xjltap.webp', 
     link: 'featured/le-menda-busay'
+  },
+  {
+    title: 'PRIMEWORLD POINTE LAHUG',
+    description: 'rimeworld believes that every Filipino deserves a good life, starting with a good home. We have made it our mission to develop quality homes in safe communities where Filipinos can thrive and live a good life.',
+    image: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738173933/270301887_461699735341168_9135717747189606447_n_jhr9e4.jpg', 
+    link: 'featured/primeworld-pointe'
   }
 ];
 

@@ -34,3 +34,176 @@ padding-bottom: 50px;
     
 }
 }
+
+
+
+
+
+
+/* styles for individual project */
+
+.headPart {
+    width: 100%;
+}
+
+.headPart .img {
+    height: 24rem;
+}
+
+.headPart img {
+    width: 100%;
+    vertical-align: middle;
+    height: 100%;
+    object-fit: cover;
+}
+
+.headPart .submin {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 310px;
+}
+
+.headPart h1 {
+    color: #0E6543;
+    font-size: 70px;
+    font-weight: 600;
+}
+
+.headPart h2 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.hr {
+    border: 4px solid #0E6543;
+}
+
+.intro {
+    max-width: 1080px;
+    margin: 70px auto;
+
+}
+
+.intro h2 {
+    font-size: 40px;
+    color: #0E6543;
+    font-weight: 600;
+    border-bottom: 3px solid #0E6543;
+}
+
+.intro p {
+    font-size: 20px;
+    line-height: 2rem;
+    padding: 20px 0;
+
+}
+
+.intro img {
+    object-fit: cover;
+}
+.intro .MuiDialog-root img{
+    width: 100%;
+}
+.containers {
+    max-width: 1080px;
+    margin: 70px auto;
+}
+
+
+.containers img {
+    height: auto;
+    max-height: 250px;
+    width: 100%;
+}
+
+.containers h2 {
+    font-size: 40px;
+    line-height: 40px;
+    color: #0E6543;
+    border-bottom: 4px solid #0E6543;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.containers h4 {
+    font-size: 30px;
+    color: #012e1d;
+}
+
+
+
+
+.containers .imgContainer{
+    margin: 40px 0;
+}
+
+
+.containers .details p{
+    margin-top: 10px;
+    font-weight: bold;
+    color: #012e1d;
+    font-size: 20px;
+}
+.containers ul{
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 35px;
+       margin-left: 20px;
+}
+
+
+
+
+
+@media (max-width:991px) {
+    .intro .img{
+        display: flex;
+        justify-content: center;
+    }
+    .headPart h1 {
+        font-size: 28px;
+    }
+    .headPart .submin{
+       min-height: 200px;
+       padding: 10px;
+    }
+    .headPart h2{
+        font-size: 16px;
+        line-height: 24px;
+     }
+     .headPart p{
+        margin-top: 10px;
+     }
+.intro{
+    padding: 10px;
+    margin: 30px auto;
+}
+.intro h2 {
+    font-size: 26px;
+    line-height: 32px;
+}
+.intro p{
+    font-size: 16px;
+    line-height: 24px;
+}
+.containers {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.containers p{
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 10px;
+}
+
+
+
+
+}

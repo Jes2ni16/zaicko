@@ -1,331 +1,1083 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Container, TextField, Button, Grid, Typography } from '@mui/material';
-import axios from 'axios';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 
-interface LocationDescription {
-  title: string;
-  ul: string[];
-}
-
-interface Location {
-  locationText: string;
-  descriptions: LocationDescription[];
-  img: string;
-}
-
-interface ProjectDetails {
-  ul: string[];
-  imgs: string[];
-}
-
-interface AmenitiesFacilities {
-  description: string;
-  ul: string[];
-  imgs: string[];
-}
-
-interface UnitDetail {
-  title: string;
-  ul: string[];
-  imgs: string[];
-}
-
-interface UnitDetails {
-  text: string;
-  details: UnitDetail[];
-}
-
-interface SiteUpdate {
-  title: string;
-  imgs: string[];
-}
-
-interface FormData {
-  title: string;
+type PropertyFormData = {
   projectUrl: string;
+  projectImg: string;
+  projectLocation: string;
+  title: string;
   description: string;
-  location: Location;
-  projectDetails: ProjectDetails;
-  amenitiesFacilities: AmenitiesFacilities;
-  unitDetails: UnitDetails;
-  siteUpdate: SiteUpdate;
-}
+  location: {
+    locationText: string;
+    descriptions: Array<{
+      title: string;
+      ul: string[];
+    }>;
+    img: string;
+  };
+  projectDetails: {
+    ul: string[];
+    imgs: string[];
+  };
+  amenitiesFacilities: {
+    description: string;
+    ul: string[];
+    imgs: string[];
+  };
+  unitDetails: {
+    text: string;
+    details: Array<{
+      title: string;
+      ul: string[];
+      imgs: string[];
+    }>;
+  };
+  buildingFeatures: {
+    text: string;
+    details: Array<{
+      title: string;
+      ul: string[];
+    }>;
+  };
+  unitDeliverable: {
+    text: string;
+    ul: string[];
+    imgs: string[];
+  };
+  floorPlan: string[];
 
-const CreateProperty: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    title: '',
+  siteUpdate: {
+    title: string;
+    imgs: string[];
+  };
+};
+
+export default function CreateProperty() {
+
+  const initialFormState: PropertyFormData = {
     projectUrl: '',
+    projectImg: '',
+    projectLocation: '',
+    title: '',
     description: '',
-    location: { locationText: '', descriptions: [{ title: '', ul: [''] }, { title: '', ul: [''] }, { title: '', ul: [''] }, { title: '', ul: [''] }], img: '' },
-    projectDetails: { ul: [''], imgs: [''] },
-    amenitiesFacilities: { description: '', ul: [''], imgs: [''] },
-    unitDetails: { text: '', details: [{ title: '', ul: [''], imgs: [''] }, { title: '', ul: [''], imgs: [''] }, { title: '', ul: [''], imgs: [''] }] },
-    siteUpdate: { title: '', imgs: [''] },
-  });
+    location: {
+      locationText: '',
+      descriptions: [{ title: '', ul: [''] }],
+      img: '',
+    },
+    projectDetails: {
+      ul: [''],
+      imgs: [''],
+    },
+    amenitiesFacilities: {
+      description: '',
+      ul: [''],
+      imgs: [''],
+    },
+    buildingFeatures: {
+      text: '',
+      details: [{ title: '', ul: [''] }]
+    },
+    unitDetails: {
+      text: '',
+      details: [{ title: '', ul: [''], imgs: [''] }],
+    },
+    unitDeliverable: {
+      text: '',
+      ul: [''],
+      imgs: [''],
+    },
+    floorPlan: [''],
+    siteUpdate: {
+      title: '',
+      imgs: [''],
+    },
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-  
-    // Check if the name includes a period (this indicates a nested field)
-    if (name.includes('.')) {
-      const [mainKey, subKey] = name.split('.');
-  
-      setFormData((prev) => {
-        if (mainKey === 'location') {
-          return {
-            ...prev,
-            location: {
-              ...prev.location,
-              [subKey]: value, // This updates the nested field (e.g., locationText)
-            },
-          };
-        }
-        return {
-          ...prev,
-          [name]: value, // For non-nested fields
-        };
-      });
-    } else {
-      // For non-nested fields, update normally
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
-  };
-  const handleLocationDescriptionChange = (index: number, field: 'title' | 'ul', value: string | string[]) => {
-    const newDescriptions = [...formData.location.descriptions];
-    if (field === 'title') {
-      newDescriptions[index].title = value as string;
-    } else if (field === 'ul') {
-      newDescriptions[index].ul = Array.isArray(value) ? value : value.split(',');
-    }
-    setFormData((prev) => ({
-      ...prev,
-      location: { ...prev.location, descriptions: newDescriptions },
-    }));
-  };
+
+  const [formData, setFormData] = useState<PropertyFormData>(initialFormState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     try {
-      await axios.post('https://zaiko-server.vercel.app/api/projects', formData, {
-        headers: {
-          'Content-Type': 'application/json', // Ensure the content type is JSON
-        },
+      const response = await fetch('https://zaiko-server.vercel.app/api/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      alert('Property created successfully!');
+
+      if (!response.ok) throw new Error('Failed to create property');
+      
+      // Reset form to initial state on success
+      setFormData(initialFormState);
+      toast.success('Property created successfully!');
     } catch (error) {
-      console.error('Error creating property:', error);
+      toast.error('Error creating property');
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+
+  // Helper function to update nested array fields
+  const updateArrayField = (path: string[], index: number, value: string) => {
+    setFormData(prev => {
+      const newData = { ...prev };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let current: any = newData;
+      
+      // Navigate to the parent object
+      for (let i = 0; i < path.length - 1; i++) {
+        current = current[path[i]];
+      }
+      
+      const arrayKey = path[path.length - 1];
+      if (Array.isArray(current[arrayKey])) {
+        current[arrayKey][index] = value;
+      }
+      
+      return newData;
+    });
+  };
+
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Add New Property
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
-          {/* Basic Fields */}
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Project URL"
-              name="projectUrl"
+    <div className="max-w-4xl mx-auto p-6" style={{margin:'auto',textAlign:'center'}}>
+      <h1 className="text-2xl font-bold mb-6">Create New Property</h1>
+      
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Basic Information */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Basic Information</h2>
+          <div className="grid gap-4">
+            <input
+              type="text"
+              placeholder="Project URL"
               value={formData.projectUrl}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
+              onChange={(e) => setFormData(prev => ({ ...prev, projectUrl: e.target.value }))}
+              className="w-full p-2 border rounded"
             />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Description"
-              name="description"
+            <input
+              type="text"
+              placeholder="Project Image URL"
+              value={formData.projectImg}
+              onChange={(e) => setFormData(prev => ({ ...prev, projectImg: e.target.value }))}
+              className="w-full p-2 border rounded"
+            />
+            <input
+              type="text"
+              placeholder="Title"
+              value={formData.title}
+              onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+              className="w-full p-2 border rounded"
+            />
+                 <input
+              type="text"
+              placeholder="location"
+              value={formData.projectLocation}
+              onChange={(e) => setFormData(prev => ({ ...prev, projectLocation: e.target.value }))}
+              className="w-full p-2 border rounded"
+            />
+            <textarea
+              placeholder="Description"
               value={formData.description}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
+              onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+              className="w-full p-2 border rounded"
+              rows={4}
             />
-          </Grid>
+          </div>
+        </section>
 
-          {/* Location Text */}
-          <Grid item xs={12} sm={6} md={4}>
-          <TextField
-  label="Location Text"
-  name="location.locationText" // This should reference locationText inside location object
-  value={formData.location.locationText}
-  onChange={handleChange} // This will update formData.location.locationText
-  fullWidth
-  margin="normal"
-/>
-          </Grid>
+        {/* Location Section */}
+        <section className="space-y-4">
+  <h2 className="text-xl font-semibold">Location</h2>
+  
+  {/* Location Text */}
+  <input
+    type="text"
+    placeholder="Location Text"
+    value={formData.location.locationText}
+    onChange={(e) => setFormData(prev => ({
+      ...prev,
+      location: { ...prev.location, locationText: e.target.value }
+    }))}
+    className="w-full p-2 border rounded"
+  />
 
-          {/* Location Descriptions */}
-          {formData.location.descriptions.map((desc, index) => (
-            <React.Fragment key={index}>
-              <Grid item xs={12} sm={6} md={4}>
-                <TextField
-                  label={`Location Description Title ${index + 1}`}
-                  name={`locationTitle${index + 1}`}
-                  value={desc.title}
-                  onChange={(e) => handleLocationDescriptionChange(index, 'title', e.target.value)}
-                  fullWidth
-                  margin="normal"
+  {/* Location Image */}
+  <input
+    type="text"
+    placeholder="Location Image URL"
+    value={formData.location.img}
+    onChange={(e) => setFormData(prev => ({
+      ...prev,
+      location: { ...prev.location, img: e.target.value }
+    }))}
+    className="w-full p-2 border rounded"
+  />
+
+  {/* Location Descriptions */}
+  <div className="space-y-4">
+    <h3 className="text-lg font-medium">Location Descriptions</h3>
+    
+    {formData.location.descriptions.map((description, descIndex) => (
+      <div key={descIndex} className="p-4 border rounded space-y-3">
+        {/* Description Title */}
+        <input
+          type="text"
+          placeholder="Description Title"
+          value={description.title}
+          onChange={(e) => {
+            setFormData(prev => {
+              const newData = { ...prev };
+              newData.location.descriptions[descIndex].title = e.target.value;
+              return newData;
+            });
+          }}
+          className="w-full p-2 border rounded"
+        />
+
+        {/* Description List Items */}
+        {description.ul.map((item, itemIndex) => (
+          <div key={itemIndex} className="flex gap-2">
+            <input
+              type="text"
+              placeholder="List Item"
+              value={item}
+              onChange={(e) => {
+                setFormData(prev => {
+                  const newData = { ...prev };
+                  newData.location.descriptions[descIndex].ul[itemIndex] = e.target.value;
+                  return newData;
+                });
+              }}
+              className="flex-1 p-2 border rounded"
+            />
+            
+            {/* Add/Remove List Item Buttons */}
+            <div className="flex gap-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setFormData(prev => {
+                    const newData = { ...prev };
+                    newData.location.descriptions[descIndex].ul.push('');
+                    return newData;
+                  });
+                }}
+                className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                +
+              </button>
+              {description.ul.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => {
+                      const newData = { ...prev };
+                      newData.location.descriptions[descIndex].ul.splice(itemIndex, 1);
+                      return newData;
+                    });
+                  }}
+                  className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  -
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+
+    {/* Add New Description Button */}
+    <button
+      type="button"
+      onClick={() => {
+        setFormData(prev => ({
+          ...prev,
+          location: {
+            ...prev.location,
+            descriptions: [
+              ...prev.location.descriptions,
+              { title: '', ul: [''] }
+            ]
+          }
+        }));
+      }}
+      className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600"
+    >
+      Add New Description
+    </button>
+  </div>
+</section>
+
+        {/* Project Details */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Project Details</h2>
+          
+          {/* Project Details List */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Details List</h3>
+            {formData.projectDetails.ul.map((item, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Detail"
+                  value={item}
+                  onChange={(e) => updateArrayField(['projectDetails', 'ul'], index, e.target.value)}
+                  className="flex-1 p-2 border rounded"
                 />
-              </Grid>
-              <Grid item xs={12} sm={6} md={12}>
-                <TextField
-                  label={`Location Description UL ${index + 1}`}
-                  name={`locationUL${index + 1}`}
-                  value={desc.ul.join(', ')}
-                  onChange={(e) => handleLocationDescriptionChange(index, 'ul', e.target.value)}
-                  fullWidth
-                  margin="normal"
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      projectDetails: {
+                        ...prev.projectDetails,
+                        ul: [...prev.projectDetails.ul, '']
+                      }
+                    }))}
+                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    +
+                  </button>
+                  {formData.projectDetails.ul.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({
+                        ...prev,
+                        projectDetails: {
+                          ...prev.projectDetails,
+                          ul: prev.projectDetails.ul.filter((_, i) => i !== index)
+                        }
+                      }))}
+                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      -
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Project Images */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Project Images</h3>
+            {formData.projectDetails.imgs.map((img, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Image URL"
+                  value={img}
+                  onChange={(e) => updateArrayField(['projectDetails', 'imgs'], index, e.target.value)}
+                  className="flex-1 p-2 border rounded"
                 />
-              </Grid>
-            </React.Fragment>
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      projectDetails: {
+                        ...prev.projectDetails,
+                        imgs: [...prev.projectDetails.imgs, '']
+                      }
+                    }))}
+                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    +
+                  </button>
+                  {formData.projectDetails.imgs.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({
+                        ...prev,
+                        projectDetails: {
+                          ...prev.projectDetails,
+                          imgs: prev.projectDetails.imgs.filter((_, i) => i !== index)
+                        }
+                      }))}
+                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      -
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Amenities & Facilities</h2>
+          
+          {/* Description */}
+          <textarea
+            placeholder="Description of Amenities & Facilities"
+            value={formData.amenitiesFacilities.description}
+            onChange={(e) => setFormData(prev => ({
+              ...prev,
+              amenitiesFacilities: {
+                ...prev.amenitiesFacilities,
+                description: e.target.value
+              }
+            }))}
+            className="w-full p-2 border rounded"
+            rows={4}
+          />
+
+          {/* Amenities List */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Amenities List</h3>
+            {formData.amenitiesFacilities.ul.map((item, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Amenity"
+                  value={item}
+                  onChange={(e) => updateArrayField(['amenitiesFacilities', 'ul'], index, e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                />
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      amenitiesFacilities: {
+                        ...prev.amenitiesFacilities,
+                        ul: [...prev.amenitiesFacilities.ul, '']
+                      }
+                    }))}
+                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    +
+                  </button>
+                  {formData.amenitiesFacilities.ul.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({
+                        ...prev,
+                        amenitiesFacilities: {
+                          ...prev.amenitiesFacilities,
+                          ul: prev.amenitiesFacilities.ul.filter((_, i) => i !== index)
+                        }
+                      }))}
+                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      -
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Amenities Images */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Amenities Images</h3>
+            {formData.amenitiesFacilities.imgs.map((img, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Image URL"
+                  value={img}
+                  onChange={(e) => updateArrayField(['amenitiesFacilities', 'imgs'], index, e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                />
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      amenitiesFacilities: {
+                        ...prev.amenitiesFacilities,
+                        imgs: [...prev.amenitiesFacilities.imgs, '']
+                      }
+                    }))}
+                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    +
+                  </button>
+                  {formData.amenitiesFacilities.imgs.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({
+                        ...prev,
+                        amenitiesFacilities: {
+                          ...prev.amenitiesFacilities,
+                          imgs: prev.amenitiesFacilities.imgs.filter((_, i) => i !== index)
+                        }
+                      }))}
+                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      -
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+        {/* Building Features Section */}
+<section className="space-y-4">
+  <h2 className="text-xl font-semibold">Building Features</h2>
+
+  {/* Main Text */}
+  <textarea
+    placeholder="Building Features Description"
+    value={formData.buildingFeatures.text}
+    onChange={(e) => setFormData(prev => ({
+      ...prev,
+      buildingFeatures: {
+        ...prev.buildingFeatures,
+        text: e.target.value
+      }
+    }))}
+    className="w-full p-2 border rounded"
+    rows={4}
+  />
+
+  {/* Building Features Details */}
+  <div className="space-y-6">
+    {formData.buildingFeatures.details.map((detail, detailIndex) => (
+      <div key={detailIndex} className="p-4 border rounded space-y-4 bg-gray-50">
+        {/* Detail Title */}
+        <input
+          type="text"
+          placeholder="Feature Category Title"
+          value={detail.title}
+          onChange={(e) => {
+            setFormData(prev => {
+              const newData = { ...prev };
+              newData.buildingFeatures.details[detailIndex].title = e.target.value;
+              return newData;
+            });
+          }}
+          className="w-full p-2 border rounded"
+        />
+
+        {/* Feature List Items */}
+        <div className="space-y-2">
+          <h4 className="font-medium">Features List</h4>
+          {detail.ul.map((item, itemIndex) => (
+            <div key={itemIndex} className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Feature"
+                value={item}
+                onChange={(e) => {
+                  setFormData(prev => {
+                    const newData = { ...prev };
+                    newData.buildingFeatures.details[detailIndex].ul[itemIndex] = e.target.value;
+                    return newData;
+                  });
+                }}
+                className="flex-1 p-2 border rounded"
+              />
+              
+              <div className="flex gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => {
+                      const newData = { ...prev };
+                      newData.buildingFeatures.details[detailIndex].ul.push('');
+                      return newData;
+                    });
+                  }}
+                  className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                  +
+                </button>
+                {detail.ul.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => {
+                        const newData = { ...prev };
+                        newData.buildingFeatures.details[detailIndex].ul.splice(itemIndex, 1);
+                        return newData;
+                      });
+                    }}
+                    className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    -
+                  </button>
+                )}
+              </div>
+            </div>
           ))}
+        </div>
 
-          {/* Project Details */}
-          <Grid item xs={12} sm={6} md={12}>
-            <TextField
-              label="Project Details UL"
-              name="projectDetailsUL"
-              value={formData.projectDetails.ul.join(', ')}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  projectDetails: { ...prev.projectDetails, ul: e.target.value.split(',') },
-                }))
-              }
-              fullWidth
-              margin="normal"
-            />
-          </Grid>
+        {/* Remove Feature Category Button */}
+        {formData.buildingFeatures.details.length > 1 && (
+          <button
+            type="button"
+            onClick={() => {
+              setFormData(prev => {
+                const newData = { ...prev };
+                newData.buildingFeatures.details.splice(detailIndex, 1);
+                return newData;
+              });
+            }}
+            className="w-full py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Remove Feature Category
+          </button>
+        )}
+      </div>
+    ))}
 
-          {/* Amenities & Facilities */}
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Amenities & Facilities Description"
-              name="amenitiesFacilitiesDescription"
-              value={formData.amenitiesFacilities.description}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  amenitiesFacilities: { ...prev.amenitiesFacilities, description: e.target.value },
-                }))
-              }
-              fullWidth
-              margin="normal"
-            />
-          </Grid>
+    {/* Add New Feature Category Button */}
+    <button
+      type="button"
+      onClick={() => {
+        setFormData(prev => ({
+          ...prev,
+          buildingFeatures: {
+            ...prev.buildingFeatures,
+            details: [
+              ...prev.buildingFeatures.details,
+              { title: '', ul: [''] }
+            ]
+          }
+        }));
+      }}
+      className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600"
+    >
+      Add New Feature Category
+    </button>
+  </div>
+</section>
 
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Amenities & Facilities UL"
-              name="amenitiesFacilitiesUL"
-              value={formData.amenitiesFacilities.ul.join(', ')}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  amenitiesFacilities: { ...prev.amenitiesFacilities, ul: e.target.value.split(',') },
-                }))
-              }
-              fullWidth
-              margin="normal"
-            />
-          </Grid>
 
-          {/* Unit Details */}
-          {formData.unitDetails.details.map((detail, index) => (
-            <React.Fragment key={index}>
-              <Grid item xs={12} sm={6} md={4}>
-                <TextField
-                  label={`Unit Detail Title ${index + 1}`}
-                  name={`unitDetailTitle${index + 1}`}
-                  value={detail.title}
-                  onChange={(e) =>
-                    setFormData((prev) => {
-                      const newDetails = [...prev.unitDetails.details];
-                      newDetails[index].title = e.target.value;
-                      return { ...prev, unitDetails: { ...prev.unitDetails, details: newDetails } };
-                    })
-                  }
-                  fullWidth
-                  margin="normal"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <TextField
-                  label={`Unit Detail UL ${index + 1}`}
-                  name={`unitDetailUL${index + 1}`}
-                  value={detail.ul.join(', ')}
-                  onChange={(e) =>
-                    setFormData((prev) => {
-                      const newDetails = [...prev.unitDetails.details];
-                      newDetails[index].ul = e.target.value.split(',');
-                      return { ...prev, unitDetails: { ...prev.unitDetails, details: newDetails } };
-                    })
-                  }
-                  fullWidth
-                  margin="normal"
-                />
-              </Grid>
-            </React.Fragment>
+        {/* Unit Details Section */}
+<section className="space-y-4">
+  <h2 className="text-xl font-semibold">Unit Details</h2>
+
+  {/* Main Text */}
+  <textarea
+    placeholder="Unit Details Text"
+    value={formData.unitDetails.text}
+    onChange={(e) => setFormData(prev => ({
+      ...prev,
+      unitDetails: { ...prev.unitDetails, text: e.target.value }
+    }))}
+    className="w-full p-2 border rounded"
+    rows={4}
+  />
+
+  {/* Unit Details Array */}
+  <div className="space-y-6">
+    {formData.unitDetails.details.map((detail, detailIndex) => (
+      <div key={detailIndex} className="p-4 border rounded space-y-4 bg-gray-50">
+        {/* Detail Title */}
+        <input
+          type="text"
+          placeholder="Unit Type Title (e.g., '1-Bedroom with Balcony')"
+          value={detail.title}
+          onChange={(e) => {
+            setFormData(prev => {
+              const newData = { ...prev };
+              newData.unitDetails.details[detailIndex].title = e.target.value;
+              return newData;
+            });
+          }}
+          className="w-full p-2 border rounded"
+        />
+
+        {/* Detail List Items */}
+        <div className="space-y-2">
+          <h4 className="font-medium">Features List</h4>
+          {detail.ul.map((item, itemIndex) => (
+            <div key={itemIndex} className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Feature (e.g., 'Living Area', 'Kitchen')"
+                value={item}
+                onChange={(e) => {
+                  setFormData(prev => {
+                    const newData = { ...prev };
+                    newData.unitDetails.details[detailIndex].ul[itemIndex] = e.target.value;
+                    return newData;
+                  });
+                }}
+                className="flex-1 p-2 border rounded"
+              />
+              
+              <div className="flex gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => {
+                      const newData = { ...prev };
+                      newData.unitDetails.details[detailIndex].ul.push('');
+                      return newData;
+                    });
+                  }}
+                  className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                  +
+                </button>
+                {detail.ul.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => {
+                        const newData = { ...prev };
+                        newData.unitDetails.details[detailIndex].ul.splice(itemIndex, 1);
+                        return newData;
+                      });
+                    }}
+                    className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    -
+                  </button>
+                )}
+              </div>
+            </div>
           ))}
+        </div>
 
-          {/* Site Update */}
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Site Update Title"
-              name="siteUpdateTitle"
+        {/* Detail Images */}
+        <div className="space-y-2">
+          <h4 className="font-medium">Unit Images</h4>
+          {detail.imgs.map((img, imgIndex) => (
+            <div key={imgIndex} className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Image URL"
+                value={img}
+                onChange={(e) => {
+                  setFormData(prev => {
+                    const newData = { ...prev };
+                    newData.unitDetails.details[detailIndex].imgs[imgIndex] = e.target.value;
+                    return newData;
+                  });
+                }}
+                className="flex-1 p-2 border rounded"
+              />
+              
+              <div className="flex gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => {
+                      const newData = { ...prev };
+                      newData.unitDetails.details[detailIndex].imgs.push('');
+                      return newData;
+                    });
+                  }}
+                  className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                  +
+                </button>
+                {detail.imgs.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => {
+                        const newData = { ...prev };
+                        newData.unitDetails.details[detailIndex].imgs.splice(imgIndex, 1);
+                        return newData;
+                      });
+                    }}
+                    className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    -
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Remove Unit Type Button */}
+        {formData.unitDetails.details.length > 1 && (
+          <button
+            type="button"
+            onClick={() => {
+              setFormData(prev => {
+                const newData = { ...prev };
+                newData.unitDetails.details.splice(detailIndex, 1);
+                return newData;
+              });
+            }}
+            className="w-full py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Remove Unit Type
+          </button>
+        )}
+      </div>
+    ))}
+
+    {/* Add New Unit Type Button */}
+    <button
+      type="button"
+      onClick={() => {
+        setFormData(prev => ({
+          ...prev,
+          unitDetails: {
+            ...prev.unitDetails,
+            details: [
+              ...prev.unitDetails.details,
+              { title: '', ul: [''], imgs: [''] }
+            ]
+          }
+        }));
+      }}
+      className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600"
+    >
+      Add New Unit Type
+    </button>
+  </div>
+</section>
+
+        {/* Deliverables */}
+           {/* Unit Deliverables */}
+           <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Unit Deliverables</h2>
+          
+          {/* Description */}
+          <textarea
+            placeholder="Description of Unit Deliverables"
+            value={formData.unitDeliverable.text}
+            onChange={(e) => setFormData(prev => ({
+              ...prev,
+              unitDeliverable: {
+                ...prev.unitDeliverable,
+                text: e.target.value
+              }
+            }))}
+            className="w-full p-2 border rounded"
+            rows={4}
+          />
+
+          {/* Unit Deliverables List */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Unit Deliverables List</h3>
+            {formData.unitDeliverable.ul.map((item, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Unit Deliverable"
+                  value={item}
+                  onChange={(e) => updateArrayField(['unitDeliverable', 'ul'], index, e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                />
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      unitDeliverable: {
+                        ...prev.unitDeliverable,
+                        ul: [...prev.unitDeliverable.ul, '']
+                      }
+                    }))}
+                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    +
+                  </button>
+                  {formData.unitDeliverable.ul.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({
+                        ...prev,
+                        unitDeliverable: {
+                          ...prev.unitDeliverable,
+                          ul: prev.unitDeliverable.ul.filter((_, i) => i !== index)
+                        }
+                      }))}
+                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      -
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Unit Deliverables Images */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Unit Deliverables Images</h3>
+            {formData.unitDeliverable.imgs.map((img, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Image URL"
+                  value={img}
+                  onChange={(e) => updateArrayField(['unitDeliverable', 'imgs'], index, e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                />
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      unitDeliverable: {
+                        ...prev.unitDeliverable,
+                        imgs: [...prev.unitDeliverable.imgs, '']
+                      }
+                    }))}
+                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    +
+                  </button>
+                  {formData.unitDeliverable.imgs.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({
+                        ...prev,
+                        unitDeliverable: {
+                          ...prev.unitDeliverable,
+                          imgs: prev.unitDeliverable.imgs.filter((_, i) => i !== index)
+                        }
+                      }))}
+                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      -
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-4">
+  <h2 className="text-xl font-semibold">Floor Plans</h2>
+  
+  <div className="space-y-2">
+    {formData.floorPlan.map((plan, index) => (
+      <div key={index} className="flex gap-2">
+        <input
+          type="text"
+          placeholder="Floor Plan Image URL"
+          value={plan}
+          onChange={(e) => updateArrayField(['floorPlan'], index, e.target.value)}
+          className="flex-1 p-2 border rounded"
+        />
+        <div className="flex gap-1">
+          <button
+            type="button"
+            onClick={() => setFormData(prev => ({
+              ...prev,
+              floorPlan: [...prev.floorPlan, '']
+            }))}
+            className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            +
+          </button>
+          {formData.floorPlan.length > 1 && (
+            <button
+              type="button"
+              onClick={() => setFormData(prev => ({
+                ...prev,
+                floorPlan: prev.floorPlan.filter((_, i) => i !== index)
+              }))}
+              className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              -
+            </button>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+
+
+
+                {/* Site Update */}
+                <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Site Update</h2>
+          
+          {/* Title */}
+          <div>
+            <input
+              type="text"
+              placeholder="Site Update Title"
               value={formData.siteUpdate.title}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  siteUpdate: { ...prev.siteUpdate, title: e.target.value },
-                }))
-              }
-              fullWidth
-              margin="normal"
+              onChange={(e) => setFormData(prev => ({
+                ...prev,
+                siteUpdate: {
+                  ...prev.siteUpdate,
+                  title: e.target.value
+                }
+              }))}
+              className="w-full p-2 border rounded"
             />
-          </Grid>
+          </div>
 
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Site Update Images"
-              name="siteUpdateImgs"
-              value={formData.siteUpdate.imgs.join(', ')}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  siteUpdate: { ...prev.siteUpdate, imgs: e.target.value.split(',') },
-                }))
-              }
-              fullWidth
-              margin="normal"
-            />
-          </Grid>
-        </Grid>
-        <Button type="submit" variant="contained" color="primary" fullWidth>
-          Create Property
-        </Button>
+          {/* Site Update Images */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Site Update Images</h3>
+            {formData.siteUpdate.imgs.map((img, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Image URL"
+                  value={img}
+                  onChange={(e) => updateArrayField(['siteUpdate', 'imgs'], index, e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                />
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      siteUpdate: {
+                        ...prev.siteUpdate,
+                        imgs: [...prev.siteUpdate.imgs, '']
+                      }
+                    }))}
+                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    +
+                  </button>
+                  {formData.siteUpdate.imgs.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({
+                        ...prev,
+                        siteUpdate: {
+                          ...prev.siteUpdate,
+                          imgs: prev.siteUpdate.imgs.filter((_, i) => i !== index)
+                        }
+                      }))}
+                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      -
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Submit Button */}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed"
+      >
+        {isSubmitting ? 'Creating Property...' : 'Create Property'}
+      </button>
       </form>
-    </Container>
+    </div>
   );
-};
-
-export default CreateProperty;
+}
