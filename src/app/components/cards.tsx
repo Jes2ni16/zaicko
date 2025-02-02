@@ -50,7 +50,7 @@ const cardData: CardData[] = [
   },
   {
     title: 'PRIMEWORLD POINTE LAHUG',
-    description: 'rimeworld believes that every Filipino deserves a good life, starting with a good home. We have made it our mission to develop quality homes in safe communities where Filipinos can thrive and live a good life.',
+    description: 'Primeworld believes that every Filipino deserves a good life, starting with a good home. We have made it our mission to develop quality homes in safe communities where Filipinos can thrive and live a good life.',
     image: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738173933/270301887_461699735341168_9135717747189606447_n_jhr9e4.jpg', 
     link: 'featured/primeworld-pointe'
   }
