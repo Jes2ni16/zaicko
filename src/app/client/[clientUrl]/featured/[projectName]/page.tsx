@@ -66,22 +66,22 @@ interface ProjectData {
 }
 
 
-type Props = {
-  params: {
-    clientUrl: string;
-    projectName: string;
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { clientUrl: string; projectName: string };
+}): Promise<Metadata> => {
+  return {
+    title: `Project Details - ${params.projectName}`,
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-// You can also add metadata if needed
-export const metadata: Metadata = {
-  title: 'Project Details',
-};
-
-
-
-export default async function Page({ params }: Props) {
+// Page component with correct typing for Next.js 13+
+export default async function Page({
+  params,
+}: {
+  params: { clientUrl: string; projectName: string };
+}) {
   try {
     const { clientUrl, projectName } = params;
     if (!clientUrl || !projectName) {
@@ -93,6 +93,7 @@ export default async function Page({ params }: Props) {
       fetch(`https://zaiko-server.vercel.app/api/clients/${clientUrl}`),
       fetch(`https://zaiko-server.vercel.app/api/projects/${projectName}`)
     ]);
+
     // Check if both responses are ok
     if (!clientResponse.ok || !projectResponse.ok) {
       throw new Error('Failed to fetch data');
