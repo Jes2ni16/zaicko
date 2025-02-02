@@ -5,8 +5,6 @@ import styles from './page.module.css';
 import Link from 'next/link';
 import FacebookIcon from '@mui/icons-material/Facebook'; // Add this import at the top with other imports
 import { ResolvingMetadata } from 'next'
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
-
 
 
 interface ClientData {
@@ -75,29 +73,68 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
+// Dynamic metadata generation for better SEO
 export async function generateMetadata(
   { params }: Props,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _parent: ResolvingMetadata  // Added underscore to indicate it's intentionally unused
+  _parent: ResolvingMetadata
 ): Promise<Metadata> {
+  // Fetch project data for metadata
+  const projectResponse = await fetch(
+    `https://zaiko-server.vercel.app/api/projects/${params.projectName}`
+  );
+  const project = await projectResponse.json();
+
   return {
-    title: `Project Details - ${params.projectName}`,
+    title: project.title || `${params.projectName} - Project Details`,
+    description: project.description || 'Detailed information about this real estate project',
+    openGraph: {
+      title: project.title || `${params.projectName} - Project Details`,
+      description: project.description || 'Detailed information about this real estate project',
+      images: project.projectImg ? [project.projectImg] : [],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title || `${params.projectName} - Project Details`,
+      description: project.description || 'Detailed information about this real estate project',
+      images: project.projectImg ? [project.projectImg] : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: `/client/${params.clientUrl}/featured/${params.projectName}`,
+    },
+    keywords: [
+      'real estate',
+      'property',
+      params.projectName,
+      'housing',
+      'development',
+      'property listing'
+    ],
   }
 }
 
-const Page = async ({ params }: Props) => {
+// Make sure the page is a Server Component (default in App Router)
+export default async function Page({ params }: Props) {
   try {
     const { clientUrl, projectName } = params;
     if (!clientUrl || !projectName) {
       throw new Error('Missing required parameters');
     }
 
-    // Rest of your code remains the same
+    // Add cache and revalidate options for better performance
     const [clientResponse, projectResponse] = await Promise.all([
-      fetch(`https://zaiko-server.vercel.app/api/clients/${clientUrl}`),
-      fetch(`https://zaiko-server.vercel.app/api/projects/${projectName}`)
+      fetch(`https://zaiko-server.vercel.app/api/clients/${clientUrl}`, {
+        next: { revalidate: 3600 } // Revalidate every hour
+      }),
+      fetch(`https://zaiko-server.vercel.app/api/projects/${projectName}`, {
+        next: { revalidate: 3600 }
+      })
     ]);
-
     // Check if both responses are ok
     if (!clientResponse.ok || !projectResponse.ok) {
       throw new Error('Failed to fetch data');
@@ -371,4 +408,3 @@ const Page = async ({ params }: Props) => {
 }
 }
 
-export default Page;
