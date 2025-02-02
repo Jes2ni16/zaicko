@@ -4,6 +4,10 @@ import React from 'react';
 import styles from './page.module.css';
 import Link from 'next/link';
 import FacebookIcon from '@mui/icons-material/Facebook'; // Add this import at the top with other imports
+import { ResolvingMetadata } from 'next'
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
+
+
 
 interface ClientData {
   _id?: { $oid: string };
@@ -66,22 +70,22 @@ interface ProjectData {
 }
 
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { clientUrl: string; projectName: string };
-}): Promise<Metadata> => {
+type Props = {
+  params: { clientUrl: string; projectName: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _parent: ResolvingMetadata  // Added underscore to indicate it's intentionally unused
+): Promise<Metadata> {
   return {
     title: `Project Details - ${params.projectName}`,
-  };
-};
+  }
+}
 
-// Page component with correct typing for Next.js 13+
-export default async function Page({
-  params,
-}: {
-  params: { clientUrl: string; projectName: string };
-}) {
+const Page = async ({ params }: Props) => {
   try {
     const { clientUrl, projectName } = params;
     if (!clientUrl || !projectName) {
@@ -351,12 +355,10 @@ export default async function Page({
           
         </div>
       );
-  }
-catch (error) {
-  // Log the error for debugging
+  }catch (error) {
   console.error('Error in Page component:', error);
   
-  // Return a user-friendly error message
+
   return (
     <div className={styles.errorContainer}>
       <h1>Something went wrong</h1>
@@ -369,3 +371,4 @@ catch (error) {
 }
 }
 
+export default Page;
