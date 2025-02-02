@@ -79,7 +79,6 @@ export async function generateMetadata(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Fetch project data for metadata
   const projectResponse = await fetch(
     `https://zaiko-server.vercel.app/api/projects/${params.projectName}`
   );
@@ -113,7 +112,7 @@ export async function generateMetadata(
       params.projectName,
       'housing',
       'development',
-      'property listing'
+      'property listing',
     ],
   }
 }
@@ -126,10 +125,9 @@ export default async function Page({ params }: Props) {
       throw new Error('Missing required parameters');
     }
 
-    // Add cache and revalidate options for better performance
     const [clientResponse, projectResponse] = await Promise.all([
       fetch(`https://zaiko-server.vercel.app/api/clients/${clientUrl}`, {
-        next: { revalidate: 3600 } // Revalidate every hour
+        next: { revalidate: 3600 }
       }),
       fetch(`https://zaiko-server.vercel.app/api/projects/${projectName}`, {
         next: { revalidate: 3600 }
