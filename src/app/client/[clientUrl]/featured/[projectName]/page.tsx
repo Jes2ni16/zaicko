@@ -1,5 +1,5 @@
 import { ImageGallery } from './ImageGallery';
-
+import { Metadata } from 'next';
 import React from 'react';
 import styles from './page.module.css';
 import Link from 'next/link';
@@ -66,17 +66,22 @@ interface ProjectData {
 }
 
 
-
-
-
-export default async function Page({
-  params,
-}: {
+type Props = {
   params: {
     clientUrl: string;
     projectName: string;
-  }
-}) {
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+// You can also add metadata if needed
+export const metadata: Metadata = {
+  title: 'Project Details',
+};
+
+
+
+export default async function Page({ params }: Props) {
   try {
     const { clientUrl, projectName } = params;
     if (!clientUrl || !projectName) {
