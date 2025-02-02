@@ -67,17 +67,18 @@ interface ProjectData {
 
 
 
-interface PageProps {
+
+
+export default async function Page({
+  params,
+}: {
   params: {
     clientUrl: string;
     projectName: string;
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-export default async function Page({ params }: PageProps) {
+  }
+}) {
   try {
-    const { clientUrl, projectName } = params; // Remove the Promise.resolve
+    const { clientUrl, projectName } = params;
     if (!clientUrl || !projectName) {
       throw new Error('Missing required parameters');
     }
