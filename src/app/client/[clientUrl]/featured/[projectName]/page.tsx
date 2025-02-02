@@ -67,23 +67,26 @@ interface ProjectData {
 
 
 
-export default async function Page({
-  params,
-}: {
-  params: { clientUrl: string; projectName: string }
-}) {
+interface PageProps {
+  params: {
+    clientUrl: string;
+    projectName: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+export default async function Page({ params }: PageProps) {
   try {
-    const { clientUrl, projectName } = await Promise.resolve(params);
+    const { clientUrl, projectName } = params; // Remove the Promise.resolve
     if (!clientUrl || !projectName) {
       throw new Error('Missing required parameters');
     }
 
-    // Fetch both client and project data in parallel
+    // Rest of your code remains the same
     const [clientResponse, projectResponse] = await Promise.all([
-      fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`),
+      fetch(`https://zaiko-server.vercel.app/api/clients/${clientUrl}`),
       fetch(`https://zaiko-server.vercel.app/api/projects/${projectName}`)
     ]);
-
     // Check if both responses are ok
     if (!clientResponse.ok || !projectResponse.ok) {
       throw new Error('Failed to fetch data');
