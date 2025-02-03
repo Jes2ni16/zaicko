@@ -5,19 +5,89 @@ import React from 'react';
 // import Link from 'next/link';
 // import FacebookIcon from '@mui/icons-material/Facebook'; // Add this import at the top with other imports
 
+
+
+export interface ClientData {
+  _id?: { $oid: string };
+  name?: string;
+  email?: string;
+  phone?: string;
+  fb?: string;
+}
+
+export interface LocationDescription {
+  title?: string;
+  ul?: string[];
+  _id?: { $oid: string };
+}
+
+export interface ProjectData {
+  _id?: { $oid: string };
+  projectUrl?: string;
+  projectImg?: string;
+  projectLocation?: string;
+  title?: string;
+  description?: string;
+  location?: {
+    locationText?: string;
+    descriptions?: LocationDescription[];
+    img?: string;
+  };
+  amenitiesFacilities?: {
+    description?: string;
+    ul?: string[];
+    imgs?: string[];
+  };
+  unitDetails: {
+    text?: string;
+    details?: Array<{
+      title?: string;
+      ul?: string[];
+      imgs?: string[];
+      _id?: { $oid: string };
+    }>;
+  };
+  buildingFeatures?: {
+    text?: string;
+    details?: Array<{
+      title?: string;
+      ul?: string[];
+      _id?: { $oid: string };
+    }>;
+  };
+  unitDeliverable?: {
+    text?: string;
+    ul?: string[];
+    imgs?: string[];
+  };
+  floorPlan?: string[];
+  siteUpdate?: {
+    title: string;
+    imgs: string[];
+  };
+}
+
+
+
+
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return [{projectUrl:'arc-tower-cebu'}]
+  // Example: Return nested dynamic paths for clientUrl and projects
+  return [
+    { clientUrl: 'client-1', projects: 'arc-tower-cebu' },
+    { clientUrl: 'client-1', projects: 'project-two' },
+    { clientUrl: 'client-2', projects: 'project-three' },
+  ];
 }
+export default async function ProjectPage({ params }:{params:Promise<{clientUrl:string, projectName:string}>}  ) {
 
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{projectUrl: string}>;
-}) {
-  const {projectUrl} = await params;
-  
+  const { clientUrl, projectName } = await params;
+
+  console.log(clientUrl,projectName)
+
+  // Fetch project data based on the projectUrl
+  const project:ProjectData | null = await fetchProjectData(clientUrl, projectName);
     return (
 //         <div className={styles.container}>
 
@@ -261,10 +331,25 @@ export default async function ProjectPage({
 //               </section>
           
 //         </div>
-<h1>project url is: {projectUrl}</h1>
+<h1>project url is: {project.description}</h1>
       );
   }
 
 
 
-
+  // Helper function to fetch project data based on the URL
+  async function fetchProjectData(clientUrl: string, projectName: string): Promise<ProjectData | null> {
+    try {
+      const res = await fetch(`https://zaiko-server.vercel.app/api/projects/${projectName}`);
+      
+      if (!res.ok) {
+        throw new Error('Failed to fetch project data');
+      }
+  
+      const data: ProjectData= await res.json();
+      return data; // Returning project data if it's available
+    } catch (error) {
+      console.error('Error fetching project data:', error);
+      return null; // Return null in case of error
+    }
+  }
