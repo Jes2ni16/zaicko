@@ -19,8 +19,11 @@ type PropertyFormData = {
     img: string;
   };
   projectDetails: {
-    ul: string[];
-    imgs: string[];
+    descriptions: Array<{
+      title: string;
+      ul: string[];
+      imgs: string[];
+    }>;
   };
   amenitiesFacilities: {
     description: string;
@@ -69,8 +72,11 @@ export default function CreateProperty() {
       img: '',
     },
     projectDetails: {
-      ul: [''],
-      imgs: [''],
+      descriptions: [{
+        title: '',
+        ul: [''],
+        imgs: ['']
+      }]
     },
     amenitiesFacilities: {
       description: '',
@@ -321,100 +327,172 @@ export default function CreateProperty() {
 
         {/* Project Details */}
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Project Details</h2>
-          
-          {/* Project Details List */}
-          <div className="space-y-2">
-            <h3 className="font-medium">Details List</h3>
-            {formData.projectDetails.ul.map((item, index) => (
-              <div key={index} className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Detail"
-                  value={item}
-                  onChange={(e) => updateArrayField(['projectDetails', 'ul'], index, e.target.value)}
-                  className="flex-1 p-2 border rounded"
-                />
-                <div className="flex gap-1">
-                  <button
-                    type="button"
-                    onClick={() => setFormData(prev => ({
-                      ...prev,
-                      projectDetails: {
-                        ...prev.projectDetails,
-                        ul: [...prev.projectDetails.ul, '']
-                      }
-                    }))}
-                    className={styles.addButton}
-                  >
-                    +
-                  </button>
-                  {formData.projectDetails.ul.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => setFormData(prev => ({
-                        ...prev,
-                        projectDetails: {
-                          ...prev.projectDetails,
-                          ul: prev.projectDetails.ul.filter((_, i) => i !== index)
-                        }
-                      }))}
-                       className={styles.removeButton}
-                    >
-                      -
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+  <h2 className="text-xl font-semibold">Project Details</h2>
+  
+  <div className="space-y-6">
+    {formData.projectDetails.descriptions.map((description, descIndex) => (
+      <div key={descIndex} className="p-4 border rounded space-y-4 bg-gray-50">
+        {/* Description Title */}
+        <input
+          type="text"
+          placeholder="Description Title"
+          value={description.title}
+          onChange={(e) => {
+            setFormData(prev => {
+              const newData = { ...prev };
+              newData.projectDetails.descriptions[descIndex].title = e.target.value;
+              return newData;
+            });
+          }}
+          className="w-full p-2 border rounded"
+        />
 
-          {/* Project Images */}
-          <div className="space-y-2">
-            <h3 className="font-medium">Project Images</h3>
-            {formData.projectDetails.imgs.map((img, index) => (
-              <div key={index} className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Image URL"
-                  value={img}
-                  onChange={(e) => updateArrayField(['projectDetails', 'imgs'], index, e.target.value)}
-                  className="flex-1 p-2 border rounded"
-                />
-                <div className="flex gap-1">
+        {/* Description List */}
+        <div className="space-y-2">
+          <h4 className="font-medium">Details List</h4>
+          {description.ul.map((item, itemIndex) => (
+            <div key={itemIndex} className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Detail"
+                value={item}
+                onChange={(e) => {
+                  setFormData(prev => {
+                    const newData = { ...prev };
+                    newData.projectDetails.descriptions[descIndex].ul[itemIndex] = e.target.value;
+                    return newData;
+                  });
+                }}
+                className="flex-1 p-2 border rounded"
+              />
+              
+              <div className="flex gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => {
+                      const newData = { ...prev };
+                      newData.projectDetails.descriptions[descIndex].ul.push('');
+                      return newData;
+                    });
+                  }}
+                  className={styles.addButton}
+                >
+                  +
+                </button>
+                {description.ul.length > 1 && (
                   <button
                     type="button"
-                    onClick={() => setFormData(prev => ({
-                      ...prev,
-                      projectDetails: {
-                        ...prev.projectDetails,
-                        imgs: [...prev.projectDetails.imgs, '']
-                      }
-                    }))}
-                    className={styles.addButton}
+                    onClick={() => {
+                      setFormData(prev => {
+                        const newData = { ...prev };
+                        newData.projectDetails.descriptions[descIndex].ul.splice(itemIndex, 1);
+                        return newData;
+                      });
+                    }}
+                    className={styles.removeButton}
                   >
-                    +
+                    -
                   </button>
-                  {formData.projectDetails.imgs.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => setFormData(prev => ({
-                        ...prev,
-                        projectDetails: {
-                          ...prev.projectDetails,
-                          imgs: prev.projectDetails.imgs.filter((_, i) => i !== index)
-                        }
-                      }))}
-                       className={styles.removeButton}
-                    >
-                      -
-                    </button>
-                  )}
-                </div>
+                )}
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
+
+        {/* Description Images */}
+        <div className="space-y-2">
+          <h4 className="font-medium">Images</h4>
+          {description.imgs.map((img, imgIndex) => (
+            <div key={imgIndex} className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Image URL"
+                value={img}
+                onChange={(e) => {
+                  setFormData(prev => {
+                    const newData = { ...prev };
+                    newData.projectDetails.descriptions[descIndex].imgs[imgIndex] = e.target.value;
+                    return newData;
+                  });
+                }}
+                className="flex-1 p-2 border rounded"
+              />
+              
+              <div className="flex gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => {
+                      const newData = { ...prev };
+                      newData.projectDetails.descriptions[descIndex].imgs.push('');
+                      return newData;
+                    });
+                  }}
+                  className={styles.addButton}
+                >
+                  +
+                </button>
+                {description.imgs.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => {
+                        const newData = { ...prev };
+                        newData.projectDetails.descriptions[descIndex].imgs.splice(imgIndex, 1);
+                        return newData;
+                      });
+                    }}
+                    className={styles.removeButton}
+                  >
+                    -
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Remove Description Button */}
+        {formData.projectDetails.descriptions.length > 1 && (
+          <button
+            type="button"
+            onClick={() => {
+              setFormData(prev => {
+                const newData = { ...prev };
+                newData.projectDetails.descriptions.splice(descIndex, 1);
+                return newData;
+              });
+            }}
+            className="w-full py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Remove Description
+          </button>
+        )}
+      </div>
+    ))}
+
+    {/* Add New Description Button */}
+    <button
+      type="button"
+      onClick={() => {
+        setFormData(prev => ({
+          ...prev,
+          projectDetails: {
+            ...prev.projectDetails,
+            descriptions: [
+              ...prev.projectDetails.descriptions,
+              { title: '', ul: [''], imgs: [''] }
+            ]
+          }
+        }));
+      }}
+      className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600"
+    >
+      Add New Description
+    </button>
+  </div>
+</section>
 
 
         <section className="space-y-4">
