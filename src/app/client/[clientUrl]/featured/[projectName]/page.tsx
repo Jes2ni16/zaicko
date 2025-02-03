@@ -1,408 +1,270 @@
-import { ImageGallery } from './ImageGallery';
-import { Metadata } from 'next';
+// import { ImageGallery } from './ImageGallery';
+// import { getClientByUrl, getProjectByName } from './api'
 import React from 'react';
-import styles from './page.module.css';
-import Link from 'next/link';
-import FacebookIcon from '@mui/icons-material/Facebook'; // Add this import at the top with other imports
-import { ResolvingMetadata } from 'next'
+// import styles from './page.module.css';
+// import Link from 'next/link';
+// import FacebookIcon from '@mui/icons-material/Facebook'; // Add this import at the top with other imports
 
+export const dynamicParams = true;
 
-interface ClientData {
-  _id?: { $oid: string };
-  name?: string;
-  email?: string;
-  phone?: string;
-  fb?: string;
+export async function generateStaticParams() {
+  return [{projectUrl:'arc-tower-cebu'}]
 }
 
-interface LocationDescription {
-  title?: string;
-  ul?: string[];
-  _id?: { $oid: string };
-}
-
-interface ProjectData {
-  _id?: { $oid: string };
-  projectUrl?: string;
-  projectImg?: string;
-  projectLocation?: string;
-  title?: string;
-  description?: string;
-  location?: {
-    locationText?: string;
-    descriptions?: LocationDescription[];
-    img?: string;
-  };
-  amenitiesFacilities?: {
-    description?: string;
-    ul?: string[];
-    imgs?: string[];
-  };
-  unitDetails: {
-    text?: string;
-    details?: Array<{
-      title?: string;
-      ul?: string[];
-      imgs?: string[];
-      _id?: { $oid: string };
-    }>;
-  };
-  buildingFeatures?: {
-    text?: string;
-    details?: Array<{
-      title?: string;
-      ul?: string[];
-      _id?: { $oid: string };
-    }>;
-  };
-  unitDeliverable?: {
-    text?: string;
-    ul?: string[];
-    imgs?: string[];
-  };
-  floorPlan?: string[];
-  siteUpdate?: {
-    title:   string ,
-    imgs: [ string ],
-  },
-}
-
-
-type Props = {
-  params: { clientUrl: string; projectName: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-// Dynamic metadata generation for better SEO
-export async function generateMetadata(
-  { params }: Props,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _parent: ResolvingMetadata
-): Promise<Metadata> {
-  const projectResponse = await fetch(
-    `https://zaiko-server.vercel.app/api/projects/${params.projectName}`
-  );
-  const project = await projectResponse.json();
-
-  return {
-    title: project.title || `${params.projectName} - Project Details`,
-    description: project.description || 'Detailed information about this real estate project',
-    openGraph: {
-      title: project.title || `${params.projectName} - Project Details`,
-      description: project.description || 'Detailed information about this real estate project',
-      images: project.projectImg ? [project.projectImg] : [],
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: project.title || `${params.projectName} - Project Details`,
-      description: project.description || 'Detailed information about this real estate project',
-      images: project.projectImg ? [project.projectImg] : [],
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-    alternates: {
-      canonical: `/client/${params.clientUrl}/featured/${params.projectName}`,
-    },
-    keywords: [
-      'real estate',
-      'property',
-      params.projectName,
-      'housing',
-      'development',
-      'property listing',
-    ],
-  }
-}
-
-// Make sure the page is a Server Component (default in App Router)
-export default async function Page({ params }: Props) {
-  try {
-    const { clientUrl, projectName } = params;
-    if (!clientUrl || !projectName) {
-      throw new Error('Missing required parameters');
-    }
-
-    const [clientResponse, projectResponse] = await Promise.all([
-      fetch(`https://zaiko-server.vercel.app/api/clients/${clientUrl}`, {
-        next: { revalidate: 3600 }
-      }),
-      fetch(`https://zaiko-server.vercel.app/api/projects/${projectName}`, {
-        next: { revalidate: 3600 }
-      })
-    ]);
-    // Check if both responses are ok
-    if (!clientResponse.ok || !projectResponse.ok) {
-      throw new Error('Failed to fetch data');
-    }
-
-    const [client, project]: [ClientData, ProjectData] = await Promise.all([
-      clientResponse.json(),
-      projectResponse.json()
-    ]);
-
-    if (!client || !project) {
-      throw new Error('No data received');
-    }
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{projectUrl: string}>;
+}) {
+  const {projectUrl} = await params;
+  
     return (
-        <div className={styles.container}>
+//         <div className={styles.container}>
 
-          {/* Hero Section */}
-          <div className={styles.heroSection} >
-          {project.projectImg && (
-          <ImageGallery 
-            src={project.projectImg}
-            alt={project.title || 'Project Image'}
-            width={1200}
-            height={600}
-            className={styles.heroImage}
-            priority
-          />
-        )}
-            <h1 className={styles.title}>{project.title}</h1>
-            <p className={styles.description}>{project.description}</p>
-            <p className={styles.location}>Project Location: {project.projectLocation}</p>
-          </div>
+//           {/* Hero Section */}
+//           <div className={styles.heroSection} >
+//           {project.projectImg && (
+//           <ImageGallery 
+//             src={project.projectImg}
+//             alt={project.title || 'Project Image'}
+//             width={1200}
+//             height={600}
+//             className={styles.heroImage}
+//             priority
+//           />
+//         )}
+//             <h1 className={styles.title}>{project.title}</h1>
+//             <p className={styles.description}>{project.description}</p>
+//             <p className={styles.location}>Project Location: {project.projectLocation}</p>
+//           </div>
     
-<hr className={styles.hr} />
+// <hr className={styles.hr} />
 
-          {/* Location Section */}
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Location</h2>
-            <div className={styles.locationGrid}>
-              <div className={styles.locationDetails}>
-                {project.location.descriptions.map((desc,index) => (
-                  <div key={index} className={styles.locationBlock}>
-                    {desc.title && <h3 className={styles.locationTitle}>{desc.title}</h3>}
-                    <ul className={styles.locationList}>
-                      {desc.ul.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              <div className={styles.locationMap}>
-              {project.location?.img && (
-    <ImageGallery 
-      src={project.location.img}
-      alt="Location Map"
-      width={600}
-      height={400}
-      className={styles.mapImage}
-    />
-  )}
-              </div>
-            </div>
-          </section>
-          <hr className={styles.hr} />
-          {/* Amenities Section */}
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Amenities & Facilities</h2>
-            <p className={styles.amenitiesDescription}>
-              {project.amenitiesFacilities.description}
-            </p>
-            <ul className={styles.amenitiesList}>
-              {project.amenitiesFacilities.ul.map((amenity, index) => (
-                <li key={index} className={styles.amenityItem}>
-                  {amenity}
-                </li>
-              ))}
-            </ul>
-            <div className={styles.imageContainer}>
-              {project.amenitiesFacilities.imgs.map((img, index) => (
-                <ImageGallery 
-                  key={index}
-                  src={img}
-                  alt={`Amenity ${index + 1}`}
-                  width={400}
-                  height={300}
-                  className={styles.amenityImage}
-                />
-              ))}
-            </div>
-          </section>
+//           {/* Location Section */}
+//           <section className={styles.section}>
+//             <h2 className={styles.sectionTitle}>Location</h2>
+//             <div className={styles.locationGrid}>
+//               <div className={styles.locationDetails}>
+//                 {project.location.descriptions.map((desc,index) => (
+//                   <div key={index} className={styles.locationBlock}>
+//                     {desc.title && <h3 className={styles.locationTitle}>{desc.title}</h3>}
+//                     <ul className={styles.locationList}>
+//                       {desc.ul.map((item, i) => (
+//                         <li key={i}>{item}</li>
+//                       ))}
+//                     </ul>
+//                   </div>
+//                 ))}
+//               </div>
+//               <div className={styles.locationMap}>
+//               {project.location?.img && (
+//     <ImageGallery 
+//       src={project.location.img}
+//       alt="Location Map"
+//       width={600}
+//       height={400}
+//       className={styles.mapImage}
+//     />
+//   )}
+//               </div>
+//             </div>
+//           </section>
+//           <hr className={styles.hr} />
+//           {/* Amenities Section */}
+//           <section className={styles.section}>
+//             <h2 className={styles.sectionTitle}>Amenities & Facilities</h2>
+//             <p className={styles.amenitiesDescription}>
+//               {project.amenitiesFacilities.description}
+//             </p>
+//             <ul className={styles.amenitiesList}>
+//               {project.amenitiesFacilities.ul.map((amenity, index) => (
+//                 <li key={index} className={styles.amenityItem}>
+//                   {amenity}
+//                 </li>
+//               ))}
+//             </ul>
+//             <div className={styles.imageContainer}>
+//               {project.amenitiesFacilities.imgs.map((img, index) => (
+//                 <ImageGallery 
+//                   key={index}
+//                   src={img}
+//                   alt={`Amenity ${index + 1}`}
+//                   width={400}
+//                   height={300}
+//                   className={styles.amenityImage}
+//                 />
+//               ))}
+//             </div>
+//           </section>
     
-          <hr className={styles.hr} />
+//           <hr className={styles.hr} />
 
-          {/* Floor Plans Section */}
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Floor Plans</h2>
-            <div className={styles.imageContainer}>
-              {project.floorPlan.map((plan, index) => (
-                <ImageGallery 
-                  key={index}
-                  src={plan}
-                  alt={`Floor Plan ${index + 1}`}
-                  width={600}
-                  height={400}
-                  className={styles.floorPlanImage}
-                />
-              ))}
-            </div>
-          </section>
+//           {/* Floor Plans Section */}
+//           <section className={styles.section}>
+//             <h2 className={styles.sectionTitle}>Floor Plans</h2>
+//             <div className={styles.imageContainer}>
+//               {project.floorPlan.map((plan, index) => (
+//                 <ImageGallery 
+//                   key={index}
+//                   src={plan}
+//                   alt={`Floor Plan ${index + 1}`}
+//                   width={600}
+//                   height={400}
+//                   className={styles.floorPlanImage}
+//                 />
+//               ))}
+//             </div>
+//           </section>
 
-             {/* Unit Details Section */}
-             {project.unitDetails && (project.unitDetails.text || (project.unitDetails.details && project.unitDetails.details.length > 0)) && (
-            <>
-              <hr className={styles.hr} />
-              <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Unit Details</h2>
-                {project.unitDetails.text && (
-                  <p className={styles.sectionDescription}>{project.unitDetails.text}</p>
-                )}
-                {project.unitDetails.details && project.unitDetails.details.length > 0 && (
-                  <div className={styles.detailsGrid}>
-                    {project.unitDetails.details.map((detail, index) => (
-                      <div key={index} className={styles.detailBlock}>
-                        {detail.title && <h3 className={styles.detailTitle}>{detail.title}</h3>}
-                        {detail.ul && detail.ul.length > 0 && (
-                          <ul className={styles.detailList}>
-                            {detail.ul.map((item, i) => (
-                              <li key={i}>{item}</li>
-                            ))}
-                          </ul>
-                        )}
-                        {detail.imgs && detail.imgs.length > 0 && (
-                                    <div className={styles.imageContainer}>
-                            {detail.imgs.map((img, i) => (
-                              <ImageGallery 
-                                key={i}
-                                src={img}
-                                alt={`${detail.title} Image ${i + 1}`}
-                                width={400}
-                                height={300}
-                                className={styles.detailImage}
-                              />
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </section>
-            </>
-          )}
+//              {/* Unit Details Section */}
+//              {project.unitDetails && (project.unitDetails.text || (project.unitDetails.details && project.unitDetails.details.length > 0)) && (
+//             <>
+//               <hr className={styles.hr} />
+//               <section className={styles.section}>
+//                 <h2 className={styles.sectionTitle}>Unit Details</h2>
+//                 {project.unitDetails.text && (
+//                   <p className={styles.sectionDescription}>{project.unitDetails.text}</p>
+//                 )}
+//                 {project.unitDetails.details && project.unitDetails.details.length > 0 && (
+//                   <div className={styles.detailsGrid}>
+//                     {project.unitDetails.details.map((detail, index) => (
+//                       <div key={index} className={styles.detailBlock}>
+//                         {detail.title && <h3 className={styles.detailTitle}>{detail.title}</h3>}
+//                         {detail.ul && detail.ul.length > 0 && (
+//                           <ul className={styles.detailList}>
+//                             {detail.ul.map((item, i) => (
+//                               <li key={i}>{item}</li>
+//                             ))}
+//                           </ul>
+//                         )}
+//                         {detail.imgs && detail.imgs.length > 0 && (
+//                                     <div className={styles.imageContainer}>
+//                             {detail.imgs.map((img, i) => (
+//                               <ImageGallery 
+//                                 key={i}
+//                                 src={img}
+//                                 alt={`${detail.title} Image ${i + 1}`}
+//                                 width={400}
+//                                 height={300}
+//                                 className={styles.detailImage}
+//                               />
+//                             ))}
+//                           </div>
+//                         )}
+//                       </div>
+//                     ))}
+//                   </div>
+//                 )}
+//               </section>
+//             </>
+//           )}
 
 
-                 {/* Building Features Section */}
-          {project.buildingFeatures && (project.buildingFeatures.text || (project.buildingFeatures.details && project.buildingFeatures.details.length > 0)) && (
-            <>
-              <hr className={styles.hr} />
-              <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Building Features</h2>
-                {project.buildingFeatures.text && (
-                  <p className={styles.sectionDescription}>{project.buildingFeatures.text}</p>
-                )}
-                {project.buildingFeatures.details && project.buildingFeatures.details.length > 0 && (
-                  <div className={styles.featuresGrid}>
-                    {project.buildingFeatures.details.map((feature, index) => (
-                      <div key={index} className={styles.featureBlock}>
-                        {feature.title && <h3 className={styles.featureTitle}>{feature.title}</h3>}
-                        {feature.ul && feature.ul.length > 0 && (
-                          <ul className={styles.featureList}>
-                            {feature.ul.map((item, i) => (
-                              <li key={i}>{item}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </section>
-            </>
-          )}
+//                  {/* Building Features Section */}
+//           {project.buildingFeatures && (project.buildingFeatures.text || (project.buildingFeatures.details && project.buildingFeatures.details.length > 0)) && (
+//             <>
+//               <hr className={styles.hr} />
+//               <section className={styles.section}>
+//                 <h2 className={styles.sectionTitle}>Building Features</h2>
+//                 {project.buildingFeatures.text && (
+//                   <p className={styles.sectionDescription}>{project.buildingFeatures.text}</p>
+//                 )}
+//                 {project.buildingFeatures.details && project.buildingFeatures.details.length > 0 && (
+//                   <div className={styles.featuresGrid}>
+//                     {project.buildingFeatures.details.map((feature, index) => (
+//                       <div key={index} className={styles.featureBlock}>
+//                         {feature.title && <h3 className={styles.featureTitle}>{feature.title}</h3>}
+//                         {feature.ul && feature.ul.length > 0 && (
+//                           <ul className={styles.featureList}>
+//                             {feature.ul.map((item, i) => (
+//                               <li key={i}>{item}</li>
+//                             ))}
+//                           </ul>
+//                         )}
+//                       </div>
+//                     ))}
+//                   </div>
+//                 )}
+//               </section>
+//             </>
+//           )}
 
   
 
-           {/* Unit Deliverable Section */}
-           {project.unitDeliverable && (project.unitDeliverable.text || project.unitDeliverable.ul?.length > 0 || project.unitDeliverable.imgs?.length > 0) && (
-            <>
-              <hr className={styles.hr} />
-              <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Unit Deliverable</h2>
-                {project.unitDeliverable.text && (
-                  <p className={styles.sectionDescription}>{project.unitDeliverable.text}</p>
-                )}
-                {project.unitDeliverable.ul && project.unitDeliverable.ul.length > 0 && (
-                  <ul className={styles.deliverableList}>
-                    {project.unitDeliverable.ul.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-                {project.unitDeliverable.imgs && project.unitDeliverable.imgs.length > 0 && (
-                  <div className={styles.deliverableImages}>
-                    {project.unitDeliverable.imgs.map((img, index) => (
-                      <ImageGallery 
-                        key={index}
-                        src={img}
-                        alt={`Deliverable Image ${index + 1}`}
-                        width={400}
-                        height={300}
-                        className={styles.deliverableImage}
-                      />
-                    ))}
-                  </div>
-                )}
-              </section>
-            </>
-          )}
+//            {/* Unit Deliverable Section */}
+//            {project.unitDeliverable && (project.unitDeliverable.text || project.unitDeliverable.ul?.length > 0 || project.unitDeliverable.imgs?.length > 0) && (
+//             <>
+//               <hr className={styles.hr} />
+//               <section className={styles.section}>
+//                 <h2 className={styles.sectionTitle}>Unit Deliverable</h2>
+//                 {project.unitDeliverable.text && (
+//                   <p className={styles.sectionDescription}>{project.unitDeliverable.text}</p>
+//                 )}
+//                 {project.unitDeliverable.ul && project.unitDeliverable.ul.length > 0 && (
+//                   <ul className={styles.deliverableList}>
+//                     {project.unitDeliverable.ul.map((item, index) => (
+//                       <li key={index}>{item}</li>
+//                     ))}
+//                   </ul>
+//                 )}
+//                 {project.unitDeliverable.imgs && project.unitDeliverable.imgs.length > 0 && (
+//                   <div className={styles.deliverableImages}>
+//                     {project.unitDeliverable.imgs.map((img, index) => (
+//                       <ImageGallery 
+//                         key={index}
+//                         src={img}
+//                         alt={`Deliverable Image ${index + 1}`}
+//                         width={400}
+//                         height={300}
+//                         className={styles.deliverableImage}
+//                       />
+//                     ))}
+//                   </div>
+//                 )}
+//               </section>
+//             </>
+//           )}
 
-                    {/* Site Update Section */}
-                    {project.siteUpdate && project.siteUpdate.imgs.length > 0 && (
-            <>
-              <hr className={styles.hr} />
-              <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Site Updates</h2>
-                {project.siteUpdate.title && (
-                  <h3 className={styles.siteUpdateTitle}>{project.siteUpdate.title}</h3>
-                )}
-                <div className={styles.imageContainer}>
-                  {project.siteUpdate.imgs.map((img, index) => (
-                    <ImageGallery 
-                      key={index}
-                      src={img}
-                      alt={`Site Update ${index + 1}`}
-                      width={400}
-                      height={300}
-                      className={styles.siteUpdateImage}
-                    />
-                  ))}
-                </div>
-              </section>
-            </>
-          )}
+//                     {/* Site Update Section */}
+//                     {project.siteUpdate && project.siteUpdate.imgs.length > 0 && (
+//             <>
+//               <hr className={styles.hr} />
+//               <section className={styles.section}>
+//                 <h2 className={styles.sectionTitle}>Site Updates</h2>
+//                 {project.siteUpdate.title && (
+//                   <h3 className={styles.siteUpdateTitle}>{project.siteUpdate.title}</h3>
+//                 )}
+//                 <div className={styles.imageContainer}>
+//                   {project.siteUpdate.imgs.map((img, index) => (
+//                     <ImageGallery 
+//                       key={index}
+//                       src={img}
+//                       alt={`Site Update ${index + 1}`}
+//                       width={400}
+//                       height={300}
+//                       className={styles.siteUpdateImage}
+//                     />
+//                   ))}
+//                 </div>
+//               </section>
+//             </>
+//           )}
 
-<hr className={styles.hr} />
-              <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Interested? Contact me: </h2>
-            <p>Email: {client.email}</p>
-            <p>Phone: {client.phone}</p>
-            <p><Link href={client.fb} style={{display:'flex', gap:'10px'}}> <FacebookIcon className={styles.socialIcon} /> Visit me on Facebook</Link></p>
+// <hr className={styles.hr} />
+//               <section className={styles.section}>
+//                 <h2 className={styles.sectionTitle}>Interested? Contact me: </h2>
+//             <p>Email: {client.email}</p>
+//             <p>Phone: {client.phone}</p>
+//             <p><Link href={client.fb} style={{display:'flex', gap:'10px'}}> <FacebookIcon className={styles.socialIcon} /> Visit me on Facebook</Link></p>
             
       
-              </section>
+//               </section>
           
-        </div>
+//         </div>
+<h1>project url is: {projectUrl}</h1>
       );
-  }catch (error) {
-  console.error('Error in Page component:', error);
-  
+  }
 
-  return (
-    <div className={styles.errorContainer}>
-      <h1>Something went wrong</h1>
-      <p>We cant load the project details. Please try again later.</p>
-      {process.env.NODE_ENV === 'development' && (
-        <pre>{(error as Error).message}</pre>
-      )}
-    </div>
-  );
-}
-}
+
+
 
