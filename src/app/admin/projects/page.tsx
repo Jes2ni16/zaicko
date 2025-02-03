@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import styles from './page.module.css';
 
 type PropertyFormData = {
   projectUrl: string;
@@ -148,55 +149,55 @@ export default function CreateProperty() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6" style={{margin:'auto',textAlign:'center'}}>
-      <h1 className="text-2xl font-bold mb-6">Create New Property</h1>
+    <div className={styles.container}>
+      <h1  className={styles.heading}>Create New Property</h1>
       
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className={styles.grid}>
         {/* Basic Information */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Basic Information</h2>
-          <div className="grid gap-4">
+        <section className={styles.subsection}>
+        <h2 className={styles.sectionTitle}>Basic Information</h2>
+        <div className={styles.grid}>
             <input
               type="text"
               placeholder="Project URL"
               value={formData.projectUrl}
               onChange={(e) => setFormData(prev => ({ ...prev, projectUrl: e.target.value }))}
-              className="w-full p-2 border rounded"
+              className={styles.inputField}
             />
             <input
               type="text"
               placeholder="Project Image URL"
               value={formData.projectImg}
               onChange={(e) => setFormData(prev => ({ ...prev, projectImg: e.target.value }))}
-              className="w-full p-2 border rounded"
+              className={styles.inputField}
             />
             <input
               type="text"
               placeholder="Title"
               value={formData.title}
               onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-              className="w-full p-2 border rounded"
+              className={styles.inputField}
             />
                  <input
               type="text"
               placeholder="location"
               value={formData.projectLocation}
               onChange={(e) => setFormData(prev => ({ ...prev, projectLocation: e.target.value }))}
-              className="w-full p-2 border rounded"
+              className={styles.inputField}
             />
             <textarea
               placeholder="Description"
               value={formData.description}
               onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-              className="w-full p-2 border rounded"
+              className={styles.inputField}
               rows={4}
             />
           </div>
         </section>
 
         {/* Location Section */}
-        <section className="space-y-4">
-  <h2 className="text-xl font-semibold">Location</h2>
+        <section className={styles.subsection}>
+        <h2 className={styles.sectionTitle}>Location</h2>
   
   {/* Location Text */}
   <input
@@ -207,7 +208,7 @@ export default function CreateProperty() {
       ...prev,
       location: { ...prev.location, locationText: e.target.value }
     }))}
-    className="w-full p-2 border rounded"
+    className={styles.inputField}
   />
 
   {/* Location Image */}
@@ -219,15 +220,15 @@ export default function CreateProperty() {
       ...prev,
       location: { ...prev.location, img: e.target.value }
     }))}
-    className="w-full p-2 border rounded"
+    className={styles.inputField}
   />
 
   {/* Location Descriptions */}
-  <div className="space-y-4">
-    <h3 className="text-lg font-medium">Location Descriptions</h3>
+  <div className={styles.grid}>
+  <h3 className="text-lg font-medium">Location Descriptions</h3>
     
     {formData.location.descriptions.map((description, descIndex) => (
-      <div key={descIndex} className="p-4 border rounded space-y-3">
+                  <div key={descIndex} className={styles.descriptionBox}>
         {/* Description Title */}
         <input
           type="text"
@@ -240,7 +241,7 @@ export default function CreateProperty() {
               return newData;
             });
           }}
-          className="w-full p-2 border rounded"
+          className={styles.inputText}
         />
 
         {/* Description List Items */}
@@ -257,7 +258,7 @@ export default function CreateProperty() {
                   return newData;
                 });
               }}
-              className="flex-1 p-2 border rounded"
+              className={styles.projectDetailsInput}
             />
             
             {/* Add/Remove List Item Buttons */}
@@ -271,7 +272,7 @@ export default function CreateProperty() {
                     return newData;
                   });
                 }}
-                className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className={styles.addButton}
               >
                 +
               </button>
@@ -285,7 +286,7 @@ export default function CreateProperty() {
                       return newData;
                     });
                   }}
-                  className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                  className={styles.removeButton}
                 >
                   -
                 </button>
@@ -344,7 +345,7 @@ export default function CreateProperty() {
                         ul: [...prev.projectDetails.ul, '']
                       }
                     }))}
-                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className={styles.addButton}
                   >
                     +
                   </button>
@@ -358,7 +359,7 @@ export default function CreateProperty() {
                           ul: prev.projectDetails.ul.filter((_, i) => i !== index)
                         }
                       }))}
-                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                       className={styles.removeButton}
                     >
                       -
                     </button>
@@ -390,7 +391,7 @@ export default function CreateProperty() {
                         imgs: [...prev.projectDetails.imgs, '']
                       }
                     }))}
-                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className={styles.addButton}
                   >
                     +
                   </button>
@@ -404,7 +405,7 @@ export default function CreateProperty() {
                           imgs: prev.projectDetails.imgs.filter((_, i) => i !== index)
                         }
                       }))}
-                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                       className={styles.removeButton}
                     >
                       -
                     </button>
@@ -456,7 +457,7 @@ export default function CreateProperty() {
                         ul: [...prev.amenitiesFacilities.ul, '']
                       }
                     }))}
-                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className={styles.addButton}
                   >
                     +
                   </button>
@@ -470,7 +471,7 @@ export default function CreateProperty() {
                           ul: prev.amenitiesFacilities.ul.filter((_, i) => i !== index)
                         }
                       }))}
-                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                       className={styles.removeButton}
                     >
                       -
                     </button>
@@ -502,7 +503,7 @@ export default function CreateProperty() {
                         imgs: [...prev.amenitiesFacilities.imgs, '']
                       }
                     }))}
-                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className={styles.addButton}
                   >
                     +
                   </button>
@@ -516,7 +517,7 @@ export default function CreateProperty() {
                           imgs: prev.amenitiesFacilities.imgs.filter((_, i) => i !== index)
                         }
                       }))}
-                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                       className={styles.removeButton}
                     >
                       -
                     </button>
@@ -595,7 +596,7 @@ export default function CreateProperty() {
                       return newData;
                     });
                   }}
-                  className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  className={styles.addButton}
                 >
                   +
                 </button>
@@ -609,7 +610,7 @@ export default function CreateProperty() {
                         return newData;
                       });
                     }}
-                    className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                     className={styles.removeButton}
                   >
                     -
                   </button>
@@ -739,7 +740,7 @@ export default function CreateProperty() {
                         return newData;
                       });
                     }}
-                    className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    className={styles.addButton}
                   >
                     -
                   </button>
@@ -778,7 +779,7 @@ export default function CreateProperty() {
                       return newData;
                     });
                   }}
-                  className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  className={styles.addButton}
                 >
                   +
                 </button>
@@ -792,7 +793,7 @@ export default function CreateProperty() {
                         return newData;
                       });
                     }}
-                    className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                     className={styles.removeButton}
                   >
                     -
                   </button>
@@ -885,7 +886,7 @@ export default function CreateProperty() {
                         ul: [...prev.unitDeliverable.ul, '']
                       }
                     }))}
-                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className={styles.addButton}
                   >
                     +
                   </button>
@@ -899,7 +900,7 @@ export default function CreateProperty() {
                           ul: prev.unitDeliverable.ul.filter((_, i) => i !== index)
                         }
                       }))}
-                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                       className={styles.removeButton}
                     >
                       -
                     </button>
@@ -931,7 +932,7 @@ export default function CreateProperty() {
                         imgs: [...prev.unitDeliverable.imgs, '']
                       }
                     }))}
-                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className={styles.addButton}
                   >
                     +
                   </button>
@@ -945,7 +946,7 @@ export default function CreateProperty() {
                           imgs: prev.unitDeliverable.imgs.filter((_, i) => i !== index)
                         }
                       }))}
-                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                      className={styles.removeButton}
                     >
                       -
                     </button>
@@ -976,7 +977,7 @@ export default function CreateProperty() {
               ...prev,
               floorPlan: [...prev.floorPlan, '']
             }))}
-            className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className={styles.addButton}
           >
             +
           </button>
@@ -987,7 +988,7 @@ export default function CreateProperty() {
                 ...prev,
                 floorPlan: prev.floorPlan.filter((_, i) => i !== index)
               }))}
-              className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              className={styles.removeButton}
             >
               -
             </button>
@@ -1044,7 +1045,7 @@ export default function CreateProperty() {
                         imgs: [...prev.siteUpdate.imgs, '']
                       }
                     }))}
-                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className={styles.addButton}
                   >
                     +
                   </button>
@@ -1058,7 +1059,7 @@ export default function CreateProperty() {
                           imgs: prev.siteUpdate.imgs.filter((_, i) => i !== index)
                         }
                       }))}
-                      className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                      className={styles.removeButton}
                     >
                       -
                     </button>
