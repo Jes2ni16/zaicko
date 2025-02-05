@@ -1,10 +1,11 @@
+'use client';
 import { useState } from 'react';
 import { Dialog, DialogContent, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Image from 'next/image';
-
+import styles from './page.module.css';
 
 interface Image {
   src: string;
@@ -51,12 +52,12 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   return (
     <>
       {/* Image Container */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}className='imgContainer'>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', justifyContent:'center'}}className={styles.imgContainer}>
         {images.map((image, index) => (
           <div
             key={index}
             onClick={() => handleOpen(image, index)}
-            style={{ cursor: 'pointer', width: '300px', height: '300px' }}
+            style={{ cursor: 'pointer', width: 'auto', height: 'auto' }}
           >
             <Image
               src={image.src}

@@ -1,10 +1,29 @@
-'use client';
 
 import styles from './page.module.css';
 import Image from 'next/image';
-import ProjectsImage from '../../../../components/projectsImage';
+import ProjectsImage from '../projectsImage';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Urban Deca Homes | Affordable Urban Living in Mandaue City',
+  description: 'Urban Deca Homes offers affordable living in Mandaue City with easy access to malls, universities, and businesses. Enjoy modern amenities and a prime location at an affordable price.',
+  openGraph: {
+    title: 'Urban Deca Homes | Affordable Urban Living in Mandaue City',
+    description: 'Located in the heart of Mandaue City, Urban Deca Homes provides affordable, quality condos with modern amenities, perfect for urban living close to everything you need.',
+    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172068/ge2cJUG_ioh2hu.webp'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Urban Deca Homes | Affordable Urban Living in Mandaue City',
+    description: 'Experience affordable and comfortable living at Urban Deca Homes in Mandaue City with easy access to major commercial, business, and leisure spots.',
+    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738172068/ge2cJUG_ioh2hu.webp'],
+  },
+}
+
+
 
 export default function UrbanDeca() {
 
@@ -57,9 +76,6 @@ export default function UrbanDeca() {
       { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171922/2qguy9k_fv5ij2.webp', alt: 'Site Image 1' },
       { src: 'https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171921/ZRQykkB_uxbrkp.webp', alt: 'Site Image 2' },
     ]
-
-
-
 
 
   return (

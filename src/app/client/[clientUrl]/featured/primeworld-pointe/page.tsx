@@ -1,10 +1,30 @@
-'use client';
+
 
 import styles from '../page.module.css';
 import Image from 'next/image';
-import ProjectsImage from '../../../../components/projectsImage';
+import ProjectsImage from '../projectsImage';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Primeworld Pointe Lahug | Affordable Condo in Cebu City',
+  description: 'Primeworld Pointe Lahug is a 22-story condominium in Lahug, Cebu City, offering modern living spaces with various unit types and amenities, including a gym, pools, and more.',
+  openGraph: {
+    title: 'Primeworld Pointe Lahug | Affordable Condo in Cebu City',
+    description: 'Primeworld Pointe Lahug is a residential tower offering affordable units with stunning views, premium amenities, and a prime location near Cebu IT Park and major establishments.',
+    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738173933/270301887_461699735341168_9135717747189606447_n_jhr9e4.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Primeworld Pointe Lahug | Affordable Condo in Cebu City',
+    description: 'Primeworld Pointe Lahug offers modern condo living with spacious units, a strategic location in Lahug, and high-end amenities for a vibrant lifestyle.',
+    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738173933/270301887_461699735341168_9135717747189606447_n_jhr9e4.jpg'],
+  },
+}
+
+
 
 export default function primeworld () {
 
@@ -228,7 +248,7 @@ Primeworld Land’s projects are not only economical, they’re also well situat
 </div>
 </div>
 
-<div className={styles.deliverable}>
+<div className={styles.containers}>
 <h2>Deliverable Unit</h2>
 <div className={styles.imgs}>
 <ProjectsImage images={deliverable} />

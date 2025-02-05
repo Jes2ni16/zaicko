@@ -1,0 +1,49 @@
+{
+    "projects": [
+        {
+            "id":"mandtra",
+            "title": "MANDTRA RESIDENCES",
+            "description": "Mandtra Residences sets the standard of Cebuano Living at the heart of its industrial heritage.",
+            "image": "https://i.imgur.com/6jjNq8v.jpg", 
+            "link": "featured/mandtra"
+          },
+          {
+            "id":"urban-deca-mandaue",
+            "title": "URBAN DECA HOMES",
+            "description": "Enjoy urban living within the business district of Mandaue City. Homeowners have close and easy access to malls, universities, churches, a hospital, international airport, as well as business and commercial districts in the metro.",
+            "image": "https://i.imgur.com/ge2cJUG.jpg", 
+            "link": "featured/urban-deca-mandaue"
+          },
+          {
+            "id":"primeworld-district",
+            "title": "PRIMEWORLD DISTRICT",
+            "description": "At Primeworld District, residents don’t have to leave home to enjoy summer activities. Facilities to match any premium resort are found on the amenity area, promising outdoor fun all year round.",
+            "image": "https://i.imgur.com/E6f9qeu.jpg", 
+            "link": "featured/primeworld-district"
+          },
+          {
+            "id":"le-menda-busay",
+            "title": "Le Menda-Busay",
+            "description": "Le Menda Residences is a luxurious residential development located in Busay, Cebu, Philippines. Situated in the picturesque mountains of Cebu, it offers residents breathtaking views of the city skyline and the surrounding natural beauty.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/8g0sKQZ_xjltap.webp", 
+            "link": "featured/le-menda-busay"
+          },
+          {
+            "id":"primeworld-pointe",
+            "title": "PRIMEWORLD POINTE LAHUG",
+            "description": "Primeworld believes that every Filipino deserves a good life, starting with a good home. We have made it our mission to develop quality homes in safe communities where Filipinos can thrive and live a good life.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738173933/270301887_461699735341168_9135717747189606447_n_jhr9e4.jpg", 
+            "link": "featured/primeworld-pointe"
+          },
+          {
+            "id":"clarendon-residences",
+            "title": "CLARENDON RESIDENCES CEBU CITY",
+            "description": "Clarendon Residences in Cebu City!! Embracing Modern and Sophisticated lifestyle!",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692642/aldrich_dmmuaw.jpg", 
+            "link": "featured/clarendon-residences"
+          }
+
+
+
+    ]
+    }

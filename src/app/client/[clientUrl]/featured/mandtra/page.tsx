@@ -1,10 +1,29 @@
-'use client';
 
+
+import { Metadata } from 'next';
 import styles from './page.module.css';
 import Image from 'next/image';
-import ProjectsImage from '../../../../components/projectsImage';
+import ProjectsImage from '../projectsImage';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+
+export const metadata: Metadata = {
+  title: 'Mandtra Residences | Urban Tropical Living in Cebu',
+  description: 'Mandtra Residences in Cebu City offers urban tropical living with modern and balanced designs. Explore 1-bedroom and studio units at the heart of Mandaue City, near AS Fortuna St. and P. Basubas St.',
+  openGraph: {
+    title: 'Mandtra Residences | Urban Tropical Living in Cebu',
+    description: 'Experience urban tropical living with Mandtra Residences, offering modern townhouses and amenities in Mandaue City, Cebu.',
+    images: ['https://i.imgur.com/6jjNq8v.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mandtra Residences | Urban Tropical Living in Cebu',
+    description: 'Mandtra Residences combines Cebuano craftsmanship with modern living in a strategic location near AS Fortuna St. and P. Basubas St. in Mandaue City.',
+    images: ['https://i.imgur.com/6jjNq8v.jpg'],
+  },
+}
+
 
 export default function Mandtra() {
 

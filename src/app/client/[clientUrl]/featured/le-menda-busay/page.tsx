@@ -1,10 +1,27 @@
-'use client';
 
+import { Metadata } from 'next';
 import styles from './page.module.css';
 import Image from 'next/image';
-import ProjectsImage from '../../../../components/projectsImage';
+import ProjectsImage from '../projectsImage';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+
+export const metadata: Metadata = {
+  title: 'Le Menda-Busay | Luxurious Residences in Cebu',
+  description: 'Le Menda-Busay offers luxurious living in the heart of Busay, Cebu. With breathtaking views, modern amenities, and close proximity to major attractions, it\'s the ideal choice for peaceful, upscale living.',
+  openGraph: {
+    title: 'Le Menda-Busay | Luxurious Residences in Cebu',
+    description: 'Le Menda-Busay offers luxurious living with scenic views and premium amenities in Busay, Cebu.',
+    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Le Menda-Busay | Luxurious Residences in Cebu',
+    description: 'Experience upscale living at Le Menda-Busay in Cebu, surrounded by nature with modern facilities.',
+    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp'],
+  },
+}
 
 export default function LeMenda() {
 
@@ -67,7 +84,7 @@ export default function LeMenda() {
   <ArrowBackIcon />
 </IconButton>
 <div className={styles.img}>
-    <Image src='https://i.imgur.com/W4IKSJQ.jpg' width='500' height={700} alt='Le Menda-Busay'/>
+    <Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp' width='500' height={700} alt='Le Menda-Busay'/>
 </div>
 <div className={styles.submin}>
   <p style={{textAlign:'center', margin:'10px auto', color:'#0E6543'}}>Where beauty meets convenience and luxury.</p>

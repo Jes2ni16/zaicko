@@ -8,7 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 
 interface ClientData {
-projects:string[];
+  projects: string[];  // Define that projects is an array of strings
 }
 
 export default function FeaturedProjects() {
@@ -16,6 +16,7 @@ export default function FeaturedProjects() {
   const [clientData, setClientData] = useState<ClientData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     const url = window.location.href;
     const match = url.match(/\/client\/(.*?)\/featured/);
@@ -33,24 +34,21 @@ export default function FeaturedProjects() {
           setLoading(false);
         });
 
-      urlAfterClient = urlAfterClient.replace(/\d+/g, "").toUpperCase();
+      // Clean up the URL and set it
+      urlAfterClient = urlAfterClient.replace(/\d+/g, '').toUpperCase();
       setCurrentURL(urlAfterClient);
-    }else {
+    } else {
       setError('Invalid URL format.');
       setLoading(false);
     }
-
   }, []);
 
-
-
-
-    return (
-      <div className={styles.page}>
+  return (
+    <div className={styles.page}>
       {/* Back Button */}
       <IconButton
         component="a"
-        href="listing"
+        href="/listing"  // Updated to a proper relative path for going back
         color="primary"
         aria-label="go back"
         sx={{
@@ -60,6 +58,7 @@ export default function FeaturedProjects() {
           width: 30,
           height: 30,
           top: '10px',
+          left: '10px',  // Ensure it's placed on the left side
           borderRadius: '50%',
           '&:hover': {
             backgroundColor: '#333', // Darker shade for hover
@@ -84,5 +83,4 @@ export default function FeaturedProjects() {
       )}
     </div>
   );
-
-  ;}
+}

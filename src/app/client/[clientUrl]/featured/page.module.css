@@ -2,9 +2,7 @@
     max-width: 1400px;
     margin: auto;
     padding: 20px;
-
 }
-
 .header {
     text-align: center;
     margin-bottom: 50px;
@@ -16,9 +14,6 @@
     font-size: 42px;
     color: #0E6543;
 }
-
-
-
 
 
 @media (max-width:991px) {
@@ -34,9 +29,6 @@ padding-bottom: 50px;
     
 }
 }
-
-
-
 
 
 
@@ -71,7 +63,7 @@ padding-bottom: 50px;
 
 .headPart h1 {
     color: #0E6543;
-    font-size: 70px;
+    font-size: 60px;
     font-weight: 600;
 }
 
@@ -119,7 +111,6 @@ padding-bottom: 50px;
 .containers img {
     height: auto;
     max-height: 250px;
-    width: 100%;
 }
 
 .containers h2 {
@@ -154,12 +145,26 @@ padding-bottom: 50px;
     margin-top: 20px;
     font-size: 18px;
     line-height: 35px;
-       margin-left: 20px;
+       margin-left: 30px;
+}
+.containers ol{
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 35px;
+       margin-left: 30px;
 }
 
+.locationImg img {
+    max-height: 1000px;
+    width: 80%!important;
+}
+.locationImg div {
+    width: 100%!important;
+}
 
-
-
+.containers p {
+    font-size: 20px;
+}
 
 @media (max-width:991px) {
     .intro .img{
@@ -195,6 +200,16 @@ padding-bottom: 50px;
 .containers {
     padding: 10px;
     margin-bottom: 20px;
+    margin: 0;
+}
+.body h2 {
+font-size: 22px;
+}
+.imgContainer img {
+    width: 100%;
+}
+.imgContainer div {
+    width: auto;
 }
 
 .containers p{
@@ -202,8 +217,59 @@ padding-bottom: 50px;
     line-height: 23px;
     margin-bottom: 10px;
 }
+.details p {
+    font-size: 18px;
+}
 
+.locationImg img {
+    width: 100%!important;
+}
 
+}
 
+/* this is for new styles */
 
+.body1{
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.heroImage{
+    width: 100%;
+    object-fit: cover;
+    height: 250px;
+    margin: auto;
+    display: flex;
+}
+
+.section h1 {
+    font-size: 36px;
+   margin-top: 20px;
+}
+.section h2 {
+    font-size: 28px;
+   margin-top: 20px;
+}
+
+.section p {
+    font-size: 18px;
+    line-height: 26px;
+    margin-top: 10px;
+}
+.section ul {
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.fullImage {
+    width: 80%;
+    height: 100%;
+}
+
+.flexImage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }

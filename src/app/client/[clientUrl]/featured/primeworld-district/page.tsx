@@ -1,10 +1,30 @@
-'use client';
+
 
 import styles from './page.module.css';
 import Image from 'next/image';
-import ProjectsImage from '../../../../components/projectsImage';
+import ProjectsImage from '../projectsImage';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Metadata } from 'next';
+
+
+
+export const metadata: Metadata = {
+  title: 'Primeworld District | Resort-Style Community in Mactan, Cebu',
+  description: 'Primeworld District in Brgy. Agus, Lapu-Lapu City offers resort-style living with premium amenities and residences, including studio, 1-bedroom, 2-bedroom units, and villas.',
+  openGraph: {
+    title: 'Primeworld District | Resort-Style Community in Mactan, Cebu',
+    description: 'Primeworld District offers a lifetime vacation lifestyle in a resort-style community in Brgy. Agus, Lapu-Lapu City. Experience luxury living with great amenities and a serene environment.',
+    images: ['https://i.imgur.com/E6f9qeu.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Primeworld District | Resort-Style Community in Mactan, Cebu',
+    description: 'Primeworld District brings resort-style living to Brgy. Agus, Mactan. Enjoy luxury living with various unit options and world-class amenities.',
+    images: ['https://i.imgur.com/E6f9qeu.jpg'],
+  },
+}
+
 
 export default function Mandtra() {
 
@@ -68,10 +88,6 @@ export default function Mandtra() {
       { src: 'https://i.imgur.com/APDUqKo.jpg', alt: 'Site Image 2' },
       { src: 'https://i.imgur.com/zmdLt0v.jpg', alt: 'Site Image 2' },
     ]
-
-
-
-
 
   return (
     <div className={styles.body}>
