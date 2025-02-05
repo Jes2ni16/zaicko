@@ -205,9 +205,7 @@ padding-bottom: 50px;
 .body h2 {
 font-size: 22px;
 }
-.imgContainer img {
-    width: 100%;
-}
+
 .imgContainer div {
     width: auto;
 }
@@ -258,7 +256,7 @@ font-size: 22px;
     line-height: 26px;
     margin-top: 10px;
 }
-.section ul {
+.section ul, .section ol {
     line-height: 30px;
     margin-top: 20px;
     margin-left: 20px;
@@ -272,4 +270,17 @@ font-size: 22px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+}
+
+@media (max-width:1100px) {
+    .body1{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .body1 h1 {
+        font-size: 28px;
+    }
+    .body1 h2 {
+        font-size: 24px;
+    }
 }

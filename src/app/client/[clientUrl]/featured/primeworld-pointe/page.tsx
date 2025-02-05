@@ -99,7 +99,7 @@ export default function primeworld () {
 </div>
 <div className={styles.submin}>
     <h1 className='text-center'>PRIMEWORLD POINTE LAHUG</h1>
-    <h2 className='my-5'>Primeworld believes that every Filipino deserves a good life, starting with a good home. We have made it our mission to develop quality homes in safe communities where Filipinos can thrive and live a good life.</h2>
+    <p className='my-5'>Primeworld believes that every Filipino deserves a good life, starting with a good home. We have made it our mission to develop quality homes in safe communities where Filipinos can thrive and live a good life.</p>
     <div className='' style={{marginTop:'20px'}}>
         <p style={{fontSize:'18px', fontWeight:'bold'}}>Project Location:</p>
         <p style={{fontSize:'18px', }}>La Guardia 1st St., Lahug, Cebu City</p>

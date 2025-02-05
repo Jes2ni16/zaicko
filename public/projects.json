@@ -41,6 +41,13 @@
             "description": "Clarendon Residences in Cebu City!! Embracing Modern and Sophisticated lifestyle!",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692642/aldrich_dmmuaw.jpg", 
             "link": "featured/clarendon-residences"
+          },
+          {
+            "id":"north-grove-pristina",
+            "title": "NORTH GROVE AT PRISTINA TOWN",
+            "description": "The development features two distinctive towers, Lumina and Terra, thoughtfully crafted to blend harmoniously with the natural surroundings. These towers symbolize the balance between contrasts, creating living spaces where diverse lifestyles can coexist and thrive.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738605900/9-NORTH-GROVE_okraor.jpg", 
+            "link": "featured/north-grove-pristina"
           }
 
 
