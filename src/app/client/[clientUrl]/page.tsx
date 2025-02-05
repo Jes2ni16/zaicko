@@ -1,11 +1,9 @@
-'use client';
+
 
 import styles from './page.module.css';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';  
 import Image from 'next/image';
-import axios from 'axios';
-import { CircularProgress, Box } from '@mui/material';
+
 
 interface ClientData {
   name: string;
@@ -24,99 +22,114 @@ interface ClientData {
 }
 
 
-export default function ClientHome() {
-
-  const [clientData, setClientData] = useState<ClientData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Get the current URL from window.location
-    const url = window.location.href;
-    const urlAfterClient = url.split('/client/')[1]; 
-    
-
-
- if (urlAfterClient) {
-  
-      axios
-        .get(`https://zaiko-server.vercel.app/api/clients/url/${urlAfterClient}`)
-        .then((response) => {
-          setClientData(response.data); // Assuming the response contains client data
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(`Failed to fetch client data: ${err}`);
-          setLoading(false);
-        });
+export async function generateStaticParams() {
+  try {
+    const res = await fetch('https://zaiko-server.vercel.app/api/clients');
+    if (!res.ok) {
+      return [];
     }
-
-
-  }, []);
-
-  if (loading) {
-    return  <Box
-    sx={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh', // Centers vertically and horizontally
-    }}
-  >
-    <CircularProgress />
-  </Box>
+    const clients = await res.json();
+    
+    return clients.map((client: ClientData) => ({
+      clientUrl: client.url,
+    }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
   }
+}
 
-  if (error) {
-    return <p>{error}</p>;
+
+async function getClient(clientUrl: string): Promise<ClientData> {
+  const res = await fetch(
+    `https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`,
+    { next: { revalidate: 3600 } } // Revalidate every hour
+  );
+  
+  if (!res.ok) {
+    return null;
   }
+  
+  return res.json();
+}
+
+export default async function ClientHome({ params }: { params: Promise<{ clientUrl: string }>;}) {
+
+  const resolvedParams = await params;
+  const clientData = await getClient(resolvedParams.clientUrl);
+  
 
   if (!clientData) {
-    return <p>No client data found.</p>;
+    return <h1>Not Found</h1>;
   }
+
 
 
   return (
     <div className={styles.body}>
-    <div className={styles.page1}>
-      <div className={styles.imgContainer}>
-        <Image src={clientData.image} width={2560} height={1440} alt={clientData.name} />
-        <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
-   { clientData.tiktok || clientData.fb || clientData.instagram || clientData.youtube ? (<div className={styles.socLinks}>
-      {clientData.tiktok? (<Link href={clientData.tiktok}><Image src={'/tiktok.webp'} width={30} height={30} alt='tiktok image'/></Link>):(<></>)}
-      {clientData.fb? (<Link href={clientData.fb} style={{padding:'3px'}} ><Image src={'/facebook.png'} width={30} height={30} alt='facebook image'/></Link>):(<></>)}
-      {clientData.youtube? (<Link href={clientData.youtube} ><Image src={'/youtube.png'} width={30} height={30} alt='youtube image'/></Link>):(<></>)}
-      {clientData.instagram? (<Link href={clientData.instagram} ><Image src={'/InstagramIcon.png'} width={30} height={30} alt='instagram image'/></Link>):(<></>)}
+      <div className={styles.page1}>
+        <div className={styles.imgContainer}>
+          <Image src={clientData.image} width={2560} height={1440} alt={clientData.name}  />
+          <Link 
+            href={`/client/${clientData.url}/listing`} 
+            className={styles.linkList}
+            prefetch={true} // Add explicit prefetch
+          >
+            <span>My Listings</span>
+          </Link>
+          <div className={styles.socLinks}>
+            {clientData.tiktok && (
+              <Link href={clientData.tiktok}><Image src={'/tiktok.webp'} width={30} height={30} alt='tiktok image'/></Link>
+            )}
+            {clientData.fb && (
+              <Link href={clientData.fb} style={{padding:'3px'}}><Image src={'/facebook.png'} width={30} height={30} alt='facebook image'/></Link>
+            )}
+            {clientData.youtube && (
+              <Link href={clientData.youtube}><Image src={'/youtube.png'} width={30} height={30} alt='youtube image'/></Link>
+            )}
+            {clientData.instagram && (
+              <Link href={clientData.instagram}><Image src={'/InstagramIcon.png'} width={30} height={30} alt='instagram image'/></Link>
+            )}
+          </div>
+          <div className={styles.fma}>
+            <Link href='https://findmyagent.net'>
+              <Image src='/fma.png' width={40} height={30} alt="find my agent Logo" />
+            </Link>
+          </div>
+        </div>
+      </div>
 
-    </div>):<div></div> }
-      <div className={styles.fma}>
-      <Link href='https://findmyagent.net'>
-      <Image src='/fma.png' width={40} height={30} alt="find my agent Logo" />
-      </Link>
+      <div className={styles.page2}>
+        <div className={styles.imgContainer}>
+          <Image src={clientData.image_mobile} width={2778} height={1284} alt="Image description"   priority />
+          <Link 
+            href={`/client/${clientData.url}/listing`} 
+            className={styles.linkList}
+            prefetch={true}
+          >
+            <span>My Listings</span>
+          </Link>
+          <div className={styles.socLinks1}>
+            {clientData.tiktok && (
+              <Link href={clientData.tiktok}><Image src={'/tiktok.webp'} width={30} height={30} alt='tiktok image'/></Link>
+            )}
+            {clientData.fb && (
+              <Link href={clientData.fb} style={{padding:'3px'}}><Image src={'/facebook.png'} width={30} height={30} alt='facebook image'/></Link>
+            )}
+            {clientData.youtube && (
+              <Link href={clientData.youtube}><Image src={'/youtube.png'} width={30} height={30} alt='youtube image'/></Link>
+            )}
+            {clientData.instagram && (
+              <Link href={clientData.instagram}><Image src={'/InstagramIcon.png'} width={30} height={30} alt='instagram image'/></Link>
+            )}
+          </div>
+          <div className={styles.fma}>
+            <Link href='https://findmyagent.net'>
+              <Image src='/fma.png' width={25} height={20} alt="find my agent Logo" />
+            </Link>
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
-
-    
-    <div className={styles.page2}>
-      <div className={styles.imgContainer}>
-        <Image src={clientData.image_mobile} width={2778} height={1284} alt="Image description" />
-        <Link href={`/client/${clientData.url}/listing`} className={styles.linkList}>My Listings</Link>
-        { clientData.tiktok || clientData.fb || clientData.instagram || clientData.youtube ? (<div className={styles.socLinks1}>
-      {clientData.tiktok? (<Link href={clientData.tiktok}><Image src={'/tiktok.webp'} width={30} height={30} alt='tiktok image'/></Link>):(<></>)}
-      {clientData.fb? (<Link href={clientData.fb} style={{padding:'3px'}} ><Image src={'/facebook.png'} width={30} height={30} alt='facebook image'/></Link>):(<></>)}
-      {clientData.youtube? (<Link href={clientData.youtube} ><Image src={'/youtube.png'} width={30} height={30} alt='youtube image'/></Link>):(<></>)}
-      {clientData.instagram? (<Link href={clientData.instagram} ><Image src={'/InstagramIcon.png'} width={30} height={30} alt='instagram image'/></Link>):(<></>)}
-
-    </div>):<div></div> }
-       
-        <div className={styles.fma}>
-      <Link href='https://findmyagent.net'>
-      <Image src='/fma.png' width={25} height={20} alt="find my agent Logo" />
-      </Link>
-      </div>
-      </div>
-    </div>
     </div>
   );
 }
