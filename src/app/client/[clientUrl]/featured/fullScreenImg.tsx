@@ -94,7 +94,7 @@ const FullImage: React.FC<FullImageProps> = ({ src, alt, className,   width = 30
                   maxHeight: '95vh',
                   objectFit: 'contain',
                 }}
-                quality={80}
+                quality={90}
                 priority
               />
             </div>
