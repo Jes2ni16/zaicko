@@ -48,6 +48,20 @@
             "description": "The development features two distinctive towers, Lumina and Terra, thoughtfully crafted to blend harmoniously with the natural surroundings. These towers symbolize the balance between contrasts, creating living spaces where diverse lifestyles can coexist and thrive.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738605900/9-NORTH-GROVE_okraor.jpg", 
             "link": "featured/north-grove-pristina"
+          },
+          {
+            "id":"tierra-alta",
+            "title": "TIERRA ALTA in SAN FERNANDO, CEBU",
+            "description": "Tierra Altais a new hot spot where new Dream Home is located. Embraced wide range of greenies, breathtaking mountain side &amp; Seaview.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738812484/TIERRA-1536x818_yjqvnd.webp", 
+            "link": "featured/tierra-alta"
+          },
+          {
+            "id":"guada-verde-residences",
+            "title": "GUADA VERDE RESIDENCES in GUADALUPE",
+            "description": "Guada Verde Residences is a place you can come home to and experience good life at Sterling land. Experience  verdant suburban lifestyle in the heart of the inner city, GET YOUR  VERDANT SUBURBAN LIFESTYLE HOME.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807600/306534238_3215994575285619_7109149711564738505_n-e1692175229196_rkwvae.webp", 
+            "link": "featured/guada-verde-residences"
           }
 
 

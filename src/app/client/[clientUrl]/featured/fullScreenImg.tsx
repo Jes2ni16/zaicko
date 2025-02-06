@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Dialog, DialogContent, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close'; // Import the Close icon
+
+import { useState, useEffect } from 'react';
+
 import Image from 'next/image'; // Import the Image component from Next.js
 
 // Define the props interface for the component
@@ -10,11 +10,18 @@ interface FullImageProps {
   src: string;
   alt: string;
   className?: string;
+  width?: number;  
+  height?: number;
 }
 
-const FullImage: React.FC<FullImageProps> = ({ src, alt, className }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
+const FullImage: React.FC<FullImageProps> = ({ src, alt, className,   width = 300, 
+  height = 250   }) => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isMounted, setIsMounted] = useState<boolean>(false);
+  
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
   // Handle closing the modal
   const handleClose = () => setIsOpen(false);
 
@@ -27,57 +34,71 @@ const FullImage: React.FC<FullImageProps> = ({ src, alt, className }) => {
       <Image
         src={src}
         alt={alt}
-        width={300}
-        height={250}
+        width={width}
+        height={height}
         className={className}
         onClick={handleOpen} // Open the modal on click
         style={{ cursor: 'pointer' }}
       />
 
-      {/* Modal to display the image in full screen using MUI Dialog */}
-      <Dialog
-        open={isOpen}
-        onClose={handleClose} // Close modal
-        maxWidth="xl"
-        fullScreen
-      >
-        <DialogContent
-          sx={{
-            padding: 0,
+{isMounted && isOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            position: 'relative',
+            zIndex: 1000,
           }}
+          onClick={handleClose}
         >
-          {/* Close Button positioned at the top-right */}
-          <IconButton
-            onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              top: 10,
-              right: 10,
-              background: 'black', // Background to make the button stand out
-              color: 'white', // Ensure the button is visible on dark backgrounds
-              zIndex: 9999, // Ensure the button stays above other content
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-
-          {/* Full screen image */}
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            style={{
-              objectFit: 'contain', // Ensures the image is contained within the screen
-            }}
-            quality={100}
-            priority
-          />
-        </DialogContent>
-      </Dialog>
+          <div style={{ position: 'relative' }}>
+            <button
+              onClick={handleClose}
+              style={{
+                position: 'absolute',
+                top: -60,
+                right: 0,
+                background: 'black',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                cursor: 'pointer',
+                zIndex: 1001,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              ✕
+            </button>
+            <div onClick={(e) => e.stopPropagation()}>
+              <Image
+                src={src}
+                alt={alt}
+                width={1920}
+                height={1080}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  maxWidth: '95vw',
+                  maxHeight: '95vh',
+                  objectFit: 'contain',
+                }}
+                quality={100}
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

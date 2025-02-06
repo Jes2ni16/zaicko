@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   }
   
 
-export default function DannaraNorth(){
+export default function Clarendon(){
 
 return(
     <div className={styles.body1}>
