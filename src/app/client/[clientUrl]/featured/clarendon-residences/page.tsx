@@ -15,10 +15,8 @@ export const metadata: Metadata = {
     },
   }
   
-
-export default function Clarendon(){
-
-return(
+  export default function Clarendon() {
+    return (
     <div className={styles.body1}>
 
 <Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692642/aldrich_dmmuaw.jpg' width={500} height={500} className={styles.heroImage} alt=''/>

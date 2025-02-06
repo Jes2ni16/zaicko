@@ -14,14 +14,19 @@ interface FullImageProps {
   height?: number;
 }
 
-const FullImage: React.FC<FullImageProps> = ({ src, alt, className,   width = 300, 
-  height = 250   }) => {
+const FullImage: React.FC<FullImageProps> = ({ 
+  src, 
+  alt, 
+  className, 
+  width = 300, 
+  height = 250 
+}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isMounted, setIsMounted] = useState<boolean>(false);
   
     useEffect(() => {
       const preloadImage = new window.Image();
-    preloadImage.src = src;
+    preloadImage.src = src; 
     setIsMounted(true);
     }, [src]);
   // Handle closing the modal
@@ -94,7 +99,6 @@ const FullImage: React.FC<FullImageProps> = ({ src, alt, className,   width = 30
                   maxHeight: '95vh',
                   objectFit: 'contain',
                 }}
-                quality={90}
                 priority
               />
             </div>

@@ -272,9 +272,16 @@ font-size: 22px;
     gap: 15px;
     justify-content: center;
 }
-
+.footer{ 
+margin: 10px;
+}
+.fbLink{
+    text-decoration: underline;
+    color: #242ec2;
+}
 @media (max-width:1100px) {
     .body1{
+
         padding-left: 10px;
         padding-right: 10px;
     }
