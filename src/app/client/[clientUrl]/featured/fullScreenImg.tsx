@@ -20,8 +20,10 @@ const FullImage: React.FC<FullImageProps> = ({ src, alt, className,   width = 30
     const [isMounted, setIsMounted] = useState<boolean>(false);
   
     useEffect(() => {
-      setIsMounted(true);
-    }, []);
+      const preloadImage = new window.Image();
+    preloadImage.src = src;
+    setIsMounted(true);
+    }, [src]);
   // Handle closing the modal
   const handleClose = () => setIsOpen(false);
 
