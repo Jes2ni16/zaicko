@@ -27,8 +27,8 @@ const FullImage: React.FC<FullImageProps> = ({ src, alt, className }) => {
       <Image
         src={src}
         alt={alt}
-        width={400}
-        height={300}
+        width={300}
+        height={250}
         className={className}
         onClick={handleOpen} // Open the modal on click
         style={{ cursor: 'pointer' }}

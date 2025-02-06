@@ -270,6 +270,7 @@ font-size: 22px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    justify-content: center;
 }
 
 @media (max-width:1100px) {
@@ -279,6 +280,16 @@ font-size: 22px;
     }
     .body1 h1 {
         font-size: 28px;
+        line-height: 2rem;
+    }
+    .body1 p {
+        font-size: 16px;
+        line-height: 1.8rem;
+    }
+    .fullImage {
+        display: flex;
+        justify-content: center;
+        margin: auto;
     }
     .body1 h2 {
         font-size: 24px;

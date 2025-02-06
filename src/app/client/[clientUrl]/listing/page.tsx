@@ -7,6 +7,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import { Button,  Slider, Typography, CircularProgress, Box, IconButton, Card} from '@mui/material';
+import BackgroundImage from './backGround';
 
 
 interface ClientData {
@@ -50,6 +51,8 @@ const ClientListing = () => {
   const [minPrice, setMinPrice] = useState<number>(0);
   const [selectedCity, setSelectedCity] = useState<string>('');
   const [maxPrice, setMaxPrice] = useState<number>(0);
+
+
 
   useEffect(() => {
     const url = window.location.href;
@@ -167,13 +170,8 @@ const ClientListing = () => {
 
   return (
     <div className={styles.body}>
-      <div
-        className={styles.page1}
-        style={{
-          backgroundImage: clientData?.background
-            ? `url(${clientData.background})`
-            : 'none',
-        }}
+      <BackgroundImage   imageUrl={clientData?.background || ''} 
+        className={styles.page1} 
       >
 
 
@@ -339,7 +337,7 @@ const ClientListing = () => {
           </div>
 
         </div>
-      </div>
+      </BackgroundImage>
 
 
 
@@ -353,14 +351,11 @@ const ClientListing = () => {
       >
 
 <Link href={`/client/${currentURL}/`} className={styles.back}>    <IconButton aria-label="home">
-            <ArrowBackIcon sx={{
-              color: 'white',
-              border: '1px solid black',borderRadius: '50%',backgroundColor: 'black',padding: '3px',fontSize: '30px',            }} />
+            <ArrowBackIcon className={styles.backIcon} />
           </IconButton></Link>
         <div className={styles.lists}>
         <div className={styles.header}>
           <h1 style={{ textAlign: 'start' }}>My Listings</h1>
-
 
           <Link href={`/client/${currentURL}/featured`} className={styles.featuredBtn}  >
             Featured Projects      <ApartmentIcon style={{ fontSize: 25, color: '#fff' }} />
@@ -373,13 +368,24 @@ const ClientListing = () => {
     boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',padding: '3px 10px' , maxWidth:'600px',margin:'auto', marginBottom:'10px',
   }}>
           <div style={{ display: 'flex' }}>
-            <div style={{ width: '50%', margin: 'auto' }}>
-              <Typography gutterBottom className={styles.sliderContainer} style={{ fontSize: '16px', display: 'block' }}>
-                Price Range: <div style={{ fontSize: '14px' }}> &#8369; {priceRange[0]} - &#8369; {priceRange[1]} </div>
-              </Typography>
-              <Slider
-                value={priceRange}
-                onChange={handlePriceChange}
+          <div style={{ width: '50%', margin: 'auto' }}>
+  <Typography 
+    gutterBottom 
+    className={styles.sliderContainer} 
+    component="div" // Change to div instead of p
+    style={{ fontSize: '16px', display: 'block' }}
+  >
+    Price Range: 
+    <Typography 
+      component="span" 
+      style={{ fontSize: '14px', display: 'block' }}
+    >
+      &#8369; {priceRange[0]} - &#8369; {priceRange[1]}
+    </Typography>
+  </Typography>
+  <Slider
+    value={priceRange}
+    onChange={handlePriceChange}
                 valueLabelDisplay="auto"
                 min={minPrice || 0}
                 max={maxPrice}
@@ -444,19 +450,10 @@ const ClientListing = () => {
         <button
           key={type}
           onClick={() => setSelectedListType(type)}
-          style={{
-            padding: '10px 15px',
-            fontSize: '12px',
-            cursor: 'pointer',
-            maxWidth:'500px',
-            width:'33%',
-            borderRadius: '5px',
-            border: selectedListType === type ? '2px solid #383838' : '2px solid #D9D9D9',
-            backgroundColor: selectedListType === type ? '#383838' : '#D9D9D9',
-            color: selectedListType === type ? '#fff' : '#4c504d',
-            transition: 'all 0.3s ease',
-            boxShadow: '0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'
-          }}
+          className={styles.sectors}
+    style={{  border: selectedListType === type ? '2px solid #383838' : '2px solid #D9D9D9',
+      backgroundColor: selectedListType === type ? '#383838' : '#D9D9D9',
+      color: selectedListType === type ? '#fff' : '#4c504d'}}
         >
           {type}
         </button>

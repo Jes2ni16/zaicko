@@ -177,6 +177,27 @@ margin-left: auto;
 box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 
+.back .backIcon {
+  color: white;
+  border: 1px solid black;
+  border-radius: 50%;background-color: black;
+  padding: 3px;
+  font-size: 30px 
+}
+
+.sectors {
+  padding: 10px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  max-width:500px;
+  width:33%;
+  border-radius: 5px;
+
+  transition: all 0.3s ease;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
+
+
+}
 
 .page2 {
   display: none;
