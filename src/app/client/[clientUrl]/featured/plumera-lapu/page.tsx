@@ -6,11 +6,11 @@ import Image from 'next/image';
 
 
 export const metadata: Metadata = {
-    title: 'GUADA VERDE RESIDENCES in GUADALUPE, CEBU CITY ',
-    description: 'Guada Verde Residences is a place you can come home to and experience good life at Sterling land. Experience  verdant suburban lifestyle in the heart of the inner city, GET YOUR  VERDANT SUBURBAN LIFESTYLE HOME.',
+    title: 'PLUMERA CONDOMINIUM in Lapu lapu City ',
+    description: 'Plumera Condominium is a walk-up condo located in Mactan. It is the newest project by Johndorf Ventures.',
     openGraph: {
-      title: 'GUADA VERDE RESIDENCES| Luxury Townhouses',
-      description: 'Guada Verde Residences is a place you can come home to and experience good life at Sterling land.',
+      title: 'PLUMERA CONDOMINIUM| Luxury Townhouses',
+      description: 'This project is ideal for starting families, investors, foreigners, OFW&rsquo;s, BPO-ICT employees, MEPZ and business owners.',
       images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899572/5-7-e1699346657810_tshs6v.webp'],
     },
   }

@@ -62,6 +62,20 @@
             "description": "Guada Verde Residences is a place you can come home to and experience good life at Sterling land. Experience  verdant suburban lifestyle in the heart of the inner city, GET YOUR  VERDANT SUBURBAN LIFESTYLE HOME.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807600/306534238_3215994575285619_7109149711564738505_n-e1692175229196_rkwvae.webp", 
             "link": "featured/guada-verde-residences"
+          },
+          {
+            "id":"plumera-lapu",
+            "title": "PLUMERA CONDOMINIUM in Lapu lapu City",
+            "description": "Plumera Condominium is a walk-up condo located in Mactan. It is the newest project by Johndorf Ventures.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899572/5-7-e1699346657810_tshs6v.webp", 
+            "link": "featured/plumera-lapu"
+          },
+          {
+            "id":"dannara-north",
+            "title": "DANARRA NORTH LILOAN CEBU HOUSE AND LOT",
+            "description": "Why choose DANARRA NORTH? It is situated just a few minutes&rsquo; walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp", 
+            "link": "featured/dannara-north"
           }
 
 

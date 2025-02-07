@@ -6,12 +6,12 @@ import Image from 'next/image';
 
 
 export const metadata: Metadata = {
-    title: 'Clarendon Residences Cebu City ',
-    description: 'Discover Clarendon Residences in Cebu City - Modern townhouses featuring 2-3 storey units, premium amenities, and strategic location near SM Seaside. Starting at ₱12.5M.',
+    title: 'DANARRA NORTH LILOAN CEBU HOUSE AND LOT',
+    description: 'Why choose DANARRA NORTH? It is situated just a few minutes&rsquo; walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.',
     openGraph: {
-      title: 'Clarendon Residences Cebu City | Luxury Townhouses',
-      description: 'Modern townhouses in Cebu City with premium amenities',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692642/aldrich_dmmuaw.jpg'],
+      title: 'DANARRA NORTH LILOAN CEBU HOUSE AND LOT ',
+      description: 'Why choose DANARRA NORTH? It is situated just a few minutes&rsquo; walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.',
+      images: ['hhttps://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp'],
     },
   }
   
@@ -19,16 +19,16 @@ export const metadata: Metadata = {
     return (
     <div className={styles.body1}>
 
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692642/aldrich_dmmuaw.jpg' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='hhttps://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp' width={500} height={500} className={styles.heroImage} alt=''/>
 
 <section className={styles.section}>
 <h2>DANARRA NORTH LILOAN CEBU HOUSE AND LOT</h2>
 <p>Why choose DANARRA NORTH? It is situated just a few minutes&rsquo; walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.</p>
-<iframe title="DANARRA NORTH preselling house and lot liloan cebu" src="https://www.youtube.com/embed/gyBVdTtZUK8?feature=oembed"  height="150"  className={styles.fullImage}  allowFullScreen={true}></iframe>
-</section>
+<iframe title="DANARRA NORTH preselling house and lot liloan cebu" src="https://www.youtube.com/embed/gyBVdTtZUK8?feature=oembed"    className={styles.square}  allowFullScreen={true}></iframe>
+
 <hr />
 <p><strong><mark>TRAVEL TIME FROM DANARRA NORTH TO THE HIGHWAY (MAIN ROAD)</mark></strong></p>
-<iframe title="DANARRA NORTH HOUSE AND LOT LILOAN CEBU" src="https://www.youtube.com/embed/xLFMN-IDJwA?feature=oembed"  height="auto"  className={styles.fullImage} allowFullScreen={true}></iframe>
+<iframe title="DANARRA NORTH HOUSE AND LOT LILOAN CEBU" src="https://www.youtube.com/embed/xLFMN-IDJwA?feature=oembed"   className={styles.square} allowFullScreen={true}></iframe>
 
 
 <ul>
@@ -39,6 +39,7 @@ export const metadata: Metadata = {
 <li>14 mins away from the New Liloan Public Market</li>
 <li>19 mins away from SM Consolacion</li>
 </ul>
+</section>
 <section className={styles.section}>
 <h2>DANARRA NORTH AMENITIES</h2>
 <ul>
@@ -59,10 +60,11 @@ export const metadata: Metadata = {
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905572/DNARRA-NORTH-AMENITIES_g6xaoz.webp"  alt=""   />
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905574/DNARRA-NORTH-AMENITIES2_jal7av.webp"  alt="" />
 </div>
-<hr />
 </section>
-<section className={styles.section}></section>
-<h3>HOUSE FEATURES:</h3>
+<hr />
+
+<section className={styles.section}>
+<h2>HOUSE FEATURES:</h2>
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905565/DANARRA-NORTH-FEATURES-MINGLANILLA-CEBU_sortbn.webp"  alt=""  className={styles.fullImage} />
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905562/DANARRA-NORTH-MATERIALS-SPEC-MINGLANILLA-CEBU_qumgel.webp"  alt=""  className={styles.fullImage} />
 <h2>HOUSE MODELS</h2>
@@ -140,20 +142,24 @@ export const metadata: Metadata = {
 <li>Service Area, My Space</li>
 <li><strong>Price starts at Php 12,630,131</strong></li>
 </ul>
-<p>THE SITE</p>
+<hr />
+<h2>THE SITE</h2>
 
-<div className={styles.flexImage}
->
+<div className={styles.flexImage}>
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905552/DANARRA-NORTH-pre-selling-HOUSE-Liloan-Cebu_wmfwup.webp"  alt=""  />
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905551/DANARRA-NORTH-pre-selling-HOUSE-Liloan-Cebu1_tyubu7.webp"  alt="" />
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905552/DANARRA-NORTH-pre-selling-HOUSE-Liloan-Cebu2_j3z7ps.webp"  alt="" />
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905552/DANARRA-NORTH-pre-selling-HOUSE-Liloan-Cebu3_ojizlg.webp"  alt=""/>
 </div>
+</section>
+<hr />
+<section className={styles.section}>
 <h2><strong><mark>SITE DEVELOPMENT DANARRA NORTH</mark></strong></h2>
 
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905585/DANARRA-NORTH-DEV.-MAP-2_e3jkdd.webp"  alt=""/>
+</section>
 <hr />
-
+<section className={styles.section}>
 <h2>DANARRA NORTH AREIAL PERSPECTIVE</h2>
 
 <FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp"  alt=""  className={styles.fullImage}/>
@@ -164,7 +170,7 @@ export const metadata: Metadata = {
 <h2>PAYMENT SCHEME</h2>
 <p><strong>10 OR 20 % EQUITY PAYABLE IN 32 MONTHS</strong></p>
 <p><strong>BALANCE CASH OR BANK FINANCING</strong></p>
-
+</section>
     </div>
 )
 }
