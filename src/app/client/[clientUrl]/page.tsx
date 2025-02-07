@@ -29,8 +29,7 @@ export async function generateStaticParams() {
       return [];
     }
     const clients = await res.json();
-
-    // Define dynamic routes from client URLs
+    
     return clients.map((client: ClientData) => ({
       clientUrl: client.url,
     }));
@@ -40,24 +39,30 @@ export async function generateStaticParams() {
   }
 }
 
-async function getClientData(clientUrl: string): Promise<ClientData | null> {
-  const res = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`, {
-    cache: 'no-store', // Don't cache the fetch response to get fresh data on each request
-  });
 
+async function getClient(clientUrl: string): Promise<ClientData> {
+  const res = await fetch(
+    `https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`,
+    { next: { revalidate: 60 } } // Revalidate every hour
+  );
+  
   if (!res.ok) {
     return null;
   }
+  
   return res.json();
 }
 
+export default async function ClientHome({ params }: { params: Promise<{ clientUrl: string }>;}) {
 
+  const resolvedParams = await params;
+  const clientData = await getClient(resolvedParams.clientUrl);
+  
 
-export default async function ClientHome({ params }: { params: Promise<{ clientUrl: string }> }) {
-  const clientData = await getClientData((await params).clientUrl);
   if (!clientData) {
     return <h1>Not Found</h1>;
   }
+
 
 
   return (
@@ -70,7 +75,7 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
             className={styles.linkList}
             prefetch={true} 
           >
-           My Listings
+            <span>My Listings</span>
           </Link>
           <div className={styles.socLinks}>
             {clientData.tiktok && (
