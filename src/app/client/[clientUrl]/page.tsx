@@ -73,7 +73,7 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
           <Link 
             href={`/client/${clientData.url}/listing`} 
             className={styles.linkList}
-            prefetch={true} // Add explicit prefetch
+            prefetch={true} 
           >
             <span>My Listings</span>
           </Link>
