@@ -24,16 +24,13 @@
 // <section className={styles.section}>
 // <h2>DANARRA NORTH LILOAN CEBU HOUSE AND LOT</h2>
 // <p>Why choose DANARRA NORTH? It is situated just a few minutes&rsquo; walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.</p>
-// <iframe title="DANARRA NORTH preselling house and lot liloan cebu" src="https://www.youtube.com/embed/gyBVdTtZUK8?feature=oembed" width="300" height="150" frameBorder="0" allowfullscreen="allowfullscreen"></iframe>
+// <iframe title="DANARRA NORTH preselling house and lot liloan cebu" src="https://www.youtube.com/embed/gyBVdTtZUK8?feature=oembed" width="300" height="150"  allowFullScreen={true}></iframe>
 // </section>
 // <hr />
-// <section className={styles.section}>
 // <p><strong><mark>TRAVEL TIME FROM DANARRA NORTH TO THE HIGHWAY (MAIN ROAD)</mark></strong></p>
+// <iframe title="DANARRA NORTH HOUSE AND LOT LILOAN CEBU" src="https://www.youtube.com/embed/xLFMN-IDJwA?feature=oembed" width="300" height="150"  allowFullScreen={true}></iframe>
 
-// <iframe title="DANARRA NORTH HOUSE AND LOT LILOAN CEBU" src="https://www.youtube.com/embed/xLFMN-IDJwA?feature=oembed" width="300" height="150" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-// </section>
-// <div>
-// <div>
+
 // <ul>
 // <li>JUST A MINUTE DRIVE TO THE NATIONAL HIGHWAY</li>
 // <li>elevated lots-FLOOD FREE, BREEZY AREA</li>
@@ -42,9 +39,8 @@
 // <li>14 mins away from the New Liloan Public Market</li>
 // <li>19 mins away from SM Consolacion</li>
 // </ul>
-// </div>
-// </div>
-// <p><strong>DANARRA NORTH AMENITIES</strong></p>
+// <section className={styles.section}>
+// <h2>DANARRA NORTH AMENITIES</h2>
 // <ul>
 // <li>Clubhouse</li>
 // <li>Swimming Pool &amp; Wading Pool</li>
@@ -54,14 +50,13 @@
 // <li>Gardens &amp; 24-Hr Security</li>
 // <li>3 Gates (2 Main Gate &amp; 1 Back Gate used for emergency access)</li>
 // </ul>
-// <figure>
-// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu-9.png"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu-9.png" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu-9.png 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu-9-300x169.png 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu-9-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu-9-676x380.png 676w" alt="" width="800" height="450" data-id="16834" /></a></figure>
-// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu6.png"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu6.png" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu6.png 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu6-300x169.png 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu6-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu6-676x380.png 676w" alt="" width="800" height="450" data-id="16835" /></a></figure>
-// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu7.png"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu7.png" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu7.png 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu7-300x169.png 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu7-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu7-676x380.png 676w" alt="" width="800" height="450" data-id="16833" /></a></figure>
-// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu8.png"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu8.png" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu8.png 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu8-300x169.png 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu8-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu8-676x380.png 676w" alt="" width="800" height="450" data-id="16832" /></a></figure>
-// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES1.jpg"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES1.jpg" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES1.jpg 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES1-300x167.jpg 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES1-768x428.jpg 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES1-682x380.jpg 682w" alt="" width="800" height="446" data-id="16839" /></a></figure>
-// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES.png"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES.png" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES.png 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES-300x169.png 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES-676x380.png 676w" alt="" width="800" height="450" data-id="16840" /></a></figure>
-// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2.jpg"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2.jpg" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2.jpg 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2-300x169.jpg 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2-768x432.jpg 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2-676x380.jpg 676w" alt="" width="800" height="450" data-id="16838" /></a></figure>
+// <img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu-9.png"  alt="" />
+// <img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu6.png"  alt=""   />
+// <img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu7.png" alt=""  />
+// <img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DANARRA-NORTH-HOUSE-Liloan-Cebu8.png"  alt="" />
+// <img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES1.jpg" alt="" />
+// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES.png"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES.png" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES.png 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES-300x169.png 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES-676x380.png 676w" alt=""  data-id="16840" /></a></figure>
+// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2.jpg"><img src="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2.jpg" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2.jpg 800w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2-300x169.jpg 300w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2-768x432.jpg 768w, https://mphrealty.com.ph/wp-content/uploads/2023/07/DNARRA-NORTH-AMENITIES2-676x380.jpg 676w" alt=""  data-id="16838" /></a></figure>
 // </figure>
 // <p><strong>HOUSE FEATURES:</strong></p>
 // <figure><img src="https://mphrealty.com.ph/wp-content/uploads/2023/10/DANARRA-NORTH-FEATURES-MINGLANILLA-CEBU.jpg" sizes="auto, (max-width: 1032px) 100vw, 1032px" srcset="https://mphrealty.com.ph/wp-content/uploads/2023/10/DANARRA-NORTH-FEATURES-MINGLANILLA-CEBU.jpg 1032w, https://mphrealty.com.ph/wp-content/uploads/2023/10/DANARRA-NORTH-FEATURES-MINGLANILLA-CEBU-768x423.jpg 768w, https://mphrealty.com.ph/wp-content/uploads/2023/10/DANARRA-NORTH-FEATURES-MINGLANILLA-CEBU-690x380.jpg 690w" alt="" width="1032" height="568" /></figure>
@@ -159,7 +154,7 @@
 // <p>DANARRA NORTH AREIAL PERSPECTIVE</p>
 // <figure>
 // <figure><img src="https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective1.png" sizes="auto, (max-width: 1000px) 100vw, 1000px" srcset="https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective1.png 1000w, https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective1-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective1-676x380.png 676w" alt="" width="1000" height="562" data-id="19983" /></figure>
-// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective.png"><img src="https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective.png" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective.png 800w, https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective-676x380.png 676w" alt="" width="800" height="450" data-id="19982" /></a></figure>
+// <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective.png"><img src="https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective.png" sizes="auto, (max-width: 800px) 100vw, 800px" srcset="https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective.png 800w, https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective-768x432.png 768w, https://mphrealty.com.ph/wp-content/uploads/2024/02/DANARRA-NORTH-AerialPerspective-676x380.png 676w" alt=""  data-id="19982" /></a></figure>
 // </figure>
 // <p><mark>PRICELIST DANARRA NORTH LILOAN</mark></p>
 // <figure><a href="https://mphrealty.com.ph/wp-content/uploads/2024/10/DANARRA-NORTH-PRICE.jpg"><img src="https://mphrealty.com.ph/wp-content/uploads/2024/10/DANARRA-NORTH-PRICE.jpg" sizes="auto, (max-width: 857px) 100vw, 857px" srcset="https://mphrealty.com.ph/wp-content/uploads/2024/10/DANARRA-NORTH-PRICE.jpg 857w, https://mphrealty.com.ph/wp-content/uploads/2024/10/DANARRA-NORTH-PRICE-768x1344.jpg 768w, https://mphrealty.com.ph/wp-content/uploads/2024/10/DANARRA-NORTH-PRICE-217x380.jpg 217w" alt="" width="857" height="1500" /></a></figure>
