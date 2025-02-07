@@ -133,6 +133,7 @@ aspect-ratio: 9 / 16;
 margin: auto;
 position: relative;
 max-height: 94%;
+margin-top: 0;
   }
 
       .page2 img{
