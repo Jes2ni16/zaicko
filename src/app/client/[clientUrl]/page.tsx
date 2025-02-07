@@ -43,7 +43,7 @@ export async function generateStaticParams() {
 async function getClient(clientUrl: string): Promise<ClientData> {
   const res = await fetch(
     `https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`,
-    { next: { revalidate: 3600 } } // Revalidate every hour
+    { next: { revalidate: 10 } } // Revalidate every hour
   );
   
   if (!res.ok) {
