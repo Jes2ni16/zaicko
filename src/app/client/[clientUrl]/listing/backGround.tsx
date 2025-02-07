@@ -13,7 +13,7 @@ const BackgroundImage = ({ imageUrl, children, className }: { imageUrl: string, 
           quality={75}
           sizes="100vw"
           style={{
-            objectFit: 'cover',
+            objectFit: 'contain',
             zIndex: 0,
             position: 'absolute'
           }}

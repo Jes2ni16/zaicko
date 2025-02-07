@@ -1,54 +1,64 @@
-'use client';
 
-import { useEffect, useState } from 'react';
 import CardList from '../../../components/cards';
 import styles from './page.module.css';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import axios from 'axios';
+
 
 interface ClientData {
-  projects: string[];  // Define that projects is an array of strings
+  projects: string[]; 
+  url: string;
+  name: string;
 }
 
-export default function FeaturedProjects() {
-  const [currentURL, setCurrentURL] = useState<string>('');
-  const [clientData, setClientData] = useState<ClientData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const url = window.location.href;
-    const match = url.match(/\/client\/(.*?)\/featured/);
-    let urlAfterClient = match ? match[1] : null;
-  
-    if (urlAfterClient) {
-      axios
-        .get(`https://zaiko-server.vercel.app/api/clients/url/${urlAfterClient}`)
-        .then((response) => {
-          setClientData(response.data); // Assuming the response contains client data
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(`Failed to fetch client data: ${err}`);
-          setLoading(false);
-        });
-
-      // Clean up the URL and set it
-      urlAfterClient = urlAfterClient.replace(/\d+/g, '').toUpperCase();
-      setCurrentURL(urlAfterClient);
-    } else {
-      setError('Invalid URL format.');
-      setLoading(false);
+export async function generateStaticParams() {
+  try {
+    const res = await fetch('https://zaiko-server.vercel.app/api/clients');
+    if (!res.ok) {
+      return [];
     }
-  }, []);
+    const clients = await res.json();
+    
+    return clients.map((client: ClientData) => ({
+      clientUrl: client.url, // Assuming the API returns a 'url' property for each client
+    }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
+}
+
+
+async function getClient(clientUrl: string): Promise<ClientData>  {
+  const res = await fetch(
+    `https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`,
+    { next: { revalidate: 3600 } } // Revalidate every hour
+  );
+  
+  if (!res.ok) {
+    return null;
+  }
+  
+  return res.json();
+}
+
+
+export default async function ClientHome({ params }: { params: Promise<{ clientUrl: string }>;}) {
+  const resolvedParams = await params;
+
+  const clientData = await getClient(resolvedParams.clientUrl);
+
+  if (!clientData) {
+    return <h1>Not Found</h1>;
+  }
+
 
   return (
     <div className={styles.page}>
       {/* Back Button */}
       <IconButton
         component="a"
-        href="/listing"  // Updated to a proper relative path for going back
+        href={`/client/${clientData.url}/listing`}
         color="primary"
         aria-label="go back"
         sx={{
@@ -70,16 +80,13 @@ export default function FeaturedProjects() {
 
       {/* Header */}
       <div className={styles.header}>
-        <h1>{currentURL ? `${currentURL}'s Featured Projects` : 'Featured Projects'}</h1>
+        <h1>{ `${clientData.name}'s Featured Projects`}</h1>
       </div>
 
-      {/* Content */}
-      {loading && <p>Loading...</p>}
-      {error && <p className={styles.error}>{error}</p>}
-      {clientData && clientData.projects && clientData.projects.length > 0 ? (
+      {clientData.projects && clientData.projects.length > 0 ? (
         <CardList client={clientData} />
       ) : (
-        !loading && !error && <p>No projects found.</p>
+        <p>No projects found.</p>
       )}
     </div>
   );

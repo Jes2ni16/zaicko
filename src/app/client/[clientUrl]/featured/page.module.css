@@ -241,10 +241,18 @@ font-size: 22px;
     margin: auto;
     display: flex;
 }
+.body1 hr{
+        border: 2px solid #0E6543;
+        margin-top: 10px;
 
+}
 .section h1 {
     font-size: 36px;
    margin-top: 20px;
+}
+
+.section{
+padding-left: 20px;
 }
 .section h2 {
     font-size: 28px;
@@ -274,6 +282,9 @@ font-size: 22px;
 }
 .footer{ 
 margin: 10px;
+max-width: 1200px;
+    margin: auto;
+    padding-bottom: 20px;
 }
 .fbLink{
     text-decoration: underline;
@@ -285,6 +296,9 @@ margin: 10px;
         padding-left: 10px;
         padding-right: 10px;
     }
+    .section{
+        padding-left: 0px;
+        }
     .body1 h1 {
         font-size: 28px;
         line-height: 2rem;

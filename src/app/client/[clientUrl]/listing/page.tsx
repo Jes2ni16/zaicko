@@ -7,8 +7,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import { Button,  Slider, Typography, CircularProgress, Box, IconButton, Card} from '@mui/material';
-import BackgroundImage from './backGround';
-
 
 interface ClientData {
   name: string;
@@ -44,7 +42,6 @@ const ClientListing = () => {
   const [lists, setLists] = useState<ListData[]>([]);
   const [listsLoading, setListsLoading] = useState<boolean>(true);
   const [clientLoading, setClientLoading] = useState<boolean>(true);
-  const [backgroundLoaded, setBackgroundLoaded] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedListType, setSelectedListType] = useState<string>('Rental');
   const [priceRange, setPriceRange] = useState<number[]>([0, 0]); // Adjusted initial state
@@ -77,10 +74,6 @@ const ClientListing = () => {
           `https://zaiko-server.vercel.app/api/clients/url/${currentURL}`
         );
         setClientData(response.data);
-
-        const img = new Image();
-        img.src = response.data.background;
-        img.onload = () => setBackgroundLoaded(true);
       } catch (err) {
         setError('Failed to load client data.');
         console.error(err);
@@ -156,7 +149,7 @@ const ClientListing = () => {
     })
     .filter((list) => (selectedCity ? list.city === selectedCity : true));
 
-  if (listsLoading || clientLoading || !backgroundLoaded) return (<Box
+  if ( clientLoading ) return (<Box
     sx={{
       display: 'flex',
       justifyContent: 'center',
@@ -170,7 +163,7 @@ const ClientListing = () => {
 
   return (
     <div className={styles.body}>
-      <BackgroundImage   imageUrl={clientData?.background || ''} 
+      <div   
         className={styles.page1} 
       >
 
@@ -337,18 +330,12 @@ const ClientListing = () => {
           </div>
 
         </div>
-      </BackgroundImage>
+      </div>
 
 
 
       <div
-        className={styles.page2}
-        style={{
-          backgroundImage: clientData?.background_mobile
-            ? `url(${clientData.background_mobile})`
-            : 'none',
-        }}
-      >
+        className={styles.page2} >
 
 <Link href={`/client/${currentURL}/`} className={styles.back}>    <IconButton aria-label="home">
             <ArrowBackIcon className={styles.backIcon} />
@@ -504,7 +491,7 @@ const ClientListing = () => {
             </div>
           ) : (
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <Typography variant="body2">  Loading listings...</Typography>
+              <Typography variant="body2">  Loading listings...{clientData ? clientData.name : 'Loading client info...'}</Typography>
             </div>
           )}
 
