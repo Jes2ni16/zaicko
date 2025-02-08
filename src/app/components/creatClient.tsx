@@ -14,6 +14,7 @@ interface Client {
   tiktok?: string;
   instagram?: string;
   youtube?: string;
+  website?: string;
   background?: string;
   background_mobile?: string;
   image:string;
@@ -35,6 +36,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
   const [address, setAddress] = useState<string>(client?.address || '');
   const [fb, setFb] = useState<string | undefined>(client?.fb || undefined);
   const [tiktok, setTiktok] = useState<string | undefined>(client?.tiktok || undefined);
+  const [website, setWebsite] = useState<string | undefined>(client?.website || undefined);
   const [instagram, setInstagram] = useState<string | undefined>(client?.instagram || undefined);
   const [youtube, setYoutube] = useState<string | undefined>(client?.youtube || undefined);
   const [background, setBackground] = useState<string | undefined>(client?.background || undefined);
@@ -56,6 +58,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       setFb(client.fb || undefined);
       setTiktok(client.tiktok || undefined);
       setInstagram(client.instagram || undefined);
+      setWebsite(client.website || undefined);
       setYoutube(client.youtube || undefined);
       setBackground(client.background || undefined);
       setBackgroundMobile(client.background_mobile || undefined);
@@ -86,6 +89,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       tiktok,
       instagram,
       youtube,
+      website,
       background,
       background_mobile: backgroundMobile || '', 
       image,
@@ -160,6 +164,12 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
                 fullWidth
                 value={tiktok || ''}
                 onChange={(e) => setTiktok(e.target.value || undefined)}
+              />
+                  <TextField
+                label="Website"
+                fullWidth
+                value={tiktok || ''}
+                onChange={(e) => setWebsite(e.target.value || undefined)}
               />
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
