@@ -76,6 +76,13 @@
             "description": "Why choose DANARRA NORTH? It is situated just a few minutes&rsquo; walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp", 
             "link": "featured/dannara-north"
+          },
+          {
+            "id":"mactan-plains",
+            "title": "MACTAN PLAINS RESIDENCES",
+            "description": "Mactan Plains Residences is just a few meters away from Sto. nino Mactan Parish Church and the different office towers, shopping centers, grocery, and retail shops in Mactan Newtown.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738985396/MPR-Exterior-Perspective-e1697029239646_jksjbb.webp", 
+            "link": "featured/mactan-plains"
           }
 
 

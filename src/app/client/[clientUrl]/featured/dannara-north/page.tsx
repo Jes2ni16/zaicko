@@ -11,15 +11,15 @@ export const metadata: Metadata = {
     openGraph: {
       title: 'DANARRA NORTH LILOAN CEBU HOUSE AND LOT ',
       description: 'Why choose DANARRA NORTH? It is situated just a few minutes&rsquo; walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.',
-      images: ['hhttps://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp'],
+      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp'],
     },
   }
   
-  export default function Clarendon() {
+  export default function DannaraNorth() {
     return (
     <div className={styles.body1}>
 
-<Image src='hhttps://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp' width={500} height={500} className={styles.heroImage} alt=''/>
 
 <section className={styles.section}>
 <h2>DANARRA NORTH LILOAN CEBU HOUSE AND LOT</h2>
