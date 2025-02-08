@@ -296,6 +296,13 @@ max-width: 1200px;
     height: 500px;
     width: 80%;
 }
+.body1 h1 {
+    color: #0E6543;
+    font-size: 38px;
+}
+.body1 h2 {
+    color: #0E6543;
+}
 @media (max-width:1100px) {
     .body1{
 
@@ -308,6 +315,7 @@ max-width: 1200px;
     .body1 h1 {
         font-size: 28px;
         line-height: 2rem;
+
     }
     .body1 p {
         font-size: 16px;
@@ -333,5 +341,6 @@ max-width: 1200px;
 @media (max-width:567px) {
     .section .flexImage img, .fullImage {
         width: 100%;
+        max-width: 100%;
     }
 }

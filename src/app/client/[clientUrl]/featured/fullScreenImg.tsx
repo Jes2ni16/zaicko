@@ -12,6 +12,7 @@ interface FullImageProps {
   className?: string;
   width?: number;  
   height?: number;
+  sizes?:string;
 }
 
 const FullImage: React.FC<FullImageProps> = ({ 
@@ -19,7 +20,8 @@ const FullImage: React.FC<FullImageProps> = ({
   alt, 
   className, 
   width = 300, 
-  height = 250 
+  height = 250 ,
+  sizes
 }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -43,6 +45,7 @@ const FullImage: React.FC<FullImageProps> = ({
         alt={alt}
         width={width}
         height={height}
+        sizes={sizes}
         className={className}
         onClick={handleOpen} // Open the modal on click
         style={{ cursor: 'pointer' }}
@@ -92,11 +95,10 @@ const FullImage: React.FC<FullImageProps> = ({
                 alt={alt}
                 width={1920}
                 height={1080}
+                quality={100}
                 style={{
-                  width: '100%',
-                  height: '100%',
-                  maxWidth: '95vw',
-                  maxHeight: '95vh',
+                  maxWidth: '100%',
+                  maxHeight: '100%',
                   objectFit: 'contain',
                 }}
                 priority

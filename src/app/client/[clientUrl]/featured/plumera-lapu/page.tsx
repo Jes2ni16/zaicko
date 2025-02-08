@@ -39,7 +39,7 @@ return(
 <li><em>Power &ndash; MECO Power Distribution System</em></li>
 <li><em>Water &ndash; MCWD supplied water dist. System</em></li>
 </ul>
-<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899572/5-7-e1699346657810_tshs6v.webp"   alt=""  className={styles.fullImage} />
+<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899572/5-7-e1699346657810_tshs6v.webp"   alt=""  className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px" />
 </section>
 
 <hr />
@@ -57,7 +57,7 @@ return(
 <li>10 minutes to Gaisano Mall Mactan Island</li>
 <li>13 minutes to Mactan International Airport</li>
 </ul>
-<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899573/1-2_ngmsp2.webp"   alt=""   className={styles.fullImage} />
+<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899573/1-2_ngmsp2.webp"   alt=""   className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px" />
 </section>
 <hr />
 
@@ -233,7 +233,7 @@ return(
 <section className={styles.section}>
 
 <h2>PLUMERA MASTERPLAN:</h2>
-<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899625/1-scaled_lncw81.webp"  alt=""  className={styles.fullImage} />
+<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899625/1-scaled_lncw81.webp"  alt=""  className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px" />
 
 
 <div className={styles.flexImage}>

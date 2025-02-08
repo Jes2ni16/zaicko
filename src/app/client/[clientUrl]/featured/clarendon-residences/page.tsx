@@ -63,7 +63,7 @@ export const metadata: Metadata = {
 <li>6 km to Port</li>
 <li>18 km to Mactan International Airport</li>
 </ul>
-<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692641/locationmap_q9el4q.jpg"  alt="" className={styles.fullImage} />
+<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692641/locationmap_q9el4q.jpg" sizes="(max-width: 1540px) 100vw, 1540px"  alt="" className={styles.fullImage} />
 </section>
 <hr />
 <section className={styles.section}>
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 <li>Playground</li>
 <li>Open Air Gym</li>
 </ul>
-<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692641/CLUBHOUSE-2_rou9cg.jpg"  alt=""  className={styles.fullImage} />
+<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692641/CLUBHOUSE-2_rou9cg.jpg"  alt="" sizes="(max-width: 1540px) 100vw, 1540px"  className={styles.fullImage} />
 </section>
 <hr />
 <section className={styles.section}>
@@ -193,7 +193,7 @@ export const metadata: Metadata = {
 <hr />
 <section className={styles.section}>
 <h2>SITE DEVELOPMENT PLAN:</h2>
-<FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692641/site-dev-map_atwpnb.jpg" alt="" className={styles.fullImage}/>
+<FullImage src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692641/site-dev-map_atwpnb.jpg" alt=""  sizes="(max-width: 1540px) 100vw, 1540px" className={styles.fullImage}/>
 </section>
 
 

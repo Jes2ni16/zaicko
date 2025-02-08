@@ -27,7 +27,7 @@ return(
 <p>Guada Verde Residences is a place you can come home to and experience good life at Sterling land. Experience  verdant suburban lifestyle in the heart of the inner city, GET YOUR  VERDANT SUBURBAN LIFESTYLE HOME.</p>
 <p>&nbsp;</p>
 <p>Following the resounding success of our flagship project, Minglanilla Highlands, the Santa Monica Estate Brand and the 25-storey Condominium skyline, Sterling Land Residences and Development inc, is committed to continuing its mission of elevating the Cebuano standard of living by creating God-loving, Neighbor-caring, and Nature-embracing community. With this in mind, Sterling Land is proud to present its latest project, Guada Verde Residences, featuring our latest lifestyle concept, the  Verdant Suburban Lifestyle&rdquo;. The essence of our latest lifestyle concept lies in its two elements,  Verdant&rdquo; and  Suburban.&rdquo; A key aspect of Guada Verde Residences will be the extensive presence of greenery all across the development, creating the calming ambiance reminiscent of the lush forests found in the countryside. Another element of Guada Verde Residences is the suburban atmosphere of the development.</p>
-<FullImage   src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807600/306534238_3215994575285619_7109149711564738505_n-e1692175229196_rkwvae.webp"  alt=""  className={styles.fullImage} />
+<FullImage   src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807600/306534238_3215994575285619_7109149711564738505_n-e1692175229196_rkwvae.webp"  alt=""  className={styles.fullImage} sizes="(max-width: 1540px) 100vw, 1540px" />
 </section>
 <hr />
 <section className={styles.section}>
@@ -46,7 +46,7 @@ return(
 <li>26 minutes to Pier 1</li>
 <li>50 minutes to Mactan International Airport</li>
 </ul>
-<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807575/308474671_797217901589714_6053220932579264123_n-1_xdmxw6.webp"  alt=""  className={styles.fullImage} />
+<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807575/308474671_797217901589714_6053220932579264123_n-1_xdmxw6.webp"  alt=""  className={styles.fullImage} sizes="(max-width: 1540px) 100vw, 1540px" />
 </section>
 
 <hr />
@@ -153,7 +153,7 @@ return(
 
 <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807584/4-2-scaled_u5jigy.webp"  alt="" />
 </div>
-<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807602/338712791_1163854135015843_6026060891568746940_n_pd22rj.webp" alt=""  className={styles.fullImage}/>
+<FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807602/338712791_1163854135015843_6026060891568746940_n_pd22rj.webp" alt=""  className={styles.fullImage} sizes="(max-width: 1540px) 100vw, 1540px"/>
 
 </section>
 
@@ -239,7 +239,7 @@ return(
 <hr />
 <section className={styles.section}>
 <h3>SUBDIVISION MASTER PLAN:</h3>
-<FullImage   src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807592/364676449_274695571925902_8693657417294383989_n_o1qcqz.webp" alt=""  className={styles.fullImage} />
+<FullImage   src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807592/364676449_274695571925902_8693657417294383989_n_o1qcqz.webp" alt=""  className={styles.fullImage} sizes="(max-width: 1540px) 100vw, 1540px" />
 <hr />
 </section>
 

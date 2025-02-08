@@ -44,7 +44,7 @@ export default function TierraAlta() {
             <p><em>Disclaimer:</em></p>
             <p>The developer will exert its best effort to conform to the specifications and plans specified herein. However, the developer reserves the right, without prior notice, to alter and change the specifications and plan as may deem to maintain the feasibility of the project.</p>
             <p>This is a preselling project &amp; development.</p>
-        <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810729/AMENITY1_ockq7n.webp" alt=""  className={styles.fullImage}/>
+        <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810729/AMENITY1_ockq7n.webp" alt=""  className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px"/>
             </section>
             <hr />
             <section className={styles.section}>
@@ -61,7 +61,7 @@ export default function TierraAlta() {
                 <li>&nbsp;Motorcycle and Tricycle from subdivision to highway</li>
                 <li>&nbsp;PUJ (Public Utility Jeep) going to schools, malls and hospitals</li>
             </ul>
-            <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810730/VISINITY-MAP-scaled-e1721913835328_napcev.webp"   alt=""  className={styles.fullImage}/>
+            <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810730/VISINITY-MAP-scaled-e1721913835328_napcev.webp"   alt=""  className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px"/>
             </section>
             <hr />
             <section className={styles.section}>
@@ -138,8 +138,8 @@ export default function TierraAlta() {
                 <li>Php/month</li>
             </ul>
             <p>&spades; 90% Balance Through Bank Financing:&nbsp;Php&nbsp;</p>
-           <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810721/DIANABEA1_hgomnf.webp" alt=""  className={styles.fullImage}/>
-            <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810739/BEA-FLOOR-PLAN1-scaled_mv5g0w.webp"   alt=""  className={styles.fullImage}/>
+           <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810721/DIANABEA1_hgomnf.webp" alt=""  className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px"/>
+            <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810739/BEA-FLOOR-PLAN1-scaled_mv5g0w.webp"   alt=""  className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px"/>
             <hr />
             <h3>DIANA &ndash; 2-STOREY TOWNHOUSE</h3>
             <p>3 Bedrooms; 2 Toilet &amp; Bath Townhouse</p>
@@ -182,7 +182,7 @@ export default function TierraAlta() {
                 <li>20 years: Php&nbsp;<em>₱22,314.32/month</em></li>
             </ul>
             <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810721/DIANABEA1_hgomnf.webp"   alt="" className={styles.fullImage} />
-            <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810734/DIANA-FLOOR-PLAN1-scaled_cunku5.webp" alt=""className={styles.fullImage} />
+            <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810734/DIANA-FLOOR-PLAN1-scaled_cunku5.webp" alt=""className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px" />
             <hr />
             <h3>AYA B &ndash; 2-STOREY SINGLE DETACHED (SOLD OUT)</h3>
             <p>3 Bedrooms; 2 Toilet &amp; Bath; 1 Carport; Single Detached House and Lot with Balcony</p>
@@ -330,7 +330,7 @@ export default function TierraAlta() {
        
             <section className={styles.section}>
             <h2>AVAILABLE UNITS:</h2>
-           <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810742/TIERRA-ALTAY-JULY-252024_c5wgfo.webp" alt=""  className={styles.fullImage} />
+           <FullImage  src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738810742/TIERRA-ALTAY-JULY-252024_c5wgfo.webp" alt=""  className={styles.fullImage}  sizes="(max-width: 1540px) 100vw, 1540px" />
             </section>
 
 
