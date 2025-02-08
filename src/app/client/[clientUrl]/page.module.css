@@ -113,6 +113,7 @@ width: 100%;
     .socLinks1 img{
       width: 40px;
       height: 90%!important;
+      object-fit: contain;
             }
   }
 
