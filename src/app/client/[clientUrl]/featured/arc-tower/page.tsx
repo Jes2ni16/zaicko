@@ -16,7 +16,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
  
-  const url= (await params).url
+  const { url } = await params;
  
   // fetch data
   const product = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${url}`).then((res) => res.json())
@@ -39,15 +39,7 @@ export async function generateMetadata(
 }
  
 
-// export const metadata: Metadata = {
-//     title: 'ARC TOWER RESIDENCES ',
-//     description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
-//     openGraph: {
-//       title: 'ARC TOWER RESIDENCES  | Luxury Townhouses',
-//       description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
-//       images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738349021/arc_ovvsa3.jpg'],
-//     },
-//   }
+
   
   export default function Clarendon() {
     return (
