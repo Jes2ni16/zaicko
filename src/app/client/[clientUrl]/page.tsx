@@ -14,6 +14,7 @@ interface ClientData {
   fb: string;
   tiktok: string;
   instagram: string;
+  website:string;
   youtube: string;
   background_mobile: string;
   image:string;
@@ -90,6 +91,9 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
             {clientData.instagram && (
               <Link href={clientData.instagram}><Image src={'/InstagramIcon.png'} width={30} height={30} alt='instagram image'/></Link>
             )}
+              {clientData.website&& (
+              <Link href={clientData.website}><Image src={'/internet.webp'} width={30} height={30} alt='instagram image'/></Link>
+            )}
           </div>
           <div className={styles.fma}>
             <Link href='https://findmyagent.net'>
@@ -121,6 +125,9 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
             )}
             {clientData.instagram && (
               <Link href={clientData.instagram}><Image src={'/InstagramIcon.png'} width={30} height={30} alt='instagram image'/></Link>
+            )}
+                          {clientData.website&& (
+              <Link href={clientData.website}><Image src={'/internet.webp'} width={30} height={30} alt='instagram image'/></Link>
             )}
           </div>
           <div className={styles.fma}>

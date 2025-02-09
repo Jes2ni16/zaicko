@@ -135,9 +135,8 @@ const ClientListing = () => {
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCity(event.target.value);
   };
-  const uniqueCities = Array.from(new Set(lists.map((list) => list.city))).filter(
-    (city) => city
-  );
+  const uniqueCities = Array.from(new Set(lists.map((list) => list.city?.toLowerCase().trim())))
+  .filter((city) => city && city !== '');
 
   const filteredLists: ListData[] = lists
     .filter((list) =>
@@ -147,7 +146,11 @@ const ClientListing = () => {
       const price: number = parseFloat(list.price) || 0; // Default to 0 if invalid
       return price >= priceRange[0] && price <= priceRange[1];
     })
-    .filter((list) => (selectedCity ? list.city === selectedCity : true));
+    .filter((list) => 
+      selectedCity 
+        ? (list.city?.toLowerCase().trim() === selectedCity.toLowerCase().trim()) 
+        : true
+    );
 
   if ( clientLoading ) return (<Box
     sx={{

@@ -97,6 +97,20 @@
             "description": "Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738996878/Anthony-Townhouse-scaled_p7tdu1.webp", 
             "link": "featured/arc-tower"
+          },
+          {
+            "id":"mingla-highland",
+            "title": "MINGLANILLA HIGHLANDS PHASE 1 & 2",
+            "description": "A place you can call home where everything you need is in one place.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739071231/minglanilla-highlands-cebu-1_fwjbmv.webp", 
+            "link": "featured/mingla-highland"
+          },
+          {
+            "id":"balai-mactan",
+            "title": "BALAI BY BE RESIDENCES",
+            "description": "Balai by Be Residences in Punta Engano is a Seaside Living for Everyone. It is a 19-storey residential resort situated along the high-end resorts in Punta Engano, Mactan.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739088653/15_olozq8.webp", 
+            "link": "featured/balai-mactan"
           }
 
 

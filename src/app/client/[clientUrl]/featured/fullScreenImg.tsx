@@ -37,6 +37,13 @@ const FullImage: React.FC<FullImageProps> = ({
   // Handle opening the modal
   const handleOpen = () => setIsOpen(true);
 
+  const handleBackgroundClick = (e: React.MouseEvent) => {
+    // Close modal only if background is clicked (not modal content)
+    if (e.target === e.currentTarget) {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <div>
       {/* The Image that triggers the modal */}
@@ -64,16 +71,15 @@ const FullImage: React.FC<FullImageProps> = ({
             justifyContent: 'center',
             alignItems: 'center',
             zIndex: 1000,
-          }}
-          onClick={handleClose}
+          }} onClick={handleBackgroundClick} 
         >
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }}  onClick={(e) => e.stopPropagation()} >
             <button
               onClick={handleClose}
               style={{
                 position: 'absolute',
-                top: -60,
-                right: 0,
+                top: -30,
+                right: 20,
                 background: 'black',
                 color: 'white',
                 border: 'none',
@@ -97,8 +103,11 @@ const FullImage: React.FC<FullImageProps> = ({
                 height={1080}
                 quality={100}
                 style={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
+                  maxWidth: '95%',
+                  maxHeight: '95vh',
+                  height: 'auto',
+                  margin:'auto',
+                  display:'flex',
                   objectFit: 'contain',
                 }}
                 priority
