@@ -23,9 +23,8 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
        title: `ARC TOWER RESIDENCES  | ${client.name}`,
         description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
       images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738349021/arc_ovvsa3.jpg'],
-      url:`https://zaiko.website/client/${client.url}/arc-tower`,
+      url:`https://zaiko.website/client/${client.url}/featured/arc-tower`,
       type:'website'
-    
   },
 }
 }
