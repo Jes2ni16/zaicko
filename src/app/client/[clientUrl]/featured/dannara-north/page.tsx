@@ -5,15 +5,26 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'DANARRA NORTH LILOAN CEBU HOUSE AND LOT',
-    description: 'Why choose DANARRA NORTH? It is situated just a few minutes walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.',
-    openGraph: {
-      title: 'DANARRA NORTH LILOAN CEBU HOUSE AND LOT ',
-      description: 'Why choose DANARRA NORTH? It is situated just a few minutes walk from the national road and boasts an elevated, flat terrain that offers a breezy ambiance all year round. The property is flood-free and comes from a trustworthy developer.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp'],
+
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+    return {
+      title: `DANARRA NORTH LILOAN CEBU  | ${client.name} `,
+     description: 'Why choose Danarra North? Located just a short walk from the national road, it features an elevated, flat terrain that provides a cool and refreshing atmosphere year-round.',
+       openGraph: {
+         title: `DANARRA NORTH LILOAN CEBU  | ${client.name}`,
+          description: 'Why choose Danarra North? Located just a short walk from the national road, it features an elevated, flat terrain that provides a cool and refreshing atmosphere year-round.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738905587/DANARRA-NORTH-AerialPerspective1_huhqpb.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/dannara-north`,
+        type:'website'
     },
   }
+  }
+
   
   export default function DannaraNorth() {
     return (

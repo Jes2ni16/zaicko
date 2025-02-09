@@ -7,21 +7,27 @@ import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
-export const metadata: Metadata = {
-  title: 'Le Menda-Busay | Luxurious Residences in Cebu',
-  description: 'Le Menda-Busay offers luxurious living in the heart of Busay, Cebu. With breathtaking views, modern amenities, and close proximity to major attractions, it\'s the ideal choice for peaceful, upscale living.',
-  openGraph: {
-    title: 'Le Menda-Busay | Luxurious Residences in Cebu',
-    description: 'Le Menda-Busay offers luxurious living with scenic views and premium amenities in Busay, Cebu.',
-    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Le Menda-Busay | Luxurious Residences in Cebu',
-    description: 'Experience upscale living at Le Menda-Busay in Cebu, surrounded by nature with modern facilities.',
-    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp'],
+
+
+export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+  const {clientUrl} = await params;
+
+  const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+
+  return {
+    title: `Le Menda-Busay  | ${client.name} `,
+   description: 'Le Menda-Busay offers an elevated lifestyle with breathtaking views and top-tier amenities, nestled in the serene hills of Busay, Cebu.',
+     openGraph: {
+       title: `Le Menda-Busay  | ${client.name}`,
+        description: 'Le Menda-Busay offers an elevated lifestyle with breathtaking views and top-tier amenities, nestled in the serene hills of Busay, Cebu.',
+      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp'],
+      url:`https://zaiko.website/client/${client.url}/featured/le-menda-busay`,
+      type:'website'
   },
 }
+}
+
 
 export default function LeMenda() {
 

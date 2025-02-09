@@ -5,16 +5,28 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'PLUMERA CONDOMINIUM in Lapu lapu City ',
-    description: 'Plumera Condominium is a walk-up condo located in Mactan. It is the newest project by Johndorf Ventures.',
-    openGraph: {
-      title: 'PLUMERA CONDOMINIUM| Luxury Townhouses',
-      description: 'This project is ideal for starting families, investors, foreigners, OFW&rsquo;s, BPO-ICT employees, MEPZ and business owners.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899572/5-7-e1699346657810_tshs6v.webp'],
+  
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+    return {
+      title: `PLUMERA CONDOMINIUM  | ${client.name} `,
+     description: 'Plumera Condominium, a new walk-up development by Johndorf Ventures, is nestled in the heart of Mactan, offering modern living in a prime location.',
+       openGraph: {
+         title: `PLUMERA CONDOMINIUM | ${client.name}`,
+          description: 'Plumera Condominium, a new walk-up development by Johndorf Ventures, is nestled in the heart of Mactan, offering modern living in a prime location.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899572/5-7-e1699346657810_tshs6v.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/plumera-lapu`,
+        type:'website'
     },
   }
-  
+  }
+
+
+
 
 export default function PlumeraLapu(){
 

@@ -25,6 +25,27 @@ export const metadata: Metadata = {
 }
 
 
+export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+  const {clientUrl} = await params;
+
+  const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+
+  return {
+    title: `Mandtra Residences   | ${client.name} `,
+   description: 'Mandtra Residences in Cebu City combines urban living with a tropical touch, offering modern and thoughtfully designed spaces. Choose from stylish 1-bedroom and studio units, centrally located in Mandaue City, just moments from AS Fortuna St. and P. Basubas St., with easy access to shopping, dining, and more.',
+     openGraph: {
+       title: `Mandtra Residences   | ${client.name}`,
+        description: 'Mandtra Residences in Cebu City combines urban living with a tropical touch, offering modern and thoughtfully designed spaces. Choose from stylish 1-bedroom and studio units, centrally located in Mandaue City, just moments from AS Fortuna St. and P. Basubas St., with easy access to shopping, dining, and more.',
+      images: ['https://i.imgur.com/6jjNq8v.jpg'],
+      url:`https://zaiko.website/client/${client.url}/featured/mandtra`,
+      type:'website'
+  },
+}
+}
+
+
+
 export default function Mandtra() {
 
   const mandtra = [

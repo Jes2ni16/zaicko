@@ -17,7 +17,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
 
 
   return {
-    title: `ARC TOWER RESIDENCES | ${clientUrl} `,
+    title: `ARC TOWER RESIDENCES | ${client.name} `,
    description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
      openGraph: {
        title: `ARC TOWER RESIDENCES  | ${client.name}`,

@@ -7,15 +7,28 @@ import Image from 'next/image';
   
 
 
-  export const metadata: Metadata = {
-    title: 'CASA MIRA TOWERS MANDAUE ',
-    description: 'Casa Mira Towers Mandaue is a 4 high-rise residential condominium development that sits in one of Cebu major cities. The development offers resort like amenities, thus will offer MORE to the economic market.',
-    openGraph: {
-      title: 'CASA MIRA TOWERS MANDAUE  | Luxury Town House',
-      description: 'Casa Mira Towers Mandaue is a 4 high-rise residential condominium development that sits in one of Cebu major cities. The development offers resort like amenities, thus will offer MORE to the economic market.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739107947/A1-768x573_pqtqqi.webp'],
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+  
+  
+    return {
+      title: `CASA MIRA TOWERS MANDAUE  | ${client.name} `,
+     description: 'Casa Mira Towers Mandaue is a four-tower high-rise residential development in one of Cebus major cities, offering resort-like amenities and providing more options for the economic market.',
+       openGraph: {
+         title: `CASA MIRA TOWERS MANDAUE  | ${client.name}`,
+          description: 'Casa Mira Towers Mandaue is a four-tower high-rise residential development in one of Cebus major cities, offering resort-like amenities and providing more options for the economic market.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739107947/A1-768x573_pqtqqi.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/casa-mira-mandaue`,
+        type:'website'
     },
   }
+  }
+   
+
 
   export default async function CasaMiraMandaue() {
     return (

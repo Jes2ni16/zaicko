@@ -5,15 +5,27 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'MINGLANILLA HIGHLANDS ',
-    description: 'A place you can call home where everything you need is in one place.',
-    openGraph: {
-      title: 'MINGLANILLA HIGHLANDS  | Luxury Townhouses',
-      description: 'A place you can call home where everything you need is in one place.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739071231/minglanilla-highlands-cebu-1_fwjbmv.webp'],
+
+
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+    return {
+      title: `MINGLANILLA HIGHLANDS   | ${client.name} `,
+     description: 'A home where convenience meets comfort, with everything you need right at your doorstep.',
+       openGraph: {
+         title: `MINGLANILLA HIGHLANDS  | ${client.name}`,
+          description: 'A home where convenience meets comfort, with everything you need right at your doorstep.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739071231/minglanilla-highlands-cebu-1_fwjbmv.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/mingla-highland`,
+        type:'website'
     },
   }
+  }
+
   
   export default function Clarendon() {
     return (

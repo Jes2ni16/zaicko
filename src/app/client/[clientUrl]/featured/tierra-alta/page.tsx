@@ -5,15 +5,27 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'TIERRA ALTA in SAN FERNANDO, CEBU',
-    description: 'Tierra Altais a new hot spot where new Dream Home is located. Embraced wide range of greenies, breathtaking mountain side &amp; Seaview.',
-    openGraph: {
-        title: 'TIERRA ALTA in SAN FERNANDO | Luxury Townhouses',
-        description: 'It is a Mountainside Dream Home',
+
+export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+    return {
+      title: `TIERRA ALTA in SAN FERNANDO,  | ${client.name} `,
+     description: 'TierrAlta is the perfect new hotspot for your dream home, surrounded by lush greenery and offering breathtaking mountain and sea views.',
+       openGraph: {
+         title: `TIERRA ALTA in SAN FERNANDO, | ${client.name}`,
+          description: 'ierrAlta is the perfect new hotspot for your dream home, surrounded by lush greenery and offering breathtaking mountain and sea views.',
         images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738812484/TIERRA-1536x818_yjqvnd.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/tierra-alta`,
+        type:'website'
     },
-}
+  }
+  }
+
+
 
 
 export default function TierraAlta() {

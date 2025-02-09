@@ -5,15 +5,28 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'BREEZA COVES MACTAN PHASE 2 ',
-    description: 'Part of the series of Breeza communities in Mactan, Breeza Coves is one of the second projects under this umbrella. It sits on a 1.36- hectare lot in Barangay Babag, Lapu-Lapu City. Upholding its brand of offering a low-density community, the residential community will have homes that are designed to be bigger than the first Breeza project.',
-    openGraph: {
-      title: 'BREEZA COVES MACTAN  | Luxury Townhouses',
-      description: 'Located in the Historic Resort Resort City, which is known for its first-class resorts and hotels, Breeza Coves offers the same luxury with its array of amenities and facilities such as a clubhouse, parks and playgrounds, and a pool.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738996878/Anthony-Townhouse-scaled_p7tdu1.webp'],
+
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+  
+  
+    return {
+      title: `BREEZA COVES MACTAN PHASE 2 | ${client.name} `,
+     description: 'Part of the Breeza communities in Mactan, Breeza Coves is the second development under this prestigious series. Located on a 1.36-hectare lot in Barangay Babag, Lapu-Lapu City, it continues the brand’s commitment to offering spacious, low-density homes that are even larger than the first Breeza project.',
+       openGraph: {
+         title: `BREEZA COVES MACTAN PHASE 2 | ${client.name}`,
+          description: 'Part of the Breeza communities in Mactan, Breeza Coves is the second development under this prestigious series. Located on a 1.36-hectare lot in Barangay Babag, Lapu-Lapu City, it continues the brand’s commitment to offering spacious, low-density homes that are even larger than the first Breeza project.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738996878/Anthony-Townhouse-scaled_p7tdu1.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/breeza-coves-lapu`,
+        type:'website'
     },
   }
+  }
+   
   
   export default function Clarendon() {
     return (

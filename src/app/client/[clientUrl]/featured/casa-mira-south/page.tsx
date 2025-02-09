@@ -14,6 +14,27 @@ export const metadata: Metadata = {
       images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739104319/photo-townhouse-model-b-1_o4p0av.webp'],
     },
   }
+
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+  
+  
+    return {
+      title: `CASA MIRA SOUTH NAGA CITY, CEBU | ${client.name} `,
+     description: 'Named the 2018 Best Housing Development in Cebu, this well-designed economic community is set on a scenic rolling terrain 60 to 100 meters above sea level, offering stunning views and 45% open spaces.',
+       openGraph: {
+         title: `CASA MIRA SOUTH NAGA CITY, CEBU | ${client.name}`,
+          description: 'Named the 2018 Best Housing Development in Cebu, this well-designed economic community is set on a scenic rolling terrain 60 to 100 meters above sea level, offering stunning views and 45% open spaces.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739104319/photo-townhouse-model-b-1_o4p0av.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/casa-mira-south`,
+        type:'website'
+    },
+  }
+  }
   
   export default function CityscapeGrand() {
     return (

@@ -5,15 +5,28 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'CITYSCAPE GRAND TOWER ',
-    description: 'Cityscape Grand Tower is a 34-storey residential condominium with ultimate amenities designed to deliver comfort, convenience and satisfaction.',
-    openGraph: {
-      title: 'CITYSCAPE GRAND TOWER  | Luxury Condominium',
-      description: 'Cityscape Grand Tower is a 34-storey residential condominium with ultimate amenities designed to deliver comfort, convenience and satisfaction.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739097546/301114756_368002265500033_2370525403385187361_n_z3zrvj.webp'],
+
+
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+    return {
+      title: `CITYSCAPE GRAND TOWER | ${client.name} `,
+     description: 'Cityscape Grand Tower is a 34-storey residential condominium offering premium amenities designed for ultimate comfort, convenience, and satisfaction.',
+       openGraph: {
+         title: `CITYSCAPE GRAND TOWER | ${client.name}`,
+          description: 'Cityscape Grand Tower is a 34-storey residential condominium offering premium amenities designed for ultimate comfort, convenience, and satisfaction.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739097546/301114756_368002265500033_2370525403385187361_n_z3zrvj.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/cityscape-grand-tower`,
+        type:'website'
     },
   }
+  }
+
+
   
   export default function CityscapeGrand() {
     return (

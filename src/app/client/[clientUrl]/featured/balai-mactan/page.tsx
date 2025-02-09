@@ -5,15 +5,30 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'BALAI in Mactan',
-    description: 'Balai by Be Residences in Punta Engano is a Seaside Living for Everyone. It is a 19-storey residential resort situated along the high-end resorts in Punta Engano, Mactan.',
-    openGraph: {
-      title: 'BALAI in Mactan  | Luxury Condo',
-      description: 'Balai by Be Residences in Punta Engano is a Seaside Living for Everyone. It is a 19-storey residential resort situated along the high-end resorts in Punta Engano, Mactan.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739088653/15_olozq8.webp'],
+
+
+
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+  
+  
+    return {
+      title: `BALAI in Mactan | ${client.name} `,
+     description: 'Balai by Be Residences in Punta Engano offers a luxurious seaside living experience for all. This 19-story residential resort is strategically located amidst the prestigious resorts in Punta Engano, Mactan, providing residents with stunning views and unparalleled access to the best of coastal living.',
+       openGraph: {
+         title: `BALAI in Mactan | ${client.name}`,
+          description: 'Balai by Be Residences in Punta Engano offers a luxurious seaside living experience for all. This 19-story residential resort is strategically located amidst the prestigious resorts in Punta Engano, Mactan, providing residents with stunning views and unparalleled access to the best of coastal living.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739088653/15_olozq8.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/balai-mactan`,
+        type:'website'
     },
   }
+  }
+   
   
   export default function BalaiMactan() {
     return (

@@ -5,16 +5,27 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'GUADA VERDE RESIDENCES in GUADALUPE, CEBU CITY ',
-    description: 'Guada Verde Residences is a place you can come home to and experience good life at Sterling land. Experience  verdant suburban lifestyle in the heart of the inner city, GET YOUR  VERDANT SUBURBAN LIFESTYLE HOME.',
-    openGraph: {
-      title: 'GUADA VERDE RESIDENCES| Luxury Townhouses',
-      description: 'Guada Verde Residences is a place you can come home to and experience good life at Sterling land.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807600/306534238_3215994575285619_7109149711564738505_n-e1692175229196_rkwvae.webp'],
+
+
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+    return {
+      title: `GUADA VERDE RESIDENCES in GUADALUPE | ${client.name} `,
+     description: 'Guada Verde Residences offers a vibrant suburban lifestyle in the heart of the city, providing the perfect home for a refreshed living experience at Sterling Land.',
+       openGraph: {
+         title: `GUADA VERDE RESIDENCES in GUADALUPE | ${client.name}`,
+          description: 'Guada Verde Residences offers a vibrant suburban lifestyle in the heart of the city, providing the perfect home for a refreshed living experience at Sterling Land.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807600/306534238_3215994575285619_7109149711564738505_n-e1692175229196_rkwvae.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/guada-verde-residences`,
+        type:'website'
     },
   }
-  
+  }
+
 
 export default function GuadaVerde(){
 

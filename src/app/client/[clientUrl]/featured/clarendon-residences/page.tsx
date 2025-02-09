@@ -5,16 +5,29 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'Clarendon Residences Cebu City ',
-    description: 'Discover Clarendon Residences in Cebu City - Modern townhouses featuring 2-3 storey units, premium amenities, and strategic location near SM Seaside. Starting at ₱12.5M.',
-    openGraph: {
-      title: 'Clarendon Residences Cebu City | Luxury Townhouses',
-      description: 'Modern townhouses in Cebu City with premium amenities',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692642/aldrich_dmmuaw.jpg'],
+  
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+    return {
+      title: `Clarendon Residences Cebu City  | ${client.name} `,
+     description: 'Explore Clarendon Residences in Cebu City, offering modern 2-3 storey townhouses with premium amenities and a prime location near SM Seaside.',
+       openGraph: {
+         title: `Clarendon Residences Cebu City  | ${client.name}`,
+          description: 'Explore Clarendon Residences in Cebu City, offering modern 2-3 storey townhouses with premium amenities and a prime location near SM Seaside.',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738692642/aldrich_dmmuaw.jpg'],
+        url:`https://zaiko.website/client/${client.url}/featured/clarendon-residences`,
+        type:'website'
     },
   }
-  
+  }
+
+
+
+
   export default function Clarendon() {
     return (
     <div className={styles.body1}>

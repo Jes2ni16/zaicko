@@ -5,15 +5,30 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'MACTAN PLAINS RESIDENCES',
-    description: 'Mactan Plains Residences is just a few meters away from Sto. nino Mactan Parish Church and the different office towers, shopping centers, grocery, and retail shops in Mactan Newtown.',
-    openGraph: {
-      title: 'MACTAN PLAINS RESIDENCES',
-      description: 'Mactan Plains Residences is just a few meters away from Sto. nino Mactan Parish Church and the different office towers, shopping centers, grocery, and retail shops in Mactan Newtown.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738985396/MPR-Exterior-Perspective-e1697029239646_jksjbb.webp'],
+
+
+  export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+    const {clientUrl} = await params;
+  
+    const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+  
+    return {
+      title: `MACTAN PLAINS RESIDENCES  | ${client.name} `,
+     description: 'Mactan Plains Residences is ideally located just steps from Sto. Niño Mactan Parish Church, with easy access to office towers, shopping centers, grocery stores, and retail shops in Mactan Newtown',
+       openGraph: {
+         title: `MACTAN PLAINS RESIDENCES  | ${client.name}`,
+          description: 'Mactan Plains Residences is ideally located just steps from Sto. Niño Mactan Parish Church, with easy access to office towers, shopping centers, grocery stores, and retail shops in Mactan Newtown',
+        images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738985396/MPR-Exterior-Perspective-e1697029239646_jksjbb.webp'],
+        url:`https://zaiko.website/client/${client.url}/featured/mactan-plains`,
+        type:'website'
     },
   }
+  }
+  
+  
+
+
   
   export default function MactanPlains() {
     return (
