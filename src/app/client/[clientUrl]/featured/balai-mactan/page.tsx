@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   }
   
-  export default function Clarendon() {
+  export default function BalaiMactan() {
     return (
     <div className={styles.body1}>
 

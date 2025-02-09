@@ -111,6 +111,13 @@
             "description": "Balai by Be Residences in Punta Engano is a Seaside Living for Everyone. It is a 19-storey residential resort situated along the high-end resorts in Punta Engano, Mactan.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739088653/15_olozq8.webp", 
             "link": "featured/balai-mactan"
+          },
+          {
+            "id":"cityscape-grand-tower",
+            "title": "CITYSCAPE GRAND TOWER",
+            "description": "Cityscape Grand Tower is a 34-storey residential condominium with ultimate amenities designed to deliver comfort, convenience and satisfaction.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739097546/301114756_368002265500033_2370525403385187361_n_z3zrvj.webp", 
+            "link": "featured/cityscape-grand-tower"
           }
 
 
