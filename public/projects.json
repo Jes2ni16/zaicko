@@ -118,6 +118,20 @@
             "description": "Cityscape Grand Tower is a 34-storey residential condominium with ultimate amenities designed to deliver comfort, convenience and satisfaction.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739097546/301114756_368002265500033_2370525403385187361_n_z3zrvj.webp", 
             "link": "featured/cityscape-grand-tower"
+          },
+          {
+            "id":"casa-mira-south",
+            "title": "CASA MIRA SOUTH NAGA CITY, CEBU ",
+            "description": "Awarded as 2018 s Best Housing Development in Cebu, this beautifully designed economic community sits on a rolling terrain 60 to 100 meters above sea level that boasts expansive views and 45% open spaces.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739104319/photo-townhouse-model-b-1_o4p0av.webp", 
+            "link": "featured/casa-mira-south"
+          },
+          {
+            "id":"casa-mira-mandaue",
+            "title": "CASA MIRA TOWERS MANDAUE ",
+            "description": "Casa Mira Towers Mandaue is a 4 high-rise residential condominium development that sits in one of Cebu major cities. The development offers resort like amenities, thus will offer MORE to the economic market.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739107947/A1-768x573_pqtqqi.webp", 
+            "link": "featured/casa-mira-mandaue"
           }
 
 
