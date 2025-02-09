@@ -1,19 +1,53 @@
 
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import FullImage from '../fullScreenImg';
 import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'ARC TOWER RESIDENCES ',
-    description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
-    openGraph: {
-      title: 'ARC TOWER RESIDENCES  | Luxury Townhouses',
-      description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738349021/arc_ovvsa3.jpg'],
-    },
-  }
+
+type Props = {
+  params: Promise<{ url: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+ 
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+ 
+  const url= (await params).url
+ 
+  // fetch data
+  const product = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${url}`).then((res) => res.json())
+ 
+
+  const previousImages = (await parent).openGraph?.images || []
+ 
+  return {
+    title: `ARC TOWER RESIDENCES | ${product.name} `,
+   description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
+     openGraph: {
+       title: `ARC TOWER RESIDENCES  | ${product.name}`,
+        description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
+      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738349021/arc_ovvsa3.jpg', ...previousImages],
+      url:`https://zaiko.website/client/${product.url}/arc-tower`,
+      type:'website'
+    
+  },
+}
+}
+ 
+
+// export const metadata: Metadata = {
+//     title: 'ARC TOWER RESIDENCES ',
+//     description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
+//     openGraph: {
+//       title: 'ARC TOWER RESIDENCES  | Luxury Townhouses',
+//       description: 'Arc Tower Residences is a project that will have residential condo, office and hotel components &ndash; will rise at N. Bacalso Avenue corner V. Rama Street in Cebu City.',
+//       images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738349021/arc_ovvsa3.jpg'],
+//     },
+//   }
   
   export default function Clarendon() {
     return (
