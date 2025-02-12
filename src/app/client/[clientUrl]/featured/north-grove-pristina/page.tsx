@@ -9,20 +9,23 @@ import { Metadata } from 'next';
 
 
 
-export const metadata: Metadata = {
-  title: 'North Grove at Pristina Town | Garden-Inspired Living in Cebu',
-  description: 'North Grove at Pristina Town offers a peaceful, garden-inspired condominium living in Cebu. Discover Lumina and Terra towers with modern amenities, surrounded by nature’s tranquility.',
-  openGraph: {
-    title: 'North Grove at Pristina Town | Garden-Inspired Living in Cebu',
-    description: 'North Grove at Pristina Town in Brgy. Bacayan, Cebu City offers serene, nature-infused condominium living with modern features, retail spaces, and top-tier amenities.',
-    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738605900/9-NORTH-GROVE_okraor.jpg'],
+export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+  const {clientUrl} = await params;
+
+  const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+
+  return {
+    title: `North Grove at Pristina Town  | ${client.name} `,
+   description: 'North Grove at Pristina Town offers a peaceful, garden-inspired condominium living in Cebu. Discover Lumina and Terra towers with modern amenities, surrounded by nature’s tranquility.',
+     openGraph: {
+       title: `North Grove at Pristina Town  | ${client.name}`,
+        description: 'North Grove at Pristina Town offers a peaceful, garden-inspired condominium living in Cebu. Discover Lumina and Terra towers with modern amenities, surrounded by nature’s tranquility.',
+      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738605900/9-NORTH-GROVE_okraor.jpg'],
+      url:`https://zaiko.website/client/${client.url}/featured/north-grove-pristina`,
+      type:'website'
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'North Grove at Pristina Town | Garden-Inspired Living in Cebu',
-    description: 'Experience serene garden-inspired living with North Grove at Pristina Town in Cebu City, with two towers and top amenities designed for a tranquil lifestyle.',
-    images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738605900/9-NORTH-GROVE_okraor.jpg'],
-  },
+}
 }
 
 

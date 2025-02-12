@@ -132,6 +132,27 @@
             "description": "Casa Mira Towers Mandaue is a 4 high-rise residential condominium development that sits in one of Cebu major cities. The development offers resort like amenities, thus will offer MORE to the economic market.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739107947/A1-768x573_pqtqqi.webp", 
             "link": "featured/casa-mira-mandaue"
+          },
+          {
+            "id":"128-nivel-hills",
+            "title": "128 Nivel Hills ",
+            "description": "Choose from a selection of spacious and elegantly designed unit types to suit your lifestyle needs, including the cozy Studio Unit, the luxurious 2 Bedroom with Maids Room, the sprawling 3 Bedroom with Maids Room, and the grand 4 Bedroom with Maids Room condo for sale.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739107947/A1-768x573_pqtqqi.webp", 
+            "link": "featured/128-nivel-hills"
+          },
+              {
+            "id":"mivela-residences",
+            "title": "Mivela Garden Residences ",
+            "description": "The 6th addition to Cebu Landmasters Best-Selling Garden Series, this development is poised to blossom into a modern garden residential community in Cebu City, set to redefine the concept of garden living.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739293567/Screenshot_2019_0924_172038_tapvwe.webp", 
+            "link": "featured/mivela-residences"
+          },
+          {
+            "id":"amani-mactan",
+            "title": "Amani Grand Resort Residences ",
+            "description": "Amani Grand Resort Residences blends Cebu vibrant cultural heritage with its dynamic modernity. Enjoy a tranquil retreat in thoughtfully designed living spaces that prioritize comfort, happiness, and well-being.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739330331/Amani-Grand_Perspective-5_s4ljgr.webp", 
+            "link": "featured/amani-mactan"
           }
 
 

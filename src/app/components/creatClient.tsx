@@ -47,7 +47,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
   const [projects, setProjects] = useState<string[]>(client?.projects || []); // State for checklist
   const [isChecklistOpen, setChecklistOpen] = useState(false);
 
-  const checklistOptions = ["urban-deca-mandaue", "primeworld-district", "le-menda-busay", "primeworld-pointe","clarendon-residences","mandtra","north-grove-pristina","tierra-alta","guada-verde-residences", "plumera-lapu","dannara-north","mactan-plains","breeza-coves-lapu","arc-tower","mingla-highland","balai-mactan","cistyscape-grand-tower","casa-mira-south","casa-mira-mandaue"];
+  const checklistOptions = ["urban-deca-mandaue", "primeworld-district", "le-menda-busay", "primeworld-pointe","clarendon-residences","mandtra","north-grove-pristina","tierra-alta","guada-verde-residences", "plumera-lapu","dannara-north","mactan-plains","breeza-coves-lapu","arc-tower","mingla-highland","balai-mactan","cistyscape-grand-tower","casa-mira-south","casa-mira-mandaue","128-nivel-hills", "mivela-residences","amani-mactan"];
 
   useEffect(() => {
     if (client) {
