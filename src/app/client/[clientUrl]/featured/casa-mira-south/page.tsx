@@ -5,22 +5,12 @@ import styles from '../page.module.css';
 import Image from 'next/image';
 
 
-export const metadata: Metadata = {
-    title: 'CASA MIRA SOUTH NAGA CITY, CEBU ',
-    description: 'Awarded as 2018 s Best Housing Development in Cebu, this beautifully designed economic community sits on a rolling terrain 60 to 100 meters above sea level that boasts expansive views and 45% open spaces.',
-    openGraph: {
-      title: 'CASA MIRA SOUTH NAGA CITY, CEBU  | Luxury Town House',
-      description: 'Awarded as 2018 s Best Housing Development in Cebu, this beautifully designed economic community sits on a rolling terrain 60 to 100 meters above sea level that boasts expansive views and 45% open spaces.',
-      images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739104319/photo-townhouse-model-b-1_o4p0av.webp'],
-    },
-  }
 
   export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
  
     const {clientUrl} = await params;
   
     const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
-  
   
   
     return {
