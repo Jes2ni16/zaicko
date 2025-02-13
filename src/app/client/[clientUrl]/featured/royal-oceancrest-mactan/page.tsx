@@ -298,7 +298,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
 <FullImage alt='' src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739421669/10-3_jmmqzx.webp"/>
 <FullImage alt='' src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739421670/11-4_kljaft.webp"/>
 <FullImage alt='' src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739421674/12-2_sqwnva.webp"/>
-<FullImage alt='' src="hhttps://res.cloudinary.com/dnh0z6fm7/image/upload/v1739421669/9-2_b9ws3d.webp"/>
+<FullImage alt='' src="https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739421669/9-2_b9ws3d.webp"/>
 </div>
 </section>
 <hr/>
