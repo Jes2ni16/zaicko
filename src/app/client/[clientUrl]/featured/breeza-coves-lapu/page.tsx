@@ -32,7 +32,7 @@ import Image from 'next/image';
     return (
     <div className={styles.body1}>
 
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738996878/Anthony-Townhouse-scaled_p7tdu1.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738996878/Anthony-Townhouse-scaled_p7tdu1.webp' width={500} height={500} className={styles.heroImage} alt='' sizes="(max-width: 1540px) 100vw, 1540px"/>
 
 <section className={styles.section}>
 <h1>BREEZA COVES MACTAN PHASE 2</h1>

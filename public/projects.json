@@ -153,6 +153,13 @@
             "description": "Amani Grand Resort Residences blends Cebu vibrant cultural heritage with its dynamic modernity. Enjoy a tranquil retreat in thoughtfully designed living spaces that prioritize comfort, happiness, and well-being.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739330331/Amani-Grand_Perspective-5_s4ljgr.webp", 
             "link": "featured/amani-mactan"
+          },
+          {
+            "id":"royal-oceancrest-mactan",
+            "title": "ROYAL OCEANCREST MACTAN ",
+            "description": "Designed to be the getaway of your dreams  a haven for you to relax and reconnect with yourself and your loved ones.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739422117/building_bw0dmh.webp", 
+            "link": "featured/royal-oceancrest-mactan"
           }
 
 

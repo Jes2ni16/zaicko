@@ -30,7 +30,7 @@ import Image from 'next/image';
     return (
     <div className={styles.body1}>
 
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739104319/photo-townhouse-model-b-1_o4p0av.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739104319/photo-townhouse-model-b-1_o4p0av.webp' width={500} height={500} className={styles.heroImage} alt='' sizes="(max-width: 1540px) 100vw, 1540px"/>
 
 <section className={styles.section}>
 <h1>CASA MIRA SOUTH NAGA CITY, CEBU</h1>

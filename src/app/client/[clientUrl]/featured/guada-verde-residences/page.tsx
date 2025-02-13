@@ -32,7 +32,7 @@ export default function GuadaVerde(){
 return(
     <div className={styles.body1}>
 
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807600/306534238_3215994575285619_7109149711564738505_n-e1692175229196_rkwvae.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738807600/306534238_3215994575285619_7109149711564738505_n-e1692175229196_rkwvae.webp' width={500} height={500} className={styles.heroImage} alt='' sizes="(max-width: 1540px) 100vw, 1540px"/>
 <section className={styles.section}>
 <h1>GUADA VERDE RESIDENCES in GUADALUPE, CEBU CITY</h1> 
 <p>Guada Verde Residences is a place you can come home to and experience good life at Sterling land. Experience  verdant suburban lifestyle in the heart of the inner city, GET YOUR  VERDANT SUBURBAN LIFESTYLE HOME.</p>

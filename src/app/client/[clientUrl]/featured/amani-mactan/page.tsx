@@ -36,7 +36,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
  
     return (
     <div className={styles.body1}>
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739330331/Amani-Grand_Perspective-5_s4ljgr.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739330331/Amani-Grand_Perspective-5_s4ljgr.webp' width={500} height={500} className={styles.heroImage} alt='' sizes="(max-width: 1540px) 100vw, 1540px"/>
 
 <section className={styles.section}>
 <h1>Amani Grand Resort Residences</h1>

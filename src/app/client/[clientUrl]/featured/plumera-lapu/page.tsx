@@ -33,7 +33,7 @@ export default function PlumeraLapu(){
 return(
     <div className={styles.body1}>
 
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899572/5-7-e1699346657810_tshs6v.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738899572/5-7-e1699346657810_tshs6v.webp' width={500} height={500} className={styles.heroImage} alt='' sizes="(max-width: 1540px) 100vw, 1540px"/>
 
 <section className={styles.section}>
 <h1>PLUMERA CONDOMINIUM</h1>

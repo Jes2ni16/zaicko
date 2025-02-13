@@ -34,7 +34,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
  
     return (
     <div className={styles.body1}>
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739210047/128NIVEL-11-05-2019-1-NIGHT-1200x1210-1-942x950_ssuua4.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739210047/128NIVEL-11-05-2019-1-NIGHT-1200x1210-1-942x950_ssuua4.webp' width={500} height={500} className={styles.heroImage} alt='' sizes="(max-width: 1540px) 100vw, 1540px"/>
 
 
 <section className={styles.section}>

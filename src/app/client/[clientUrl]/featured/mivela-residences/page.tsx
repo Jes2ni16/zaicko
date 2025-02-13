@@ -34,7 +34,7 @@ import Image from 'next/image';
     return (
     <div className={styles.body1}>
 
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739293567/Screenshot_2019_0924_172038_tapvwe.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739293567/Screenshot_2019_0924_172038_tapvwe.webp' width={500} height={500} className={styles.heroImage} alt='' sizes="(max-width: 1540px) 100vw, 1540px"/>
 
 <section className={styles.section}>
 <h1>Mivela Garden Residences</h1>

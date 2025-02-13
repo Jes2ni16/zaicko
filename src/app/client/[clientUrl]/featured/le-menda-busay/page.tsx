@@ -90,7 +90,7 @@ export default function LeMenda() {
   <ArrowBackIcon />
 </IconButton>
 <div className={styles.img}>
-    <Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp' width='500' height={700} alt='Le Menda-Busay'/>
+    <Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738171260/W4IKSJQ_tgpo1e.webp' width='500' height={700} alt='Le Menda-Busay' sizes="(max-width: 1540px) 100vw, 1540px"/>
 </div>
 <div className={styles.submin}>
   <p style={{textAlign:'center', margin:'10px auto', color:'#0E6543'}}>Where beauty meets convenience and luxury.</p>

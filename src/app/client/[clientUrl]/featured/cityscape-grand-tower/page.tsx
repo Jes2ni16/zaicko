@@ -32,7 +32,7 @@ import Image from 'next/image';
     return (
     <div className={styles.body1}>
 
-<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739097546/301114756_368002265500033_2370525403385187361_n_z3zrvj.webp' width={500} height={500} className={styles.heroImage} alt=''/>
+<Image src='https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739097546/301114756_368002265500033_2370525403385187361_n_z3zrvj.webp' width={500} height={500} className={styles.heroImage} alt='' sizes="(max-width: 1540px) 100vw, 1540px"/>
 
 <section className={styles.section}>
 <h1>CITYSCAPE GRAND TOWER</h1>
