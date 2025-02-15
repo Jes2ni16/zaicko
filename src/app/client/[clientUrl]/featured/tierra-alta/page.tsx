@@ -13,11 +13,11 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
     const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
   
     return {
-      title: `TIERRA ALTA in SAN FERNANDO,  | ${client.name} `,
+      title: `TIERRA ALTA in SAN FERNANDO | ${client.name} `,
      description: 'TierrAlta is the perfect new hotspot for your dream home, surrounded by lush greenery and offering breathtaking mountain and sea views.',
        openGraph: {
-         title: `TIERRA ALTA in SAN FERNANDO, | ${client.name}`,
-          description: 'ierrAlta is the perfect new hotspot for your dream home, surrounded by lush greenery and offering breathtaking mountain and sea views.',
+         title: `TIERRA ALTA in SAN FERNANDO | ${client.name}`,
+          description: 'TierrAlta is the perfect new hotspot for your dream home, surrounded by lush greenery and offering breathtaking mountain and sea views.',
         images: ['https://res.cloudinary.com/dnh0z6fm7/image/upload/v1738812484/TIERRA-1536x818_yjqvnd.webp'],
         url:`https://zaiko.website/client/${client.url}/featured/tierra-alta`,
         type:'website'

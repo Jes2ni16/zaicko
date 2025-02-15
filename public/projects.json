@@ -160,8 +160,21 @@
             "description": "Designed to be the getaway of your dreams  a haven for you to relax and reconnect with yourself and your loved ones.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739422117/building_bw0dmh.webp", 
             "link": "featured/royal-oceancrest-mactan"
+          },
+          {
+            "id":"turnberry-place-2",
+            "title": "TURNBERRY PLACE 2 , LAPU-LAPU CITY",
+            "description": "Turnberry Place 2: pre-selling townhouses in Mactan We have few units left. It&rsquo;s 3 minutes drive to Mactan International Airport.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739595118/1_1_wbhet9.webp", 
+            "link": "featured/turnberry-place-2"
+          },
+          {
+            "id":"royal-oceancrest-panglao",
+            "title": "Royal Oceancrest Panglao",
+            "description": "Imagine a life surrounded by pristine white sand beaches, crystal-clear waters, and lush tropical scenery&mdash;all just steps from your doorstep.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739630771/vlcsnap-2022-02-22-21h45m31s921_bminac.webp", 
+            "link": "featured/royal-oceancrest-panglao"
           }
-
 
     ]
     }
