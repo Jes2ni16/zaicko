@@ -17,7 +17,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
 
 
   return {
-    title: `128 Nivel Hills| ${client.name} `,
+    title: `128 Nivel Hills | ${client.name} `,
    description: 'Choose from a selection of spacious and elegantly designed unit types to suit your lifestyle needs, including the cozy Studio Unit, the luxurious 2 Bedroom with Maids Room, the sprawling 3 Bedroom with Maids Room, and the grand 4 Bedroom with Maids Room condo for sale.',
      openGraph: {
        title: `128 Nivel Hills | ${client.name}`,
@@ -30,7 +30,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
 }
  
   
-  export default function Clarendon() {
+  export default function NivelHills() {
  
     return (
     <div className={styles.body1}>

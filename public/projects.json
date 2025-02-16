@@ -174,6 +174,13 @@
             "description": "Imagine a life surrounded by pristine white sand beaches, crystal-clear waters, and lush tropical scenery&mdash;all just steps from your doorstep.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739630771/vlcsnap-2022-02-22-21h45m31s921_bminac.webp", 
             "link": "featured/royal-oceancrest-panglao"
+          },
+          {
+            "id":"alberlyn-boxhill-residences",
+            "title": "ALBERLYN BOXHILL RESIDENCES",
+            "description": "Alberlyn Box Hill Residences offers a vision of refined living at an accessible price. While both feature the same style of Asian contemporary homes, they stand out by providing elegant yet affordable housing options.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739677885/COMMUNITY_irduix.webp", 
+            "link": "featured/alberlyn-boxhill-residences"
           }
 
     ]
