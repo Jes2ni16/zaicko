@@ -303,11 +303,17 @@ max-width: 1200px;
 .body1 h2 {
     color: #0E6543;
 }
+.messageContainer {
+    display: none;
+}
 @media (max-width:1100px) {
     .body1{
 
         padding-left: 10px;
         padding-right: 10px;
+    }
+    .messageContainer {
+        display: block;
     }
     .section{
         padding-left: 0px;
