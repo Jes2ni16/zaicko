@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
 import styles from './page.module.css';
 import Link from 'next/link';
- 
+import ChatIcon from '@mui/icons-material/Chat';
+import { Fab } from '@mui/material';
 
 interface ClientData {
     name: string
@@ -29,7 +30,9 @@ interface ClientData {
       return response.json()
     }
     const clientData = await getClientData()
-  
+    const fbUrl = clientData.fb;
+    const fbUsername = fbUrl.split('/').pop(); 
+
     return (
       <div>
         <section className="featured-layout">
@@ -37,11 +40,25 @@ interface ClientData {
         </section>
         <hr />
         <section className={styles.footer}>
-  
           <h2 >{clientData.name}</h2>
           <p>Phone: {clientData.phone}</p>
           <p>Email: {clientData.email}</p>
           <p>Facebook: <Link href={clientData.fb} className={styles.fbLink}>Click here</Link></p>
+          <div className={styles.messageContainer}>
+          <Fab
+      color="primary"
+      aria-label="message"
+      href={`https://m.me/${fbUsername}`}  target="_blank"  // Replace with your desired URL
+      sx={{
+        position: 'fixed',
+        bottom: 16,
+        right: 16,
+        zIndex: 1000,
+      }}
+    >
+      <ChatIcon />
+    </Fab>
+          </div>
         </section>
 
       </div>
