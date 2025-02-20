@@ -92,7 +92,7 @@ const ClientListing = () => {
         );
 
         const fetchedLists = response.data;
-
+ 
         // Assign default prices where missing or invalid
         const processedLists: ListData[] = fetchedLists.map((list) => ({
           ...list,
@@ -164,9 +164,7 @@ const ClientListing = () => {
     setAvailableLocations(uniqueLocations); // Update available locations state
   }, [selectedListType, lists]); // Depend on selectedListType and lists
   
-  
-  const uniqueCities = Array.from(new Set(lists.map((list) => list.city?.toLowerCase().trim())))
-  .filter((city) => city && city !== '');
+
 
   const filteredLists: ListData[] = lists
     .filter((list) =>

@@ -28,8 +28,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
         <Image
           src={data.image}
           alt={data.title}
-          width={345}  // Define width for intrinsic layout
-          height={240} // De
+          width={345}  
+          height={240} 
           sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw" 
           style={{
             objectFit: 'cover', 
