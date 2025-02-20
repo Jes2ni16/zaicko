@@ -46,9 +46,9 @@ const ClientListing = () => {
   const [selectedListType, setSelectedListType] = useState<string>('Rental');
   const [priceRange, setPriceRange] = useState<number[]>([0, 0]); // Adjusted initial state
   const [minPrice, setMinPrice] = useState<number>(0);
-  const [selectedCity, setSelectedCity] = useState<string>('');
   const [maxPrice, setMaxPrice] = useState<number>(0);
-
+  const [availableLocations, setAvailableLocations] = useState<string[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<string>('');
 
 
   useEffect(() => {
@@ -132,9 +132,39 @@ const ClientListing = () => {
     setPriceRange(newValue as number[]);
   };
 
+  useEffect(() => {
+    const filteredPrices = lists
+      .filter((list) => list.list_type === selectedListType) // Filter by selected type
+      .map((list) => parseFloat(list.price) || 0);
+  
+    if (filteredPrices.length > 0) {
+      const min = Math.min(...filteredPrices);
+      const max = Math.max(...filteredPrices);
+      setPriceRange([min, max]);
+      setMinPrice(min);
+      setMaxPrice(max);
+    } else {
+      setPriceRange([0, 0]); // No listings, so reset the range
+    }
+  }, [selectedListType, lists]); // Depend on selectedListType and lists
+  
+
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCity(event.target.value);
+    setSelectedLocation(event.target.value as string);
   };
+
+  useEffect(() => {
+    const filteredListings = lists.filter((list) => list.list_type === selectedListType);
+  
+    // Extract unique locations from filtered listings
+    const uniqueLocations = [
+      ...new Set(filteredListings.map((list) => list.city).filter(Boolean)), // Filter out any empty locations
+    ];
+  
+    setAvailableLocations(uniqueLocations); // Update available locations state
+  }, [selectedListType, lists]); // Depend on selectedListType and lists
+  
+  
   const uniqueCities = Array.from(new Set(lists.map((list) => list.city?.toLowerCase().trim())))
   .filter((city) => city && city !== '');
 
@@ -147,8 +177,8 @@ const ClientListing = () => {
       return price >= priceRange[0] && price <= priceRange[1];
     })
     .filter((list) => 
-      selectedCity 
-        ? (list.city?.toLowerCase().trim() === selectedCity.toLowerCase().trim()) 
+      selectedLocation
+        ? (list.city?.toLowerCase().trim() === selectedLocation.toLowerCase().trim()) 
         : true
     );
 
@@ -194,7 +224,7 @@ const ClientListing = () => {
       </label>
       <select
         id="city-select"
-        value={selectedCity}
+        value={selectedLocation}
         onChange={handleCityChange}
         style={{
           width: "100%",
@@ -206,7 +236,7 @@ const ClientListing = () => {
         }}
       >
         <option value="">All Cities</option>
-        {uniqueCities.map((city) => (
+        {availableLocations.map((city) => (
           <option key={city} value={city}>
             {city}
           </option>
@@ -404,7 +434,7 @@ const ClientListing = () => {
       </label>
       <select
         id="city-select"
-        value={selectedCity}
+        value={selectedLocation}
         onChange={handleCityChange}
         style={{
           width: "100%",
@@ -416,7 +446,7 @@ const ClientListing = () => {
         }}
       >
         <option value="">All Cities</option>
-        {uniqueCities.map((city) => (
+        {availableLocations.map((city) => (
           <option key={city} value={city}>
             {city}
           </option>
@@ -509,3 +539,4 @@ const ClientListing = () => {
 };
 
 export default ClientListing;
+

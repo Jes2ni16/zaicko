@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardContent, CardActions, Typography, Button, CardMedia, Divider } from '@mui/material';
-
+import { Card, CardContent, CardActions, Typography, Button, Divider } from '@mui/material';
+import Image from 'next/image';
 
 interface ProjectCardProps {
   data: {
@@ -24,12 +24,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
         boxShadow: 3,
       }}
     >
-      <CardMedia
-        component="img"
-        height="240"
-        image={data.image}
-        alt={data.title}
-      />
+  <div style={{ position: 'relative', width: '100%', height: 240 }}>
+        <Image
+          src={data.image}
+          alt={data.title}
+          width={345}  // Define width for intrinsic layout
+          height={240} // De
+          sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+          style={{
+            objectFit: 'cover', 
+          }} 
+        />
+      </div>
       <CardContent
         sx={{
           flexGrow: 1,

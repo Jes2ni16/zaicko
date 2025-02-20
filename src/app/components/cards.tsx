@@ -1,6 +1,6 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { Typography,  Grid, } from '@mui/material';
+
+
+import {   Grid, } from '@mui/material';
 import { ProjectCard } from './ProjectCard';
 
 interface Project {
@@ -18,55 +18,34 @@ interface CardListProps {
 }
 
 
+async function fetchProjects(): Promise<Project[]> {
+  try {
+    const response = await fetch('http://localhost:3000/projects.json');
 
-
-const CardList:  React.FC<CardListProps> = ({ client }) => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/projects.json');
-        const data = await response.json();
-
-        // This filtering is correct - it directly matches project.id with client.projects
-        const filteredProjects = data.projects.filter((project: Project) =>
-          client.projects.includes(project.id)
-        );
-        
-        setProjects(filteredProjects);
-      } catch (err) {
-        setError('Failed to load projects');
-        console.error('Error fetching projects:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (client?.projects?.length) {
-      fetchProjects();
+    // Log the response to see its status and headers
+    console.log('Response status:', response.status);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects. Status: ${response.status}`);
     }
-  }, [client]);
 
-
-  if (loading) {
-    return <Typography>Loading projects...</Typography>;
+    const data = await response.json();
+    return data.projects; // Assuming the JSON has a "projects" field
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return [];
   }
+}
+const CardList:  React.FC<CardListProps> = async({ client }) => {
 
-  if (error) {
-    return <Typography color="error">{error}</Typography>;
-  }
+  const projects = await fetchProjects(); // Fetch project data
+  const filteredProjects = projects.filter((project) =>
+    client.projects.includes(project.id)
+  );
 
-  if (!projects.length) {
-    return <Typography>No projects found.</Typography>;
-  }
 
   return (
     <Grid container spacing={3} justifyContent="center">
-      {projects.map((project) => (
+      {filteredProjects.map((project) => (
         <Grid
           item
           xs={12}
