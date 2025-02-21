@@ -188,8 +188,21 @@
             "description": "A brand that merges quality housing&mdash;an idyllic experience where your dreams of homeownership come true&mdash;with affordability.",
             "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739684248/Harrington-Place-House-and-Lot-in-Talisay-City-Cebu-9_cy9kth.jpg", 
             "link": "featured/harrington-place-pooc"
+          },
+          {
+            "id":"harrington-place-pooc",
+            "title": "HARRINGTON PLACE POOC",
+            "description": "A brand that merges quality housing&mdash;an idyllic experience where your dreams of homeownership come true&mdash;with affordability.",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1739684248/Harrington-Place-House-and-Lot-in-Talisay-City-Cebu-9_cy9kth.jpg", 
+            "link": "featured/harrington-place-pooc"
+          },
+          {
+            "id":"la-bellezah-compostela",
+            "title": "LA BELLEZAH COMPOSTELA",
+            "description": "Discover the beauty of serene living at La Bellezah Homes Trea, an exceptional residential development by Myvan Properties and Development Inc",
+            "image": "https://res.cloudinary.com/dnh0z6fm7/image/upload/v1740104060/cover-3_ppqlc2.jpg", 
+            "link": "featured/la-bellezah-compostela"
           }
-
 
           
     ]
