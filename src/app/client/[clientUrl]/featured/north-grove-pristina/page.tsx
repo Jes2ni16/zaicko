@@ -169,7 +169,7 @@ The development features two distinctive towers, Lumina and Terra, thoughtfully 
 </div>
 
 <div className={styles.containers}>
-<h2>ROJECT DETAILS:</h2>
+<h2>PROJECT DETAILS:</h2>
 
 <div className={styles.details}>
     <p>LUMINA TOWER (TOWER 1) </p>
