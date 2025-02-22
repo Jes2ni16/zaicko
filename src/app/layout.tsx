@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { Poppins } from 'next/font/google';
+import Script from "next/script";
+
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -25,6 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+<Script async src="https://www.googletagmanager.com/gtag/js?id=G-PGBNKPRKWR"></Script>
+<script>
+{`  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PGBNKPRKWR');`}
+</script>
       <body className={`${poppins.className}`}>
         {children}
       </body>
