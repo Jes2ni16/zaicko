@@ -155,7 +155,7 @@ const ClientListing = () => {
 
   useEffect(() => {
     const filteredListings = lists.filter((list) => list.list_type === selectedListType);
-  
+    setSelectedLocation('');
     // Extract unique locations from filtered listings
     const uniqueLocations = [
       ...new Set(filteredListings.map((list) => list.city).filter(Boolean)), // Filter out any empty locations
