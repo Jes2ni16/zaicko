@@ -40,6 +40,7 @@ interface Client {
   image: string;
   image_mobile: string;
   youtube: string;
+  linked: string;
   createdAt: string; 
 }
 

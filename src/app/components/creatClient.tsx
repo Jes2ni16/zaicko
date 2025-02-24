@@ -18,6 +18,7 @@ interface Client {
   background?: string;
   background_mobile?: string;
   image:string;
+  linked:string;
   image_mobile: string;
   url?: string;
   projects?: string[];
@@ -39,6 +40,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
   const [website, setWebsite] = useState<string | undefined>(client?.website || undefined);
   const [instagram, setInstagram] = useState<string | undefined>(client?.instagram || undefined);
   const [youtube, setYoutube] = useState<string | undefined>(client?.youtube || undefined);
+  const [linked, setLinked] = useState<string | undefined>(client?.linked || undefined);
   const [background, setBackground] = useState<string | undefined>(client?.background || undefined);
   const [backgroundMobile, setBackgroundMobile] = useState<string | undefined>(client?.background_mobile || undefined);
   const [image, setImage] = useState<string | undefined>(client?.image || undefined);
@@ -59,6 +61,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       setTiktok(client.tiktok || undefined);
       setInstagram(client.instagram || undefined);
       setWebsite(client.website || undefined);
+      setLinked(client.linked || undefined);
       setYoutube(client.youtube || undefined);
       setBackground(client.background || undefined);
       setBackgroundMobile(client.background_mobile || undefined);
@@ -90,6 +93,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
       instagram,
       youtube,
       website,
+      linked,
       background,
       background_mobile: backgroundMobile || '', 
       image,
@@ -184,6 +188,12 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
                 fullWidth
                 value={youtube || ''}
                 onChange={(e) => setYoutube(e.target.value || undefined)}
+              />
+                      <TextField
+                label="LinkedIn"
+                fullWidth
+                value={youtube || ''}
+                onChange={(e) => setLinked(e.target.value || undefined)}
               />
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
