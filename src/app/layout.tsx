@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     icon: '/favicon.ico', 
   },
   description: "zaiko tech digital business cards",
+  robots: "index, follow", 
 };
 
 export default function RootLayout({
