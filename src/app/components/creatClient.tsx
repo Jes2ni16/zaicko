@@ -192,7 +192,7 @@ const CreateClientComponent = ({ client, onClose, onSuccess }: CreateClientProps
                       <TextField
                 label="LinkedIn"
                 fullWidth
-                value={youtube || ''}
+                value={linked || ''}
                 onChange={(e) => setLinked(e.target.value || undefined)}
               />
             </Box>
