@@ -15,7 +15,7 @@ align-items: center;
 
   .page1 .imgContainer{
 max-width: 100%;
-aspect-ratio: 16 / 9; 
+aspect-ratio: 973 / 630; 
 margin: auto;
 margin-top: 0;
 position: relative;
@@ -50,14 +50,7 @@ max-height: 90%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); 
   }
 
-.fma{
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: #fff;
-  padding: 5px 10px;
-  border-radius: 50%;
-}
+
   .page2 {
     display: none ;
   }
@@ -107,11 +100,7 @@ width: 100%;
     .page1{
       display: none;
     }
-    .fma{
-      top: 10px;
-      right: 10px;
-      padding: 5px 10px;
-    }
+
     .socLinks1 img{
       width: 40px;
       height: 90%!important;

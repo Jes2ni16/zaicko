@@ -3,7 +3,7 @@
 import styles from './page.module.css';
 import Link from 'next/link';  
 import Image from 'next/image';
-
+import { Metadata } from 'next'
 
 interface ClientData {
   name: string;
@@ -22,6 +22,28 @@ interface ClientData {
   url: string;
 }
 
+
+export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
+ 
+  const {clientUrl} = await params;
+
+  const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
+
+
+
+  return {
+    title: `${client.name} DIGITAL CARD `,
+   description: `This is a digital business card for ${client.name}, offering a quick way to connect and access contact details and get the list of inventory.`,
+     openGraph: {
+       title: `${client.name} DIGITAL CARD `,
+        description: `This is a digital business card for ${client.name}, offering a quick way to connect and access contact details and get the list of inventory.`,
+      images: [`${client.image}`],
+      url:`https://zaiko.website/client/${client.url}`,
+      type:'website'
+  },
+}
+}
+ 
 
 export async function generateStaticParams() {
   try {
@@ -70,7 +92,7 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
     <div className={styles.body}>
       <div className={styles.page1}>
         <div className={styles.imgContainer}>
-          <Image src={clientData.image} width={2560} height={1440} alt={clientData.name}  />
+          <Image src={clientData.image} width={3656} height={2520} alt={clientData.name}  />
           <Link 
             href={`/client/${clientData.url}/listing`} 
             className={styles.linkList}
@@ -95,11 +117,7 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
               <Link href={clientData.website}><Image src={'/internet.webp'} width={30} height={30} alt='instagram image'/></Link>
             )}
           </div>
-          <div className={styles.fma}>
-            <Link href='https://findmyagent.net'>
-              <Image src='/fma.png' width={40} height={30} alt="find my agent Logo" />
-            </Link>
-          </div>
+
         </div>
       </div>
 
@@ -130,11 +148,7 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
               <Link href={clientData.website}><Image src={'/internet.webp'} width={30} height={30} alt='instagram image'/></Link>
             )}
           </div>
-          <div className={styles.fma}>
-            <Link href='https://findmyagent.net'>
-              <Image src='/fma.png' width={25} height={20} alt="find my agent Logo" />
-            </Link>
-          </div>
+
         </div>
       </div>
     </div>

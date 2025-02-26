@@ -1,229 +1,103 @@
 'use client';
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
-import axios from 'axios';
 import LinkIcon from '@mui/icons-material/Link';
-import { Metadata } from 'next'
 import Link from 'next/link';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import { Button,  Slider, Typography, CircularProgress, Box, Card} from '@mui/material';
 
 interface ClientData {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  background: string;
-  fb: string;
-  tiktok: string;
-  image:string;
-  instagram: string;
-  youtube: string;
-  background_mobile: string;
-  url: string;
-}
-
-interface ListData {
-  _id: string;
-  list_type: string;
-  unit_type: string;
-  city: string;
-  barangay: string;
-  price: string;
-  fb_link: string;
-  room_number: string;
-  list_owner: string;
-  client: { _id: string; name: string };
-  createdAt: string;
-}
-
-
- 
-export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
- 
-  const {clientUrl} = await params;
-
-  const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
-
-
-
-  return {
-    title: `${client.name} Listing`,
-   description: 'Collections of List for Rental and Brokerage and Developmental Projects',
-     openGraph: {
-       title: `${client.name} Listing`,
-        description: 'Collections of List for Rental and Brokerage and Developmental Projects',
-      images: [`${client.image}`],
-      url:`https://zaiko.website/client/${client.url}/listing/`,
-      type:'website'
-  },
-}
-}
-
-
-const ClientListing = () => {
-  const [currentURL, setCurrentURL] = useState<string>('');
-  const [clientData, setClientData] = useState<ClientData | null>(null);
-  const [lists, setLists] = useState<ListData[]>([]);
-  const [listsLoading, setListsLoading] = useState<boolean>(true);
-  const [clientLoading, setClientLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedListType, setSelectedListType] = useState<string>('Rental');
-  const [priceRange, setPriceRange] = useState<number[]>([0, 0]); // Adjusted initial state
-  const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(0);
-  const [availableLocations, setAvailableLocations] = useState<string[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<string>('');
-
-
-  useEffect(() => {
-    const url = window.location.href;
-    const match = url.match(/\/client\/(.*?)\/listing/);
-    const urlAfterClient = match ? match[1] : null;
-
-    if (urlAfterClient) {
-      setCurrentURL(urlAfterClient);
-    } else {
-      setError('Invalid URL format.');
-      setClientLoading(false);
-      setListsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchClientData = async () => {
-      try {
-        if (!currentURL) return;
-
-        const response = await axios.get(
-          `https://zaiko-server.vercel.app/api/clients/url/${currentURL}`
-        );
-        setClientData(response.data);
-      } catch (err) {
-        setError('Failed to load client data.');
-        console.error(err);
-      } finally {
-        setClientLoading(false);
-      }
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    background: string;
+    fb: string;
+    tiktok: string;
+    image: string;
+    instagram: string;
+    youtube: string;
+    background_mobile: string;
+    url: string;
+  }
+  
+  interface ListData {
+    _id: string;
+    list_type: string;
+    unit_type: string;
+    city: string;
+    barangay: string;
+    price: string;
+    fb_link: string;
+    room_number: string;
+    list_owner: string;
+    client: { _id: string; name: string };
+    createdAt: string;
+  }
+  
+  interface ClientListingProps {
+    clientData: ClientData;
+    lists: ListData[];
+    minPrice: number;
+    maxPrice: number;
+  }
+  
+  const ClientListing = ({ clientData, lists, minPrice, maxPrice }: ClientListingProps) => {
+    const [selectedListType, setSelectedListType] = useState<string>('Rental');
+    const [priceRange, setPriceRange] = useState<number[]>([minPrice, maxPrice]);
+    const [selectedLocation, setSelectedLocation] = useState<string>('');
+    const [availableLocations, setAvailableLocations] = useState<string[]>([]);
+    const [listsLoading, setListsLoading] = useState<boolean>(false);
+    const [dynamicMaxPrice, setDynamicMaxPrice] = useState<number>(maxPrice); // Track dynamic max price
+  
+    // Update dynamic max price whenever lists change
+    useEffect(() => {
+      const prices = lists.map((list) => parseFloat(list.price) || 0);
+      const updatedMaxPrice = Math.max(...prices);
+      setDynamicMaxPrice(updatedMaxPrice);
+    }, [lists]);
+  
+    const handlePriceChange = (event: Event, newValue: number | number[]) => {
+      setPriceRange(newValue as number[]);
     };
-
-    const fetchLists = async (): Promise<void> => {
-      try {
-        if (!currentURL) return;
-
-        const response = await axios.get<ListData[]>(
-          `https://zaiko-server.vercel.app/api/lists`,
-          { params: { client: currentURL } }
-        );
-
-        const fetchedLists = response.data;
- 
-        // Assign default prices where missing or invalid
-        const processedLists: ListData[] = fetchedLists.map((list) => ({
-          ...list,
-          price: list.price && !isNaN(parseFloat(list.price)) ? list.price : '0',
-        }));
-
-        // Sort by createdAt
-        const sortedLists = processedLists.sort(
-          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-
-        setLists(sortedLists);
-
-        // Calculate price range
-        const prices: number[] = processedLists.map((list) =>
-          parseFloat(list.price) || 0
-        );
-        const min = Math.min(...prices);
-        const max = Math.max(...prices);
-
-        setMinPrice(min);
-        setMaxPrice(max);
-        setPriceRange([min, max]);
-      } catch (err) {
-        setError('Failed to load listings.');
-        console.error(err);
-      } finally {
-        setListsLoading(false);
-      }
-    };
-
-    fetchClientData();
-    fetchLists();
-  }, [currentURL]);
-
-  const handlePriceChange = (event: Event, newValue: number | number[]) => {
-    setPriceRange(newValue as number[]);
-  };
-
-  useEffect(() => {
-    const filteredPrices = lists
-      .filter((list) => list.list_type === selectedListType) // Filter by selected type
-      .map((list) => parseFloat(list.price) || 0);
   
-    if (filteredPrices.length > 0) {
-      const min = Math.min(...filteredPrices);
-      const max = Math.max(...filteredPrices);
-      setPriceRange([min, max]);
-      setMinPrice(min);
-      setMaxPrice(max);
-    } else {
-      setPriceRange([0, 0]); // No listings, so reset the range
-    }
-  }, [selectedListType, lists]); // Depend on selectedListType and lists
+    const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value.trim(); 
+        setSelectedLocation(value);
+      };
+      
+  setListsLoading(false)
+      const filteredLists = lists
+      .filter((list) => list.list_type === selectedListType)
+      .filter((list) => {
+        const price: number = parseFloat(list.price) || 0;
+        return price >= priceRange[0] && price <= priceRange[1];
+      })
+      .filter((list) =>
+        selectedLocation
+          ? list.city?.toLowerCase().trim() === selectedLocation.toLowerCase().trim()
+          : true
+      );
   
-
-  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedLocation(event.target.value as string);
-  };
-
-  useEffect(() => {
-    const filteredListings = lists.filter((list) => list.list_type === selectedListType);
-    setSelectedLocation('');
-    // Extract unique locations from filtered listings
-    const uniqueLocations = [
-      ...new Set(filteredListings.map((list) => list.city).filter(Boolean)), // Filter out any empty locations
-    ];
-  
-    setAvailableLocations(uniqueLocations); // Update available locations state
-  }, [selectedListType, lists]); // Depend on selectedListType and lists
-  
+      useEffect(() => {
+        const uniqueLocations = [
+          ...new Set(
+            lists
+              .filter((list) => list.list_type === selectedListType)
+              .map((list) => list.city)
+              .filter(Boolean)
+          ),
+        ];
+        setAvailableLocations(uniqueLocations); // This should be in useEffect, so the locations are set correctly
+      }, [selectedListType, lists]);
 
 
-  const filteredLists: ListData[] = lists
-    .filter((list) =>
-      selectedListType ? list.list_type === selectedListType : true
-    )
-    .filter((list) => {
-      const price: number = parseFloat(list.price) || 0; // Default to 0 if invalid
-      return price >= priceRange[0] && price <= priceRange[1];
-    })
-    .filter((list) => 
-      selectedLocation
-        ? (list.city?.toLowerCase().trim() === selectedLocation.toLowerCase().trim()) 
-        : true
-    );
-
-  if ( clientLoading ) return (<Box
-    sx={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh', // Centers vertically and horizontally
-    }}
-  >
-    <CircularProgress />
-  </Box>);
-  if (error) return <p>{error}</p>;
 
   return (
     <div className={styles.body}>
       <div   
         className={styles.page1} 
       >
-
-
         <div className={styles.container}>
         <div className={styles.header}>
 
@@ -266,7 +140,7 @@ const ClientListing = () => {
               onChange={handlePriceChange}
               valueLabelDisplay="auto"
               min={minPrice || 0}
-              max={maxPrice}
+              max={dynamicMaxPrice}
               step={100}
               sx={{
                 color: '#0f7f50', height: 7, width: '80%', margin: '0 auto',  padding:'5px 0 !important',
@@ -315,65 +189,69 @@ const ClientListing = () => {
     </Box>
            <hr />
             <Typography style={{ fontSize: '20px', padding: '10px' }}>Discover my featured projects now!</Typography>
-            <Link href={`/client/${currentURL}/featured`} className={styles.featuredBtn}  >
+            <Link href={`/client/${clientData.url}/featured`} className={styles.featuredBtn}  >
               Featured Projects
               <ApartmentIcon />
             </Link>
           </div>
 
 
-          {listsLoading ? ( // Show loader when data is loading
-  <div style={{ textAlign: 'center', marginTop: '20px' }}>
-    <CircularProgress size={48} />
-    <Typography variant="body1" style={{ marginTop: '8px' }}>
-      Loading listings...
-    </Typography>
-  </div>
-) : filteredLists.length > 0 ? (
-  <div className={styles.cardContainer}>
-    {filteredLists.map((list) => (
-      <Card
-        key={list._id}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '8px',
-          gap: '8px',
-          boxShadow: 2,
-          width: '100%',
-          margin: '0 auto',
-          minHeight: '90px',
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-            {list.unit_type || 'Unknown Unit'}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {list.barangay},{list.city || ''}
-          </Typography>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
-          <Typography variant="body1" color="text.secondary">
-            <strong>Rooms:</strong> {list.room_number || ''}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            <strong>Price:</strong> {list.price ? `₱ ${list.price}` : ''}
-          </Typography>
-          <Link href={list.fb_link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-            <Button variant="contained" color="primary" size="small" startIcon={<LinkIcon />}>
-              View
-            </Button>
-          </Link>
-        </div>
-      </Card>
-    ))}
-  </div>
-) : (
-  <div style={{ textAlign: 'center', marginTop: '20px' }}>
-    <Typography variant="body2">  Loading listings...</Typography>
-  </div>
-)}
+   
+          {listsLoading ? (
+              <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <CircularProgress size={48} />
+                <Typography variant="body1" style={{ marginTop: '8px' }}>
+                  Loading listings...
+                </Typography>
+              </div>
+            ) : filteredLists.length > 0 ? (
+              <div className={styles.cardContainer}>
+                {filteredLists.map((list) => (
+                  <Card
+                    key={list._id}
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      padding: '8px',
+                      gap: '8px',
+                      boxShadow: 2,
+                      width: '100%',
+                      margin: '0 auto',
+                      minHeight: '90px',
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        {list.unit_type || 'Unknown Unit'}
+                      </Typography>
+                      <Typography variant="body1" color="text.secondary">
+                        {list.barangay}, {list.city || ''}
+                      </Typography>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
+                      <Typography variant="body1" color="text.secondary">
+                        <strong>Rooms:</strong> {list.room_number || ''}
+                      </Typography>
+                      <Typography variant="body1" color="text.secondary">
+                        <strong>Price:</strong> {list.price ? `₱ ${list.price}` : ''}
+                      </Typography>
+                      <Link href={list.fb_link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" color="primary" size="small" startIcon={<LinkIcon />}>
+                          View
+                        </Button>
+                      </Link>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            ) : (
+              <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <Typography variant="body2">
+                  Loading listings...{clientData ? clientData.name : 'Loading client info...'}
+                </Typography>
+              </div>
+            )}
+
           </div>
 
         </div>
@@ -388,7 +266,7 @@ const ClientListing = () => {
         <div className={styles.header}>
           <h1 style={{ textAlign: 'start' }}>My Listings</h1>
 
-          <Link href={`/client/${currentURL}/featured`} className={styles.featuredBtn}  >
+          <Link href={`/client/${clientData.url}/featured`} className={styles.featuredBtn}  >
             Featured Projects      <ApartmentIcon style={{ fontSize: 25, color: '#fff' }} />
           </Link>
 

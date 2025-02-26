@@ -37,13 +37,6 @@ text-align: center;
   font-size: 38px;
 }
 
-.header .back{
-  position: absolute;
-  left: 0;
-  font-size: 20px;
-  bottom: -10px;
-  text-decoration: underline;
-}
 
 .lists {
   padding: 20px;
@@ -177,13 +170,7 @@ margin-left: auto;
 box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 
-.back .backIcon {
-  color: white;
-  border: 1px solid black;
-  border-radius: 50%;background-color: black;
-  padding: 3px;
-  font-size: 30px 
-}
+
 
 .sectors {
   padding: 10px 15px;
@@ -207,18 +194,7 @@ box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0
   .page1 {
     display: none;
   } 
-  .header .back{
-    font-size: 14px;
-    bottom: 40px;
-    text-decoration: underline;
-  }
 
-  .page2 .back {
-    position: absolute;
-    top: 3px;
-    left: 0;
-    display: flex;
-  }
   .page2 .featuredBtn {
     display: flex;
 width: 55%;

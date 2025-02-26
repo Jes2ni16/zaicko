@@ -36,11 +36,11 @@ interface Client {
   background_mobile: string;
   fb: string;
   tiktok: string;
+  linked:string;
   instagram: string;
   image: string;
   image_mobile: string;
   youtube: string;
-  linked: string;
   createdAt: string; 
 }
 

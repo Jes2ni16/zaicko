@@ -1,8 +1,7 @@
 
 import CardList from '../../../components/cards';
 import styles from './page.module.css';
-import { IconButton } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 interface ClientData {
@@ -55,28 +54,6 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
 
   return (
     <div className={styles.page}>
-      {/* Back Button */}
-      <IconButton
-        component="a"
-        href={`/client/${clientData.url}/listing`}
-        color="primary"
-        aria-label="go back"
-        sx={{
-          position: 'absolute',
-          backgroundColor: '#000',
-          color: '#fff',
-          width: 30,
-          height: 30,
-          top: '10px',
-          left: '10px',  // Ensure it's placed on the left side
-          borderRadius: '50%',
-          '&:hover': {
-            backgroundColor: '#333', // Darker shade for hover
-          },
-        }}
-      >
-        <ArrowBackIcon />
-      </IconButton>
 
       {/* Header */}
       <div className={styles.header}>
