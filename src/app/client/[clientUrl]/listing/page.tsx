@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import axios from 'axios';
 import LinkIcon from '@mui/icons-material/Link';
-import { Metadata } from 'next'
 import Link from 'next/link';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import { Button,  Slider, Typography, CircularProgress, Box, Card} from '@mui/material';
@@ -38,27 +37,7 @@ interface ListData {
 }
 
 
- 
-export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl: string }>;}): Promise<Metadata>  => {
- 
-  const {clientUrl} = await params;
 
-  const client = await fetch(`https://zaiko-server.vercel.app/api/clients/url/${clientUrl}`).then((res) => res.json());
-
-
-
-  return {
-    title: `${client.name} Listing`,
-   description: 'Collections of List for Rental and Brokerage and Developmental Projects',
-     openGraph: {
-       title: `${client.name} Listing`,
-        description: 'Collections of List for Rental and Brokerage and Developmental Projects',
-      images: [`${client.image}`],
-      url:`https://zaiko.website/client/${client.url}/listing/`,
-      type:'website'
-  },
-}
-}
 
 
 const ClientListing = () => {
