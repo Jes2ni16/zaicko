@@ -65,7 +65,6 @@ const ClientListing = () => {
     } else {
       setError('Invalid URL format.');
       setClientLoading(false);
-      setListsLoading(false);
     }
   }, []);
 
@@ -148,9 +147,9 @@ const ClientListing = () => {
       setMinPrice(min);
       setMaxPrice(max);
     } else {
-      setPriceRange([0, 0]); // No listings, so reset the range
+      setPriceRange([0, 0]);
     }
-  }, [selectedListType, lists]); // Depend on selectedListType and lists
+  }, [selectedListType, lists]); 
   
 
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -159,14 +158,18 @@ const ClientListing = () => {
 
   useEffect(() => {
     const filteredListings = lists.filter((list) => list.list_type === selectedListType);
-    setSelectedLocation('');
-    // Extract unique locations from filtered listings
+    
+ 
     const uniqueLocations = [
-      ...new Set(filteredListings.map((list) => list.city).filter(Boolean)), // Filter out any empty locations
+      ...new Set(
+        filteredListings
+          .map((list) => list.city?.trim().toLowerCase()) 
+          .filter(Boolean) //
+      ),
     ];
-  
-    setAvailableLocations(uniqueLocations); // Update available locations state
-  }, [selectedListType, lists]); // Depend on selectedListType and lists
+    
+    setAvailableLocations(uniqueLocations); 
+  }, [selectedListType, lists]); 
   
 
 
@@ -302,12 +305,16 @@ const ClientListing = () => {
 
 
           {listsLoading ? ( // Show loader when data is loading
-  <div style={{ textAlign: 'center', marginTop: '20px' }}>
-    <CircularProgress size={48} />
-    <Typography variant="body1" style={{ marginTop: '8px' }}>
-      Loading listings...
-    </Typography>
-  </div>
+            <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh', // Centers vertically and horizontally
+    }}
+  >
+    <CircularProgress />
+  </Box>
 ) : filteredLists.length > 0 ? (
   <div className={styles.cardContainer}>
     {filteredLists.map((list) => (
@@ -471,12 +478,16 @@ const ClientListing = () => {
     </Box>
           </div>
           {listsLoading ? ( 
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <CircularProgress size={48} />
-              <Typography variant="body1" style={{ marginTop: '8px' }}>
-                Loading listings...
-              </Typography>
-            </div>
+             <Box
+             sx={{
+               display: 'flex',
+               justifyContent: 'center',
+               alignItems: 'center',
+               height: '100vh', // Centers vertically and horizontally
+             }}
+           >
+             <CircularProgress />
+           </Box>
           ) : filteredLists.length > 0 ? (
             <div className={styles.cardContainer} >
               {filteredLists.map((list) => (

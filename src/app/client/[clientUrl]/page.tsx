@@ -32,10 +32,10 @@ export const generateMetadata = async ({ params }: { params: Promise<{ clientUrl
 
 
   return {
-    title: `${client.name} DIGITAL CARD `,
+    title: `${client.name} DigiCard `,
    description: `This is a digital business card for ${client.name}, offering a quick way to connect and access contact details and get the list of inventory.`,
      openGraph: {
-       title: `${client.name} DIGITAL CARD `,
+       title: `${client.name} DigiCard`,
         description: `This is a digital business card for ${client.name}, offering a quick way to connect and access contact details and get the list of inventory.`,
       images: [`${client.image}`],
       url:`https://zaiko.website/client/${client.url}`,
