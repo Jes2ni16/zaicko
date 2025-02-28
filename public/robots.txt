@@ -1,4 +1,6 @@
 User-agent: *
 Disallow: /admin/
+Allow: /public
 Allow: /
+Disallow: 
 Sitemap: https://zaiko.website/sitemap.xml
