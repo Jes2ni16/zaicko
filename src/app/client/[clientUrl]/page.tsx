@@ -6,20 +6,20 @@ import Image from 'next/image';
 import { Metadata } from 'next'
 
 interface ClientData {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  background: string;
-  fb: string;
-  tiktok: string;
-  instagram: string;
-  website:string;
-  youtube: string;
-  background_mobile: string;
-  image:string;
-  image_mobile:string;
-  url: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  background?: string;
+  fb?: string;
+  tiktok?: string;
+  instagram?: string;
+  website?:string;
+  youtube?: string;
+  background_mobile?: string;
+  image?:string;
+  image_mobile?:string;
+  url?: string;
 }
 
 

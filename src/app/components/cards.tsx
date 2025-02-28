@@ -30,13 +30,23 @@ const CardList:  React.FC<CardListProps> = ({ client }) => {
       try {
         setLoading(true);
         const response = await fetch('/projects.json');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+    
         const data = await response.json();
-
+        
+        // Make sure the data structure is as expected
+        if (!data.projects || !Array.isArray(data.projects)) {
+          throw new Error('Invalid project data');
+        }
+    
         // This filtering is correct - it directly matches project.id with client.projects
         const filteredProjects = data.projects.filter((project: Project) =>
-          client.projects.includes(project.id)
+          Array.isArray(client?.projects) && client.projects.includes(project.id)
         );
-        
+    
         setProjects(filteredProjects);
       } catch (err) {
         setError('Failed to load projects');
