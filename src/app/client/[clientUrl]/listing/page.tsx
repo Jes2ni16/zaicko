@@ -171,7 +171,10 @@ const ClientListing = () => {
     setAvailableLocations(uniqueLocations); 
   }, [selectedListType, lists]); 
   
-
+  useEffect(() => {
+    // Reset city selection when list type changes
+    setSelectedLocation('');
+  }, [selectedListType]);
 
   const filteredLists: ListData[] = lists
     .filter((list) =>

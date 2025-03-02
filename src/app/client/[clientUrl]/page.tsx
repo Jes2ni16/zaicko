@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import Link from 'next/link';  
 import Image from 'next/image';
 import { Metadata } from 'next'
+import TouchAppOutlinedIcon from '@mui/icons-material/TouchAppOutlined';
 
 interface ClientData {
   name?: string;
@@ -92,12 +93,13 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
     <div className={styles.body}>
       <div className={styles.page1}>
         <div className={styles.imgContainer}>
-          <Image src={clientData.image} width={3656} height={2520} alt={clientData.name}  />
+          <Image src={clientData.image} width={3656} height={2520} alt={clientData.name}  className={styles.mainImg} />
           <Link 
             href={`/client/${clientData.url}/listing`} 
             className={styles.linkList}
             prefetch={true} 
           >
+            <TouchAppOutlinedIcon  className={styles.pointBtn1}/>
             <span>My Listings</span>
           </Link>
           <div className={styles.socLinks}>
@@ -129,6 +131,7 @@ export default async function ClientHome({ params }: { params: Promise<{ clientU
             className={styles.linkList}
             prefetch={true}
           >
+                 <TouchAppOutlinedIcon  className={styles.pointBtn2}/>
             <span>My Listings</span>
           </Link>
           <div className={styles.socLinks1}>

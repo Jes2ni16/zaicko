@@ -8,7 +8,7 @@ justify-content: center;
 align-items: center;
   }
   .body {
-    background-color: #515B66;
+    background-color: #fff;
     height: 100vh;
   }
   
@@ -17,7 +17,6 @@ align-items: center;
 max-width: 100%;
 aspect-ratio: 973 / 630; 
 margin: auto;
-margin-top: 0;
 position: relative;
 max-height: 90%;
   }
@@ -29,25 +28,35 @@ max-height: 90%;
 
   }
 
+  .imgContainer .mainImg{
+    border-radius: 40px;
+    box-shadow: 0 20px 12px rgba(0, 0, 0, 0.4); 
+  }
+
 
   .page1 .linkList{
     position: absolute;
     bottom: 15%;
-    color: #000;
-    left: 10%;
+    color:  #fff;
+    left: 5%;
     max-width: 500px;
-    width: 20%;
+    width: 30%;
     text-align: center;
     padding: 20px 0;
     font-size: 32px;
     border-radius: 10px;
-    border: 1px solid #afaeae;
-    background: rgba(255, 255, 255, 0.5); 
+    /* border: 1px solid #afaeae; */
+    /* background: rgba(255, 255, 255, 0.5);  */
+    background-color: #1976d2;
     border-radius: 10px;
+    align-items: center;
     padding: 5px;
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); 
+    animation: bounce1 1.5s infinite ease-in-out;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
   }
 
 
@@ -81,6 +90,26 @@ width: 100%;
 
   .socLinks1 a{
     width: 100%;
+      }
+      .pointBtn1 {
+        animation: bounce 1.5s infinite ease-in-out;
+        color:  #fff;
+        transform: rotate(90deg);
+        font-size: 36px;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+      }
+      
+      @keyframes bounce {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.7;
+        }
       }
 
 
@@ -147,12 +176,24 @@ margin-top: 0;
         width: 80%;
         font-size: 22px;
         border-radius: 10px;
-        border: 1px solid #afaeae;
-        background: rgba(255, 255, 255, 0.1); 
+        /* border: 1px solid #afaeae; */
+        /* background: rgba(255, 255, 255, 0.1);  */
+        background-color: #1976d2;
         border-radius: 10px;
         padding: 5px;
         backdrop-filter: blur(10px); 
         -webkit-backdrop-filter: blur(10px); 
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7); 
+        text-decoration: underline;
+      }
+      
+      .pointBtn2 {
+        animation: bounce 1.5s infinite ease-in-out;
+        color:  #fff;
+        transform: rotate(90deg);
+        font-size: 26px;
+        position: absolute;
+        right: 40px;
+        top: 10px;
       }
     
