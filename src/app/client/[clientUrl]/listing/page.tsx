@@ -88,7 +88,7 @@ const ClientListing = () => {
     const fetchLists = async (): Promise<void> => {
       try {
         if (!currentURL) return;
-
+        setListsLoading(true);
         const response = await axios.get<ListData[]>(
           `https://zaiko-server.vercel.app/api/lists`,
           { params: { client: currentURL } }
@@ -198,7 +198,10 @@ const ClientListing = () => {
     <CircularProgress />
   </Box>);
   if (error) return <p>{error}</p>;
-
+  console.log('listsLoading:', listsLoading);
+  console.log('filteredLists:', filteredLists);
+  console.log('clientData:', clientData);
+  
   return (
     <div className={styles.body}>
       <div   
@@ -357,7 +360,7 @@ const ClientListing = () => {
   </div>
 ) : (
   <div style={{ textAlign: 'center', marginTop: '20px' }}>
-    <Typography variant="body2">  Loading listings...</Typography>
+    <Typography variant="body2">  Listings coming soon, check back later!</Typography>
   </div>
 )}
           </div>
@@ -477,17 +480,22 @@ const ClientListing = () => {
       ))}
     </Box>
           </div>
-          {listsLoading ? ( 
-             <Box
-             sx={{
-               display: 'flex',
-               justifyContent: 'center',
-               alignItems: 'center',
-               height: '100vh', // Centers vertically and horizontally
-             }}
-           >
-             <CircularProgress />
-           </Box>
+          {listsLoading  ? ( 
+            <Box
+  sx={{
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center', // Centers text
+    backgroundColor: 'transparent', // Ensures the background doesn't conflict with the spinner
+  }}
+>
+  <CircularProgress color="primary" sx={{ marginBottom: 2 }} /> {/* Ensure it's visible */}
+  <Typography variant="h6" color="text.secondary">
+    Loading...
+  </Typography>
+</Box>
           ) : filteredLists.length > 0 ? (
             <div className={styles.cardContainer} >
               {filteredLists.map((list) => (
@@ -525,7 +533,7 @@ const ClientListing = () => {
             </div>
           ) : (
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <Typography variant="body2">  Loading listings...{clientData ? clientData.name : 'Loading client info...'}</Typography>
+              <Typography variant="body2">  Listings coming soon, check back later! - {clientData ? clientData.name : 'Loading client info...'}</Typography>
             </div>
           )}
 
