@@ -67,7 +67,7 @@ max-height: 90%;
   .socLinks {
     position: absolute;
     right: 25%;
-    bottom: 4%;
+    bottom: 0%;
     display: flex;
     gap: 30px;
   }
@@ -79,7 +79,7 @@ max-height: 90%;
   .socLinks1 {
     position: absolute;
     left: 10%;
-    bottom: 2%;
+    bottom: 1%;
     display: flex;
     gap: 10px;
     width: 45%;
