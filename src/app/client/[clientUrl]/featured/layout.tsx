@@ -12,6 +12,7 @@ interface ClientData {
     email: string
   }
 
+  export const revalidate = 3; 
 
   export default async function FeaturedLayout({ children, params }:{children: ReactNode, params: Promise<{ clientUrl: string }> }) {
     const resolvedParams = await params;
