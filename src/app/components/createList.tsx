@@ -142,6 +142,7 @@ const AddListComponent = ({ onSuccess }: AddListProps) => {
         onChange={(e) => setUnitType(e.target.value)}
       >
         <MenuItem value="Condo">Condo</MenuItem>
+        <MenuItem value="Apartment">Apartment</MenuItem>
         <MenuItem value="House">House</MenuItem>
         <MenuItem value="Commercial">Commercial</MenuItem>
         <MenuItem value="Lot">Lot</MenuItem>
