@@ -70,7 +70,7 @@ const ClientManagement = () => {
         }
       } catch (error) {
         console.log('User is not logged in.', error);
-        router.push('/');
+        router.push('/login');
       }
     };
 

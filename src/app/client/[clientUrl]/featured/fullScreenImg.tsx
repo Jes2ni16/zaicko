@@ -28,7 +28,7 @@ const FullImage: React.FC<FullImageProps> = ({
   
     useEffect(() => {
       const preloadImage = new window.Image();
-    preloadImage.src = src; 
+      preloadImage.src = src;  // Preload the image to ensure it's in cache
     setIsMounted(true);
     }, [src]);
   // Handle closing the modal
@@ -110,7 +110,6 @@ const FullImage: React.FC<FullImageProps> = ({
                   display:'flex',
                   objectFit: 'contain',
                 }}
-                priority
               />
             </div>
           </div>

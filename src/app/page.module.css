@@ -1,0 +1,18 @@
+.intro {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #116141;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+}
+
+.intro h1 {
+ font-size: 48px;
+}

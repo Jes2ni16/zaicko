@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from 'next/font/google';
 import Script from "next/script";
-
+import { Analytics } from "@vercel/analytics/react"
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -38,6 +38,7 @@ export default function RootLayout({
 </script>
       <body className={`${poppins.className}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
